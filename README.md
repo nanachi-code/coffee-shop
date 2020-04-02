@@ -4,4 +4,4 @@ Laravel project by team ONE
 
 ## Useful links
 
-[Trello](https://trello.com/one523)
+[Trello](https://trello.com/b/wtzCuGVC/coffee-shop)
