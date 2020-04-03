@@ -4,7 +4,7 @@
 @section('location')
 <section class="home-slider owl-carousel">
 
-    <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    <div class="slider-item" style="background-image: url({{asset('images/bg_3.jpg')}});" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
       <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
@@ -174,16 +174,7 @@
 
         </div> <!-- .col-md-8 -->
         <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
-          <div class="sidebar-box">
-            <form action="#" class="search-form">
-              <div class="form-group">
-                  <div class="icon">
-                    <span class="icon-search"></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Search...">
-              </div>
-            </form>
-          </div>
+
           <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
             <div class="categories">
               <h3>Categories</h3>
@@ -199,7 +190,7 @@
           <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
             <h3>Recent Blog</h3>
             <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+              <a class="blog-img mr-4" style="background-image: url({{asset('images/image_1.jpg')}});"></a>
               <div class="text">
                 <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                 <div class="meta">
@@ -210,7 +201,7 @@
               </div>
             </div>
             <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+              <a class="blog-img mr-4" style="background-image: url({{asset('images/image_2.jpg')}});"></a>
               <div class="text">
                 <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                 <div class="meta">
@@ -221,7 +212,7 @@
               </div>
             </div>
             <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
+              <a class="blog-img mr-4" style="background-image: url({{asset('images/image_3.jpg')}});"></a>
               <div class="text">
                 <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                 <div class="meta">
