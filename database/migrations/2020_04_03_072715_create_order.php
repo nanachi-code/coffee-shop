@@ -14,8 +14,20 @@ class CreateOrder extends Migration
     public function up()
     {
         Schema::create('order', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger("user_id");
+            $table->string('address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('email');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('post_code');
+            $table->string('method');
+            $table->unsignedTinyInteger('status');
+            $table->decimal('total',12,4);
             $table->timestamps();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

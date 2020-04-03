@@ -17,9 +17,9 @@ class CreatePost extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('content');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
