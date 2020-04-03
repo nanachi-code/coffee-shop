@@ -9,7 +9,7 @@
           <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
           <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{{url('/blog')}}" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">About</a></li>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>

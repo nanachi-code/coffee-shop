@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-
+Route::get('/blog','WebController@blogList');
+Route::get('/post/{id}','WebController@singlePost');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
