@@ -16,6 +16,10 @@ class CreateSize extends Migration
         Schema::create('size', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger("product_id");
+            $table->string('name');
+            $table->string('price');
+            $table->foreign('product_id')->references('id')->on('product');
         });
     }
 

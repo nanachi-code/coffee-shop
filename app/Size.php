@@ -10,5 +10,5 @@ class Size extends Model
 {
     protected $table = 'category';
 
-    protected $fillable = ['user_id','content','title'];
+    protected $fillable = ['user_id', 'content', 'title'];
 }

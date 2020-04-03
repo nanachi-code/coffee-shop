@@ -16,6 +16,12 @@ class CreateOrderProduct extends Migration
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("size_id");
+            $table->integer('quantity');
+            $table->bigInteger('total');
+            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('size_id')->references('id')->on('size');
         });
     }
 

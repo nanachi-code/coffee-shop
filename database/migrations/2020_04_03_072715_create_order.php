@@ -22,10 +22,10 @@ class CreateOrder extends Migration
             $table->string('email');
             $table->string('name');
             $table->string('phone');
-            $table->string('post_code');
+            $table->string('postcode');
             $table->string('method');
             $table->unsignedTinyInteger('status');
-            $table->decimal('total',12,4);
+            $table->decimal('total', 12, 4);
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users");
         });
