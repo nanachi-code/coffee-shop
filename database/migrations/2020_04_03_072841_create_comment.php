@@ -14,8 +14,13 @@ class CreateComment extends Migration
     public function up()
     {
         Schema::create('comment', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->text('content');
+            $table->bigInteger('user_id');
+            $table->bigInteger('post_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('post_id')->references('id')->on('post');
         });
     }
 
