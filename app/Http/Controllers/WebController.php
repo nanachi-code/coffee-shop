@@ -31,5 +31,10 @@ class WebController extends Controller
         return view('checkout');
     }
 
+    public function menu()
+    {
+        return view('menu');
+    }
+
 
 }

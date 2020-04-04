@@ -7,12 +7,12 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+          <li class="nav-item"><a href="{{url('/menu')}}" class="nav-link">Menu</a></li>
           <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="{{url('/blog')}}" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">About</a></li>
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+          <a class="nav-link dropdown-toggle" href="{{url('/cart')}} id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
           <div class="dropdown-menu" aria-labelledby="dropdown04">
               <a class="dropdown-item" href="{{url('/shop')}}">Shop</a>
             <a class="dropdown-item" href="{{url('/single-product')}}">Single Product</a>

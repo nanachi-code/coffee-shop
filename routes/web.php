@@ -40,6 +40,7 @@ Route::get('/single-product', function () {
 Route::get('/shop',"WebController@shop");
 Route::get('/cart',"WebController@cart");
 Route::get('/checkout',"WebController@checkout");
+Route::get('/menu',"WebController@menu");
 Auth::routes();
 
 
