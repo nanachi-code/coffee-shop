@@ -11,7 +11,7 @@
                 <div class="row slider-text justify-content-center align-items-center">
 
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                        <h1 class="mb-3 mt-5 bread">Cart</h1>
+                        <h1 class="mb-3 mt-5 bread">Product Detail</h1>
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product Detail</span></p>
                     </div>
 
@@ -22,92 +22,48 @@
 @endsection
 
 @section('content')
-    <section class="ftco-section ftco-cart">
+    <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 ftco-animate">
-                    <div class="cart-list">
-                        <table class="table">
-                            <thead class="thead-primary">
-                            <tr class="text-center">
-                                <th>&nbsp;</th>
-                                <th>&nbsp;</th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-
-                                <td class="image-prod"><div class="img" style="background-image:url(images/menu-2.jpg);"></div></td>
-
-                                <td class="product-name">
-                                    <h3>Creamy Latte Coffee</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$4.90</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$4.90</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-
-                                <td class="image-prod"><div class="img" style="background-image:url(images/dish-2.jpg);"></div></td>
-
-                                <td class="product-name">
-                                    <h3>Grilled Ribs Beef</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-lg-6 mb-5 ftco-animate">
+                    <a href="images/menu-2.jpg" class="image-popup"><img src="images/menu-2.jpg" class="img-fluid" alt="Colorlib Template"></a>
                 </div>
-            </div>
-            <div class="row justify-content-end">
-                <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
-                    <div class="cart-total mb-3">
-                        <h3>Cart Totals</h3>
-                        <p class="d-flex">
-                            <span>Subtotal</span>
-                            <span>$20.60</span>
-                        </p>
-                        <p class="d-flex">
-                            <span>Delivery</span>
-                            <span>$0.00</span>
-                        </p>
-                        <p class="d-flex">
-                            <span>Discount</span>
-                            <span>$3.00</span>
-                        </p>
-                        <hr>
-                        <p class="d-flex total-price">
-                            <span>Total</span>
-                            <span>$17.60</span>
-                        </p>
+                <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                    <h3>Creamy Latte Coffee</h3>
+                    <p class="price"><span>$4.90</span></p>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
+                    </p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="form-group d-flex">
+                                <div class="select-wrap">
+                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                    <select name="" id="" class="form-control">
+                                        <option value="">Small</option>
+                                        <option value="">Medium</option>
+                                        <option value="">Large</option>
+                                        <option value="">Extra Large</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="input-group col-md-6 d-flex mb-3">
+	             	<span class="input-group-btn mr-2">
+	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+	                   <i class="icon-minus"></i>
+	                	</button>
+	            		</span>
+                            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                            <span class="input-group-btn ml-2">
+	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+	                     <i class="icon-plus"></i>
+	                 </button>
+	             	</span>
+                        </div>
                     </div>
-                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                    <p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
                 </div>
             </div>
         </div>
@@ -170,4 +126,5 @@
             </div>
         </div>
     </section>
+
 @endsection

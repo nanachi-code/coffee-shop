@@ -32,3 +32,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/single-product', function () {
+    return view('single-product');
+});
+
+Route::get('/shop',"WebController@shop");
+Route::get('/cart',"WebController@cart");
+Route::get('/checkout',"WebController@checkout");
+Auth::routes();
+
+

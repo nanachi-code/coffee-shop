@@ -15,4 +15,21 @@ class WebController extends Controller
     {
         return view('single-post');
     }
+
+    public function shop()
+    {
+        return view('shop');
+    }
+
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function checkout()
+    {
+        return view('checkout');
+    }
+
+
 }
