@@ -55,6 +55,8 @@ Route::get('/user/order/{id}',"WebController@userOrderDetail");
 Auth::routes();
 
 
+
+// for testing add and post blog
 Route::get('/input-blog', function () {
     return view('blogpost');
 });
@@ -88,3 +90,5 @@ Route::post('/post-store', function (Request $request) {
     }
     return redirect()->to("/blog");
 });
+
+// just for test

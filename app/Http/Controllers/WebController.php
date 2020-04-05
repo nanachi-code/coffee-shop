@@ -11,7 +11,7 @@ class WebController extends Controller
 {
     public function blogList()
     {
-        $list = Post::all();
+        $list = Post::paginate(3);
 
         return view('post-list',['list' => $list]);
     }
