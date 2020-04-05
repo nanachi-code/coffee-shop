@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
     public function blogList()
     {
-        return view('post-list');
+        $list = Post::all();
+        return view('post-list',$list);
     }
 
     public function singlePost($id)
