@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -40,11 +41,40 @@ class WebController extends Controller
     //User start by Thai Code
     public function userProfile()
     {
-        return view('user-profile');
+        $user = User::find(1);
+        return view('user-profile',['user'=>$user]);
     }
+    public function userProfileUpdate($id,Request $request){
+        //kiem tra co phai admin hay khong
+        $user = User::find($id);
+        $request->validate([ // truyen vao rules de validate
+            "email"=> "required|string|max:191|unique:users,email,".$id,// validation laravel
+            "name"=> "required|string",
+            "dateOfBirth"=> "required|date",
+            "phone"=> "required|string|max:191|unique:users,phone,".$id,
+            "address"=> "required|string",
+        ]);
+        try {
+            $user->update([
+                "name"=> $request->get("name"),
+                "email"=> $request->get("email"),
+                "dateOfBirth"=> $request->get("dateOfBirth"),
+                "phone"=> $request->get("phone"),
+                "address"=> $request->get("address"),
+            ]);
+        }catch (\Exception $e){
+            return redirect()->back();
+        }
+        return redirect()->to("user/profile");
+    }
+
     public function userOrder()
     {
         return view('user-order');
+    }
+    public function userOrderDetail()
+    {
+        return view('user-order-detail');
     }
     //User end by Thai Code
 

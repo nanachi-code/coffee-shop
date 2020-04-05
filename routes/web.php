@@ -44,7 +44,11 @@ Route::get('/menu',"WebController@menu");
 
 //user start by Thai code
 Route::get('/user/profile',"WebController@userProfile");
+
+Route::post('user/profile/update/{id}',"WebController@userProfileUpdate");
+
 Route::get('/user/order',"WebController@userOrder");
+Route::get('/user/order/{id}',"WebController@userOrderDetail");
 //user end by Thai code
 Auth::routes();
 

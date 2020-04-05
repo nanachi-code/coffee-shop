@@ -25,7 +25,8 @@
         <div class="container">
             <div class="row">
                 <div class="ftco-animate">
-                    <form action="#" class="billing-form ftco-bg-dark p-3 p-md-5">
+                    <form class="billing-form ftco-bg-dark p-3 p-md-5" action="{{url("/user/profile/update",['id'=>$user->id])}}" method="post">
+                        @csrf
                         <h3 class="mb-4 billing-heading">User Profile</h3>
                         <div class="row">
                             <div class="col-4 images-user">
@@ -40,38 +41,43 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="user-name">User Name</label>
-                                        <input type="text" class="form-control" placeholder="">
+                                        <input type="text" name="name" class="form-control" placeholder="User Name"
+                                               value="{{$user->name}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" placeholder="">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{$user->email}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="dateOfBirth">Date of birth</label>
-                                        <input type="date" class="form-control" placeholder="">
+                                        <input type="date" name="dateOfBirth" class="form-control" placeholder="" value="{{$user->dateOfBirth}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="phone">Telephone</label>
-                                        <input type="tel" class="form-control" placeholder="">
+                                        <input type="tel" name="phone" class="form-control" placeholder="0123456789" value="{{$user->phone}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input type="text" class="form-control" placeholder="">
+                                        <input type="text" name="address" class="form-control" placeholder="" value="{{$user->address}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
+                                <div class="col-md-12 justify-content-end">
+                                    <button class="btn btn-primary py-3 px-4">Change Password</button>
+                                    <button class="btn btn-primary py-3 px-4" type="submit">Save</button>
+                                </div>
                             </div>
                         </div>
                     </form><!-- END -->
