@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
 class WebController extends Controller
 {
     public function blogList()
@@ -41,11 +41,10 @@ class WebController extends Controller
     //User start by Thai Code
     public function userProfile()
     {
-        $user = User::find(1);
+        $user = Auth::user();
         return view('user-profile',['user'=>$user]);
     }
     public function userProfileUpdate($id,Request $request){
-        //kiem tra co phai admin hay khong
         $user = User::find($id);
         $request->validate([ // truyen vao rules de validate
             "email"=> "required|string|max:191|unique:users,email,".$id,// validation laravel
