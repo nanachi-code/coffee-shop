@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\PostCategory;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -10,12 +11,15 @@ class WebController extends Controller
     public function blogList()
     {
         $list = Post::all();
-        return view('post-list',$list);
+
+        return view('post-list',['list' => $list]);
     }
 
     public function singlePost($id)
     {
-        return view('single-post');
+        $post = Post::find($id);
+        $post_cate = PostCategory::all();
+        return view('single-post',['post' => $post, 'post_cate' => $post_cate]);
     }
 
     public function shop()

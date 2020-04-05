@@ -13,6 +13,12 @@ class CreatePost extends Migration
      */
     public function up()
     {
+        Schema::create('post_category', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->timestamps();
+        });
+
         Schema::create('post', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
@@ -20,8 +26,10 @@ class CreatePost extends Migration
             $table->string('thumbnail')->default(null);
             $table->tinyInteger('comment_count');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('post_category_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_category_id')->references('id')->on('post_category');
         });
     }
 
@@ -33,5 +41,7 @@ class CreatePost extends Migration
     public function down()
     {
         Schema::dropIfExists('post');
+        Schema::dropIfExists('post_category');
+
     }
 }
