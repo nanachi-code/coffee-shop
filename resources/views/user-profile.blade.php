@@ -63,14 +63,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="phone">Telephone</label>
-                                        <input type="tel" name="phone" class="form-control" placeholder="0123456789" value="{{$user->phone}}">
+                                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" value="{{$user->phone}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input type="text" name="address" class="form-control" placeholder="" value="{{$user->address}}">
+                                        <input type="text" name="address" class="form-control" placeholder="Address" value="{{$user->address}}">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
