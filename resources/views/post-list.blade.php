@@ -42,7 +42,7 @@
                         </div>
                         <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
                         <p>
-                            {{Str::limit($post->content,100," ...")}}
+                            {!! Str::limit($post->content,100," ...") !!}
                         </p>
                     </div>
                 </div>

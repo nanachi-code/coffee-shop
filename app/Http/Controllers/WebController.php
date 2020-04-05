@@ -20,7 +20,8 @@ class WebController extends Controller
     {
         $post = Post::find($id);
         $post_cate = PostCategory::all();
-        return view('single-post',['post' => $post, 'post_cate' => $post_cate]);
+        $content = preg_split("/\r\n|\r|\n/", $post->content);
+        return view('single-post',['post' => $post, 'post_cate' => $post_cate, 'content' => $content]);
     }
 
     public function shop()

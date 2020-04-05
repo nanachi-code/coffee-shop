@@ -24,7 +24,7 @@ class CreatePost extends Migration
             $table->string('title');
             $table->longText('content');
             $table->string('thumbnail')->default(null);
-            $table->tinyInteger('comment_count');
+            $table->tinyInteger('comment_count')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_category_id');
             $table->timestamps();
