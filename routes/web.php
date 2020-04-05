@@ -41,6 +41,11 @@ Route::get('/shop',"WebController@shop");
 Route::get('/cart',"WebController@cart");
 Route::get('/checkout',"WebController@checkout");
 Route::get('/menu',"WebController@menu");
+
+//user start by Thai code
+Route::get('/user/profile',"WebController@userProfile");
+Route::get('/user/order',"WebController@userOrder");
+//user end by Thai code
 Auth::routes();
 
 

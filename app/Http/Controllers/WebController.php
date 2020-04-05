@@ -35,6 +35,19 @@ class WebController extends Controller
     {
         return view('menu');
     }
+    //User start by Thai Code
+    public function userProfile()
+    {
+        return view('user-profile');
+    }
+    public function userOrder()
+    {
+        return view('user-order');
+    }
+    //User end by Thai Code
+
+
+
 
 
 }

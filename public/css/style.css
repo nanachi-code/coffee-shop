@@ -7289,7 +7289,8 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #c49b63; }
+  color: #fff;
+   }
   a:hover, a:active, a:focus {
     color: #c49b63;
     outline: none !important;
@@ -9274,10 +9275,126 @@ textarea.form-control {
 @keyframes loader-dash {
   0% {
     stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0; }
+    stroke-dashoffset: 0;
+  }
   50% {
     stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px; }
+    stroke-dashoffset: -35px;
+  }
   100% {
     stroke-dasharray: 89, 200;
-    stroke-dashoffset: -136px; } }
+    stroke-dashoffset: -136px;
+  }
+}
+
+
+/*style by thaicode*/
+
+input[type=text],
+input[type=tel],
+input[type=search],
+input[type=email],
+input[type=password],
+input[type=date],
+input[type=number],
+input[type=tel],
+.user-status,
+textarea,
+select {
+  border: none !important;
+  border-bottom: #8fbdf0 1px solid !important;
+  outline: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type=text]:focus,
+input[type=tel]:focus,
+input[type=file]:focus,
+input[type=search]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=button]:focus,
+input[type=tel]:focus,
+select:focus,
+button,
+option:focus,
+.form-control:focus,
+.user-status:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.show>.btn-success.dropdown-toggle:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+input[type=file]:before {
+  position: absolute;
+  content: attr(data-content);
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #2780E3;
+  border: 1px solid #2780E3;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border-radius: 0;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type=file]:focus::before {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(71, 147, 231, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(71, 147, 231, 0.5);
+  cursor: pointer;
+}
+
+input[type=file]:hover::before {
+  color: #fff;
+  background-color: #1a6dca;
+  border-color: #1967be;
+  cursor: pointer;
+}
+
+input[type=file] {
+  color: transparent !important;
+}
+li .active{
+  color: #c49b63;
+}
+
+.table tbody tr td {
+ color: #fff;
+}
+table>.border-bottom{
+  color: #fff !important;
+}
+/*style by thaicode*/
