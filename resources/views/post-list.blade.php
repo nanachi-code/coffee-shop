@@ -31,17 +31,18 @@
             <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
                 <div class="blog-entry align-self-stretch">
                     <a href="{{url('/post/'.$post->id)}}" class="block-20"
-                        style="background-image: url('images/image_1.jpg');">
+                        style="background-image: url({{asset($post->thumbnail)}});">
                     </a>
                     <div class="text py-4 d-block">
                         <div class="meta">
-                            <div><a href="#">{{$post->created_at}}</a></div>
-                            <div><a href="#">Admin</a></div>
+                            <div><a href="#">{{$post->created_at->toDateString()}}</a></div>
+                            <div><a href="#">{{$post->User->name}}</a></div>
                             <div><a href="#" class="meta-chat">
                                     <span class="icon-chat"></span>{{$post->comment_count}}</a></div>
                         </div>
                         <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                        <p>
+                            {{Str::limit($post->content,100," ...")}}
                         </p>
                     </div>
                 </div>

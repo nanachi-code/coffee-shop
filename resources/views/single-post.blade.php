@@ -3,13 +3,11 @@
 
 @section('location')
 <section class="home-slider owl-carousel">
-
     <div class="slider-item" style="background-image: url({{asset('images/bg_3.jpg')}});"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text justify-content-center align-items-center">
-
                 <div class="col-md-7 col-sm-12 text-center ftco-animate">
                     <h1 class="mb-3 mt-5 bread">Blog Details</h1>
                     <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">Home</a></span> <span
@@ -34,7 +32,7 @@
                     enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta
                     architecto tempora.</p>
                 <p>
-                    <img src="images/image_1.jpg" alt="" class="img-fluid">
+                    <img src="{{asset('images/image_1.jpg')}}" alt="" class="img-fluid">
                 </p>
                 <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt
                     doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo
@@ -46,7 +44,7 @@
                     dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi
                     repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
                 <p>
-                    <img src="images/image_2.jpg" alt="" class="img-fluid">
+                    <img src="{{asset('images/image_2.jpg')}}" alt="" class="img-fluid">
                 </p>
                 <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod,
                     est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab
@@ -89,7 +87,7 @@
 
 
                 <div class="pt-5 mt-5">
-                    <h3 class="mb-5">6 Comments</h3>
+                    <h3 class="mb-5">{{$post->comment_count}} Comments</h3>
                     <ul class="comment-list">
                         <li class="comment">
                             <div class="vcard bio">
@@ -221,12 +219,9 @@
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <div class="categories">
                         <h3>Categories</h3>
-                        <li><a href="#">Tour <span>(12)</span></a></li>
-                        <li><a href="#">Hotel <span>(22)</span></a></li>
-                        <li><a href="#">Coffee <span>(37)</span></a></li>
-                        <li><a href="#">Drinks <span>(42)</span></a></li>
-                        <li><a href="#">Foods <span>(14)</span></a></li>
-                        <li><a href="#">Travel <span>(140)</span></a></li>
+                        @foreach($post_cate as $cate)
+                        <li><a href="#">{{$cate->name}} <span>({{$cate->Posts->count()}})</span></a></li>
+                        @endforeach
                     </div>
                 </div>
 
@@ -267,20 +262,6 @@
                                 <div><a href="#"><span class="icon-chat"></span> 19</a></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-                    <h3>Tag Cloud</h3>
-                    <div class="tagcloud">
-                        <a href="#" class="tag-cloud-link">dish</a>
-                        <a href="#" class="tag-cloud-link">menu</a>
-                        <a href="#" class="tag-cloud-link">food</a>
-                        <a href="#" class="tag-cloud-link">sweet</a>
-                        <a href="#" class="tag-cloud-link">tasty</a>
-                        <a href="#" class="tag-cloud-link">delicious</a>
-                        <a href="#" class="tag-cloud-link">desserts</a>
-                        <a href="#" class="tag-cloud-link">drinks</a>
                     </div>
                 </div>
 
