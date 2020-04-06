@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
+
+
     public function blogList()
     {
         $list = Post::paginate(3);
