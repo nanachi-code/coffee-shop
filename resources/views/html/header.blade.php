@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+        <a class="navbar-brand" href="{{url('/')}}">Coffee<small>Blend</small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -9,7 +9,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{url('/cart')}} id=" dropdown04" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="{{url('/cart')}}" id=" dropdown04" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Product</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="{{url('/shop')}}">Shop</a>
@@ -28,12 +28,12 @@
                                 <span style='font-size: 22px; color: white' class="icon icon-user"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="/user/profile" class="dropdown-item">{{"User Profile"}}</a>
-                                <a href="/user/order" class="dropdown-item">{{"User Order"}}</a>
+                                <a href="{{url('/user/profile')}}" class="dropdown-item">{{"User Profile"}}</a>
+                                <a href="{{url('/user/order')}}" class="dropdown-item">{{"User Order"}}</a>
                                 <a class="dropdown-item" href="{{url('/cart')}}">{{"Cart"}}</a>
                                 <a class="dropdown-item" href="{{url('/checkout')}}">{{"Checkout"}}</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="/sign-out" class="dropdown-item">{{"SignOut"}}</a>
+                                <a href="{{url('/logout')}}" class="dropdown-item">{{"SignOut"}}</a>
                             </div>
                         </li>
                     </ul>
