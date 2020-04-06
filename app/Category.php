@@ -10,10 +10,19 @@ class Category extends Model
 {
     protected $table = 'category';
 
-    protected $fillable = ['category_name'];
+    protected $fillable = ['name'];
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($category) {
+            $category->products->each(function ($product) {
+                $product->category_id = null;
+            });
+        });
     }
 }
