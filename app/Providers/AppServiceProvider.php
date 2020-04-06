@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $data = array(
-            'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(2)->get(),
+            'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(3)->get(),
             'category' => $category = Category::orderBy('category_name','asc')->get(),
         );
         View::share('data',$data);

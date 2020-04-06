@@ -4,55 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script type="text/javascript" src="{{asset('tinymce/js/tinymce/tinymce.min.js')}}" referrerpolicy="origin">
-    </script>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script>
-        tinymce.init({
-        selector: '#mytextarea',
-        plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste imagetools"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            // without images_upload_url set, Upload tab won't show up
-            images_upload_url: 'upload.php',
-
-            // override default upload handler to simulate successful upload
-            images_upload_handler: function (blobInfo, success, failure) {
-                var xhr, formData;
-                xhr = new XMLHttpRequest();
-                xhr.withCredentials = false;
-                xhr.open('POST', 'upload.php');
-                xhr.onload = function() {
-                    var json;
-
-                    if (xhr.status != 200) {
-                        failure('HTTP Error: ' + xhr.status);
-                        return;
-                    }
-
-                    json = JSON.parse(xhr.responseText);
-
-                    if (!json || typeof json.location != 'string') {
-                        failure('Invalid JSON: ' + xhr.responseText);
-                        return;
-                    }
-
-                    success(json.location);
-                };
-
-                formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-                xhr.send(formData);
-            },
-      });
-
-    </script>
-
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 </head>
 
 <body>
@@ -68,12 +27,17 @@
             <br>
             <input type="number" name="post_category_id" placeholder="Cate" value="{{old('post_category_id')}}">
             <br>
-            <textarea id="mytextarea" style='min-height:600px' name="content">Hello, World!</textarea>
+            <textarea id="summernote" style='min-height:600px' name="content">Hello, World!</textarea>
             <br>
             <button type="submit" class="btn btn-succes">Submit</button>
         </form>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({minHeight: 300});
+        });
+    </script>
 </body>
 
 </html>
