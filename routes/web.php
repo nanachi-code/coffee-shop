@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +55,40 @@ Route::get('/user/order/{id}',"WebController@userOrderDetail");
 Auth::routes();
 
 
+
+// for testing add and post blog
+Route::get('/input-blog', function () {
+    return view('blogpost');
+});
+
+Route::post('/post-store', function (Request $request) {
+
+    $content = $request->content;
+    try {
+        $image = null;
+        $ext_allow = ["png", 'jpg', 'jpeg', 'gif'];
+        if ($request->hasFile("image")) {
+            $file = $request->file("image");
+            $file_name = time() . '-' . $file->getClientOriginalName();
+            $ext = $file->getClientOriginalExtension();
+            if (in_array($ext, $ext_allow)) {
+                $file->move("images", $file_name);
+                $image = "images/" . $file_name;
+            }
+        }
+        \App\Post::create([
+            "title" => $request->get("title"),
+            'thumbnail' => $image,
+            'content' => $content,
+            'user_id' => $request->user_id,
+            'post_category_id' => $request->post_category_id
+        ]);
+    } catch (Exception $e) {
+        //dd($e);
+        dd($e);
+        return redirect()->back();
+    }
+    return redirect()->to("/blog");
+});
+
+// just for test
