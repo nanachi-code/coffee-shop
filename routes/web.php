@@ -91,5 +91,4 @@ Route::post('/post-store', function (Request $request) {
     return redirect()->to("/blog");
 });
 
-
 // just for test

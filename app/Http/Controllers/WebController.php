@@ -81,3 +81,4 @@ class WebController extends Controller
         return view('user-order-detail');
     }
     //User end by Thai Code
+}
