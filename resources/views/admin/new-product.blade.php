@@ -19,10 +19,16 @@
         <div class="row pt-4">
             <div class="col-sm-6">
                 <div class="element-wrapper">
-                    <h6 class="element-header">
-                        Create new product
-                    </h6>
+                    <div class="element-header">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h3>Product</h3>
+                            </div>
+                        </div>
+                    </div>
                     <div class="element-box">
+                        <h5>Create new product</h5>
+                        <hr>
                         <form id="form-product" action="{{ url("admin/product/new")}}" method="POST">
                             {{-- product name --}}
                             <div class="form-group">
@@ -38,7 +44,7 @@
                                 <label for="form-product-price">Price</label>
                                 <input class="form-control" data-error="Price value is invalid"
                                     placeholder="Enter product name" required="required" type="number" name="price"
-                                    max="999" min="0" id="form-product-price" />
+                                    min="0" id="form-product-price" />
                                 <div class="help-block form-text with-errors form-control-feedback"></div>
                             </div>
 
@@ -46,6 +52,9 @@
                             <div class="form-group">
                                 <label for="form-product-category">Category</label>
                                 <select class="form-control" id="form-product-category" name="category_id">
+                                    <option value="null">
+                                        Uncategorized
+                                    </option>
                                     @foreach ($allCategories as $category)
                                     <option value="{{ $category->id }}">
                                         {{ $category->name }}
@@ -57,7 +66,7 @@
                             {{-- product desc --}}
                             <div class="form-group">
                                 <label for="form-product-desc">Description</label>
-                                <textarea class="form-control" rows="3" id="form-product-desc" name="desc"
+                                <textarea class="form-control" rows="3" id="form-product-desc" name="description"
                                     placeholder="Enter product description"></textarea>
                             </div>
 

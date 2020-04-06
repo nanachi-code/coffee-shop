@@ -166,7 +166,7 @@ $(function () {
         });
     });
 
-    $(".dt-delete").on("click", function () {
+    $(".dt-delete, .single-delete").on("click", function () {
         return confirm(
             "Are you sure you want to delete this? This action cannot be undone."
         );

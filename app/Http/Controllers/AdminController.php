@@ -27,7 +27,8 @@ class AdminController extends Controller
     public function renderSingleProduct($id)
     {
         $p = [
-            'product' => Product::where('id', $id)->first()
+            'product' => Product::find($id)->first(),
+            'allCategories' => Category::all()
         ];
 
         return view('admin/single-product')->with($p);
@@ -44,15 +45,30 @@ class AdminController extends Controller
 
     public function createProduct(Request $request)
     {
+        $product = new Product;
+        $product->name = $request->get('name');
+        $product->price = $request->get('price');
+        $product->category_id = $request->get('category_id');
+        $product->description = $request->get('description');
+        $product->stock = $request->get('stock');
         try {
-            Product::create([
-                'name' => $request->get('name'),
-            ]);
-        } catch (\Exception $e) {
-            return redirect()->back();
+            $product->save();
+        } catch (\Throwable $th) {
+            throw $th;
         }
 
         return redirect()->to('/admin/product');
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Product::find($id);
+        try {
+            $product->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return redirect('admin/product');
     }
 
     //* Category

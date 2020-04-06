@@ -19,10 +19,16 @@
         <div class="row pt-4">
             <div class="col-sm-6">
                 <div class="element-wrapper">
-                    <h6 class="element-header">
-                        Edit product
-                    </h6>
+                    <div class="element-header">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <h3>Product</h3>
+                            </div>
+                        </div>
+                    </div>
                     <div class="element-box">
+                        <h5>Edit product</h5>
+                        <hr>
                         <form id="form-product" action="{{ url("admin/product/{$product->id}/update")}}" method="POST">
                             {{-- product name --}}
                             <div class="form-group">
@@ -38,60 +44,54 @@
                                 <label for="form-product-price">Price</label>
                                 <input class="form-control" data-error="Price value is invalid"
                                     placeholder="Enter product name" required="required" type="number" name="price"
-                                    max="999" min="0" value="{{ $product->price }}" id="form-product-price" />
+                                    min="0" value="{{ $product->price }}" id="form-product-price" />
                                 <div class="help-block form-text with-errors form-control-feedback"></div>
                             </div>
 
-                            {{-- product author --}}
-                            {{-- <div class="form-group">
-                                <label for="form-product-author">Author</label>
-                                <select class="form-control" id="form-product-author" name="author_id">
-                                    @foreach ($allAuthors as $author)
-                                    <option value="{{ $author->id }}" @if ($author->id == $product->author->id)
-                            selected @endif>
-                            {{ $author->name }}
-                            </option>
-                            @endforeach
-                            </select>
-                    </div> --}}
-
-                    {{-- product category --}}
-                    {{-- <div class="form-group">
+                            {{-- product category --}}
+                            <div class="form-group">
                                 <label for="form-product-category">Category</label>
                                 <select class="form-control" id="form-product-category" name="category_id">
+                                    <option value="null">
+                                        Uncategorized
+                                    </option>
                                     @foreach ($allCategories as $category)
-                                    <option value="{{ $category->id }}" @if ($category->id == $product->category->id)
-                    selected @endif>
-                    {{ $category->name }}
-                    </option>
-                    @endforeach
-                    </select>
-                </div> --}}
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                {{-- product desc --}}
-                <div class="form-group">
-                    <label for="form-product-desc">Description</label>
-                    <textarea class="form-control" rows="3" id="form-product-desc" name="desc"
-                        placeholder="Enter product description">{{$product->desc}}</textarea>
-                </div>
+                            {{-- product desc --}}
+                            <div class="form-group">
+                                <label for="form-product-desc">Description</label>
+                                <textarea class="form-control" rows="3" id="form-product-desc" name="desc"
+                                    placeholder="Enter product description">{{$product->description}}</textarea>
+                            </div>
 
-                {{-- product stock --}}
-                <div class="form-group">
-                    <label for="form-product-stock">Stock</label>
-                    <input class="form-control" data-error="Stock value is invalid"
-                        placeholder="Enter amount of products in stock" required="required" type="number" name="stock"
-                        max="999" min="0" value="{{ $product->stock }}" id="form-product-stock" />
-                    <div class="help-block form-text with-errors form-control-feedback"></div>
-                </div>
+                            {{-- product stock --}}
+                            <div class="form-group">
+                                <label for="form-product-stock">Stock</label>
+                                <input class="form-control" data-error="Stock value is invalid"
+                                    placeholder="Enter amount of products in stock" required="required" type="number"
+                                    name="stock" max="999" min="0" value="{{ $product->stock }}"
+                                    id="form-product-stock" />
+                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                            </div>
 
-                <div class="form-buttons-w">
-                    <button class="btn btn-primary" type="submit">Save</button>
+                            <div class="form-buttons-w">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                                <a href="{{ url("admin/product/{$product->id}/delete")}}"
+                                    class="btn btn-danger single-delete">
+                                    Delete
+                                </a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 @endsection

@@ -42,7 +42,8 @@
 
                             <div class="form-buttons-w">
                                 <button class="btn btn-primary" type="submit">Save</button>
-                                <a href="{{ url("admin/category/{$category->id}/delete")}}" class="btn btn-danger">
+                                <a href="{{ url("admin/category/{$category->id}/delete")}}"
+                                    class="btn btn-danger single-delete">
                                     Delete
                                 </a>
                             </div>

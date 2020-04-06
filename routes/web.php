@@ -73,19 +73,25 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/new', 'AdminController@renderNewProduct');
 
+        Route::post('/new', 'AdminController@createProduct');
+
         Route::get('/{id}', 'AdminController@renderSingleProduct');
+
+        Route::get('/{id}/delete', 'AdminController@deleteProduct');
+
+        Route::post('/{id}/update', 'AdminController@updateProduct');
     });
 
     //* Category
     Route::prefix('category')->group(function () {
         Route::get('/', 'AdminController@renderArchiveCategory');
 
+        Route::post('/new', 'AdminController@createCategory');
+
         Route::get('/{id}', 'AdminController@renderSingleCategory');
 
         Route::get('/{id}/delete', 'AdminController@deleteCategory');
 
         Route::post('/{id}/update', 'AdminController@updateCategory');
-
-        Route::post('/new', 'AdminController@createCategory');
     });
 });

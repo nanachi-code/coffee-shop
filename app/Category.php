@@ -17,11 +17,14 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    protected static function booted()
+    protected static function boot()
     {
+        parent::boot();
+
         static::deleting(function ($category) {
             $category->products->each(function ($product) {
                 $product->category_id = null;
+                $product->save();
             });
         });
     }

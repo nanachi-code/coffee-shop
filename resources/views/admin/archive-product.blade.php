@@ -46,14 +46,21 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->category->name }}</td>
-                                        <td>{{ $product->desc }}</td>
+                                        <td>
+                                            @if (!$product->category)
+                                            Uncategorized
+                                            @else
+                                            {{ $product->category->name }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $product->description }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td class="row-actions">
                                             <a href="{{ url("/admin/product/{$product->id}")}}">
                                                 <i class="os-icon os-icon-ui-49"></i>
                                             </a>
-                                            <a class="danger" href="#">
+                                            <a href="{{ url("admin/product/{$product->id}/delete")}}"
+                                                class="danger dt-delete">
                                                 <i class="os-icon os-icon-ui-15"></i>
                                             </a>
                                         </td>

@@ -20,7 +20,7 @@ class CreateProduct extends Migration
             $table->longText('description');
             $table->bigInteger('stock');
             $table->bigInteger('price');
-            $table->unsignedBigInteger("category_id");
+            $table->unsignedBigInteger("category_id")->nullable();
             $table->foreign('category_id')->references('id')->on('category');
         });
     }
