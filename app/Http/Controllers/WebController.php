@@ -20,8 +20,7 @@ class WebController extends Controller
     {
         $post = Post::find($id);
         $post_cate = PostCategory::all();
-        $content = preg_split("/\r\n|\r|\n/", $post->content);
-        return view('single-post',['post' => $post, 'post_cate' => $post_cate, 'content' => $content]);
+        return view('single-post',['post' => $post, 'post_cate' => $post_cate]);
     }
 
     public function shop()
@@ -82,9 +81,3 @@ class WebController extends Controller
         return view('user-order-detail');
     }
     //User end by Thai Code
-
-
-
-
-
-}
