@@ -18,9 +18,10 @@ class CreateProduct extends Migration
             $table->timestamps();
             $table->string('name');
             $table->longText('description');
+            $table->string('thumbnail')->nullable();
             $table->bigInteger('stock');
             $table->bigInteger('price');
-            $table->unsignedBigInteger("category_id")->nullable();
+            $table->bigInteger("category_id")->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('category');
         });
     }

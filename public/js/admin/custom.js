@@ -10,14 +10,15 @@ $(function () {
     $("#table-admin-category").DataTable();
     $("#table-admin-size").DataTable();
 
-    $("#form-product").submit((e) => {
+    $("#form-product").submit(function (e) {
         e.preventDefault();
 
         $.ajax({
             type: "POST",
             url: $("#form-product").attr("action"),
-            data: $("#form-product").serialize(),
-            dataType: "json",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
             success: (res) => {
                 $("#form-product .alert-dismissible").remove();
                 $("#form-product").prepend(`
@@ -30,6 +31,7 @@ $(function () {
                 setTimeout(() => {
                     $("#form-product .alert-dismissible").remove();
                 }, 3000);
+                console.log(res);
             },
             error: (e) => {
                 $("#form-product .alert-dismissible").remove();
@@ -48,6 +50,34 @@ $(function () {
         });
     });
 
+    $("#form-create-product").submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: $("#form-product").attr("action"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: (res) => {
+                window.location.href = res.redirect;
+            },
+            error: (e) => {
+                $("#form-product .alert-dismissible").remove();
+                $("#form-product").prepend(`
+                    <div class="alert alert-danger alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${e.responseJSON.message}
+                    </div>`);
+                setTimeout(() => {
+                    $("#form-product .alert-dismissible").remove();
+                }, 3000);
+                console.log(e.responseJSON);
+            },
+        });
+    });
     $("#form-category").submit((e) => {
         e.preventDefault();
         let form = $("#form-category");
@@ -170,5 +200,17 @@ $(function () {
         return confirm(
             "Are you sure you want to delete this? This action cannot be undone."
         );
+    });
+
+    $("input[type=file]").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $(".input-preview").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 });

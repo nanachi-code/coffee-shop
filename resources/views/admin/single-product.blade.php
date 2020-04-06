@@ -17,7 +17,7 @@
 <div class="content-i">
     <div class="content-box">
         <div class="row pt-4">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="element-wrapper">
                     <div class="element-header">
                         <div class="clearfix">
@@ -29,63 +29,88 @@
                     <div class="element-box">
                         <h5>Edit product</h5>
                         <hr>
-                        <form id="form-product" action="{{ url("admin/product/{$product->id}/update")}}" method="POST">
-                            {{-- product name --}}
-                            <div class="form-group">
-                                <label for="form-product-name">Name</label>
-                                <input class="form-control" data-error="Product name is required"
-                                    placeholder="Enter product name" required="required" type="text" name="name"
-                                    value="{{ $product->name }}" id="form-product-name" />
-                                <div class="help-block form-text with-errors form-control-feedback"></div>
-                            </div>
+                        <form id="form-product" action="{{ url("admin/product/{$product->id}/update")}}" method="POST"
+                            enctype="multipart/form-data">
+                            {{-- @csrf --}}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {{-- product name --}}
+                                    <div class="form-group">
+                                        <label for="form-product-name">Name</label>
+                                        <input class="form-control" data-error="Product name is required"
+                                            placeholder="Enter product name" required="required" type="text" name="name"
+                                            value="{{ $product->name }}" id="form-product-name" />
+                                        <div class="help-block form-text with-errors form-control-feedback"></div>
+                                    </div>
 
-                            {{-- product price --}}
-                            <div class="form-group">
-                                <label for="form-product-price">Price</label>
-                                <input class="form-control" data-error="Price value is invalid"
-                                    placeholder="Enter product name" required="required" type="number" name="price"
-                                    min="0" value="{{ $product->price }}" id="form-product-price" />
-                                <div class="help-block form-text with-errors form-control-feedback"></div>
-                            </div>
+                                    {{-- product price --}}
+                                    <div class="form-group">
+                                        <label for="form-product-price">Price</label>
+                                        <input class="form-control" data-error="Price value is invalid"
+                                            placeholder="Enter product price" required="required" type="number"
+                                            name="price" min="0" value="{{ $product->price }}"
+                                            id="form-product-price" />
+                                        <div class="help-block form-text with-errors form-control-feedback"></div>
+                                    </div>
 
-                            {{-- product category --}}
-                            <div class="form-group">
-                                <label for="form-product-category">Category</label>
-                                <select class="form-control" id="form-product-category" name="category_id">
-                                    <option value="null">
-                                        Uncategorized
-                                    </option>
-                                    @foreach ($allCategories as $category)
-                                    <option value="{{ $category->id }}">
-                                        {{ $category->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                    {{-- product category --}}
+                                    <div class="form-group">
+                                        <label for="form-product-category">Category</label>
+                                        <select class="form-control" id="form-product-category" name="category_id">
+                                            <option value="">
+                                                Uncategorized
+                                            </option>
+                                            @foreach ($allCategories as $category)
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                            {{-- product desc --}}
-                            <div class="form-group">
-                                <label for="form-product-desc">Description</label>
-                                <textarea class="form-control" rows="3" id="form-product-desc" name="desc"
-                                    placeholder="Enter product description">{{$product->description}}</textarea>
-                            </div>
+                                    {{-- product desc --}}
+                                    <div class="form-group">
+                                        <label for="form-product-desc">Description</label>
+                                        <textarea class="form-control" rows="3" id="form-product-desc"
+                                            name="description"
+                                            placeholder="Enter product description">{{$product->description}}</textarea>
+                                    </div>
 
-                            {{-- product stock --}}
-                            <div class="form-group">
-                                <label for="form-product-stock">Stock</label>
-                                <input class="form-control" data-error="Stock value is invalid"
-                                    placeholder="Enter amount of products in stock" required="required" type="number"
-                                    name="stock" max="999" min="0" value="{{ $product->stock }}"
-                                    id="form-product-stock" />
-                                <div class="help-block form-text with-errors form-control-feedback"></div>
-                            </div>
+                                    {{-- product stock --}}
+                                    <div class="form-group">
+                                        <label for="form-product-stock">Stock</label>
+                                        <input class="form-control" data-error="Stock value is invalid"
+                                            placeholder="Enter amount of products in stock" required="required"
+                                            type="number" name="stock" min="0" value="{{ $product->stock }}"
+                                            id="form-product-stock" />
+                                        <div class="help-block form-text with-errors form-control-feedback"></div>
+                                    </div>
 
-                            <div class="form-buttons-w">
-                                <button class="btn btn-primary" type="submit">Save</button>
-                                <a href="{{ url("admin/product/{$product->id}/delete")}}"
-                                    class="btn btn-danger single-delete">
-                                    Delete
-                                </a>
+                                    <div class="form-buttons-w">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <a href="{{ url("admin/product/{$product->id}/delete")}}"
+                                            class="btn btn-danger single-delete">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="form-product-thumbnail">Thumbnail</label>
+                                        @if ($product->thumbnail)
+                                        <img src="{{ asset("uploads/{$product->thumbnail}") }}"
+                                            class="input-preview img-responsive">
+                                        @else
+                                        <img src="{{ asset('images/default/no-image.jpg') }}"
+                                            class="input-preview img-responsive">
+                                        @endif
+
+                                        <div class="form-buttons-w">
+                                            <input type="file" class="form-control-file" data-title="Upload"
+                                                name="thumbnail">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

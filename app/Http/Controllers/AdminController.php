@@ -6,6 +6,8 @@ use App\Category;
 use App\Product;
 use App\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -27,10 +29,9 @@ class AdminController extends Controller
     public function renderSingleProduct($id)
     {
         $p = [
-            'product' => Product::find($id)->first(),
+            'product' => Product::where('id', $id)->first(),
             'allCategories' => Category::all()
         ];
-
         return view('admin/single-product')->with($p);
     }
 
@@ -45,19 +46,69 @@ class AdminController extends Controller
 
     public function createProduct(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'stock' => 'required',
+        ]);
+
         $product = new Product;
         $product->name = $request->get('name');
         $product->price = $request->get('price');
-        $product->category_id = $request->get('category_id');
+        $product->category_id = $request->get('category_id') == '' ? null : $request->get('category_id');
         $product->description = $request->get('description');
         $product->stock = $request->get('stock');
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            Storage::disk('public')->put($thumbnail->getClientOriginalName(),  File::get($thumbnail));
+            $product->thumbnail = $thumbnail->getClientOriginalName();
+        } else {
+            $product->thumbnail = null;
+        }
+
         try {
             $product->save();
         } catch (\Throwable $th) {
             throw $th;
         }
 
-        return redirect()->to('/admin/product');
+        return response()->json([
+            "redirect" => url("admin/product/{$product->id}")
+        ], 200);
+    }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'stock' => 'required',
+        ]);
+
+        $product = Product::find($id);
+        $product->name = $request->get('name');
+        $product->price = $request->get('price');
+        $product->category_id = $request->get('category_id') == '' ? null : $request->get('category_id');
+        $product->description = $request->get('description');
+        $product->stock = $request->get('stock');
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            Storage::disk('public')->put($thumbnail->getClientOriginalName(),  File::get($thumbnail));
+            $product->thumbnail = $thumbnail->getClientOriginalName();
+        }
+
+        try {
+            $product->save();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return response()->json([
+            "message" => "Product info updated successfully."
+        ], 200);
     }
 
     public function deleteProduct($id)

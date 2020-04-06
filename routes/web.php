@@ -39,23 +39,20 @@ Route::get('/single-product', function () {
     return view('single-product');
 });
 
-Route::get('/shop',"WebController@shop");
-Route::get('/cart',"WebController@cart");
-Route::get('/checkout',"WebController@checkout");
-Route::get('/menu',"WebController@menu");
+Route::get('/shop', "WebController@shop");
+Route::get('/cart', "WebController@cart");
+Route::get('/checkout', "WebController@checkout");
+Route::get('/menu', "WebController@menu");
 
 //user start by Thai code
-Route::get('/user/profile',"WebController@userProfile");
+Route::get('/user/profile', "WebController@userProfile");
 
-Route::post('user/profile/update/{id}',"WebController@userProfileUpdate");
+Route::post('user/profile/update/{id}', "WebController@userProfileUpdate");
 
-Route::get('/user/order',"WebController@userOrder");
-Route::get('/user/order/{id}',"WebController@userOrderDetail");
+Route::get('/user/order', "WebController@userOrder");
+Route::get('/user/order/{id}', "WebController@userOrderDetail");
 //user end by Thai code
 Auth::routes();
-
-        
-
 
 // for testing add and post blog
 Route::get('/input-blog', function () {
@@ -93,6 +90,7 @@ Route::post('/post-store', function (Request $request) {
 });
 
 // just for test
+
 //* Admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -121,7 +119,7 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::get('/all', 'AdminController@renderArchiveProduct');
-      
+
         Route::get('/new', 'AdminController@renderNewProduct');
 
         Route::post('/new', 'AdminController@createProduct');
@@ -135,7 +133,11 @@ Route::prefix('admin')->group(function () {
 
     //* Category
     Route::prefix('category')->group(function () {
-        Route::get('/', 'AdminController@renderArchiveCategory');
+        Route::get('/', function () {
+            return redirect('/admin/category/all');
+        });
+
+        Route::get('/all', 'AdminController@renderArchiveCategory');
 
         Route::post('/new', 'AdminController@createCategory');
 
