@@ -28,8 +28,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/blog','WebController@blogList');
-Route::get('/post/{id}','WebController@singlePost');
+Route::get('/blog', 'WebController@blogList');
+Route::get('/post/{id}', 'WebController@singlePost');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -54,6 +54,7 @@ Route::get('/user/order/{id}',"WebController@userOrderDetail");
 //user end by Thai code
 Auth::routes();
 
+        
 
 
 // for testing add and post blog
@@ -92,3 +93,56 @@ Route::post('/post-store', function (Request $request) {
 });
 
 // just for test
+//* Admin routes
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
+
+    Route::get('/dashboard', 'AdminController@renderDashboard');
+
+    //* Post
+    Route::prefix('post')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/post/all');
+        });
+
+        Route::get('/all', 'AdminController@renderArchivePost');
+
+        Route::get('/new', 'AdminController@renderNewPost');
+
+        Route::get('/{id}', 'AdminController@renderSinglePost');
+    });
+
+    //* Product
+    Route::prefix('product')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/product/all');
+        });
+
+        Route::get('/all', 'AdminController@renderArchiveProduct');
+      
+        Route::get('/new', 'AdminController@renderNewProduct');
+
+        Route::post('/new', 'AdminController@createProduct');
+
+        Route::get('/{id}', 'AdminController@renderSingleProduct');
+
+        Route::get('/{id}/delete', 'AdminController@deleteProduct');
+
+        Route::post('/{id}/update', 'AdminController@updateProduct');
+    });
+
+    //* Category
+    Route::prefix('category')->group(function () {
+        Route::get('/', 'AdminController@renderArchiveCategory');
+
+        Route::post('/new', 'AdminController@createCategory');
+
+        Route::get('/{id}', 'AdminController@renderSingleCategory');
+
+        Route::get('/{id}/delete', 'AdminController@deleteCategory');
+
+        Route::post('/{id}/update', 'AdminController@updateCategory');
+    });
+});
