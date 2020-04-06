@@ -22,6 +22,21 @@
         </li>
           <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">Contact</a></li>
           <li class="nav-item cart"><a href="{{url('/cart')}}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a href="#" id="user-menu" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                  {{"UserProfile"}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/user/profile" class="dropdown-item">{{"User-Profile"}}</a>
+                            <a href="/user/order" class="dropdown-item">{{"User-Order"}}</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/sign-out" class="dropdown-item">{{"SignOut"}}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </ul>
       </div>
       </div>

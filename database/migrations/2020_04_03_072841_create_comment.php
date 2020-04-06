@@ -18,6 +18,7 @@ class CreateComment extends Migration
             $table->text('content');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
+            $table->bigInteger('parent')->default(null);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('post_id')->references('id')->on('post');
