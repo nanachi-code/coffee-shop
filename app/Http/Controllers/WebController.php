@@ -20,7 +20,7 @@ class WebController extends Controller
     {
         $list = Post::paginate(3);
 
-        return view('post-list',['list' => $list]);
+        return view('post-list',compact('list'));
     }
 
     public function singlePost($id)
