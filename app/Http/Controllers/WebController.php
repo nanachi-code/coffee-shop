@@ -50,7 +50,7 @@ class WebController extends Controller
         }catch (\Exception $e){
             return response()->json(['status'=>false,'message'=>"Login successfully!"]);
         }
-        return response()->json(['status'=>true,'message'=>"Comment Success"]);
+        return 'response()->json(['status'=>true,'message'=>"Comment Success"])';
     }
 // end blog
     public function shop()
