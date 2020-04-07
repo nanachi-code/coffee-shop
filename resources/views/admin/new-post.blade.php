@@ -7,10 +7,10 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/post/all') }}">All posts</a>
+        <a href="{{ url('admin/post/all') }}">All Products</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url("admin/post/{$post->id}") }}">{{ $post->name }}</a>
+        <a href="{{ url("admin/post/new") }}">New post</a>
     </li>
 </ul>
 {{-- END - Breadcrumbs --}}
@@ -27,9 +27,9 @@
                         </div>
                     </div>
                     <div class="element-box">
-                        <h5>Edit post</h5>
+                        <h5>New post</h5>
                         <hr>
-                        <form id="form-post" action="{{ url("admin/post/{$post->id}/update")}}" method="POST"
+                        <form id="form-post" action="{{ url("admin/post/new")}}" method="POST"
                             enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-9">
@@ -38,7 +38,7 @@
                                         <label for="form-post-tỉtle">Title</label>
                                         <input class="form-control" data-error="Post title is required"
                                             placeholder="Enter Post title" required="required" type="text" name="title"
-                                            value="{{ $post->title }}" id="form-post-title" />
+                                            id="form-post-title" />
                                         <div class="help-block form-text with-errors form-control-feedback"></div>
                                     </div>
 
@@ -69,35 +69,26 @@
                                             </button>
                                         </div>
                                         <textarea class="form-control" rows="5" id="content-editor" name="content"
-                                            placeholder="Enter post content">{{$post->content}}</textarea>
+                                            placeholder="Enter post content"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Preview</label>
                                         <div id="preview-post">
-                                            {!! $post->content !!}
+
                                         </div>
                                     </div>
 
                                     <div class="form-buttons-w">
-                                        <button class="btn btn-primary" type="submit">Save</button>
-                                        <a href="{{ url("admin/post/{$post->id}/delete")}}"
-                                            class="btn btn-danger single-delete">
-                                            Delete
-                                        </a>
+                                        <button class="btn btn-primary" type="submit">Create</button>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     {{-- product thumbnail --}}
                                     <div class="form-group">
                                         <label for="form-post-thumbnail">Thumbnail</label>
-                                        @if ($post->thumbnail)
-                                        <img src="{{ asset("uploads/{$post->thumbnail}") }}"
-                                            class="input-preview img-responsive">
-                                        @else
                                         <img src="{{ asset('images/default/no-image.jpg') }}"
                                             class="input-preview img-responsive">
-                                        @endif
 
                                         <div class="form-buttons-w">
                                             <input type="file" class="form-control-file" data-title="Upload"
@@ -109,13 +100,11 @@
                                     <div class="form-group">
                                         <label for="form-product-category">Category</label>
                                         <select class="form-control" id="form-post-category" name="category_post_id">
-                                            <option value="" @if ($post->category_post_id ==
-                                                null) checked @endif>
+                                            <option value="">
                                                 Uncategorized
                                             </option>
                                             @foreach ($allCategories as $category)
-                                            <option value="{{ $category->id }}" @if ($post->category_post_id ==
-                                                $category->id) checked @endif>
+                                            <option value="{{ $category->id }}">
                                                 {{ $category->name }}
                                             </option>
                                             @endforeach

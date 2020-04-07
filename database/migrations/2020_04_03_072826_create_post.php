@@ -22,10 +22,10 @@ class CreatePost extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->longText('content');
-            $table->string('thumbnail')->default(null);
+            $table->longText('content')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->bigInteger('comment_count')->default(0);
-            $table->unsignedBigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_post_id')->unsigned()->nullable();
             $table->string('status', 20);
             $table->timestamps();

@@ -699,6 +699,14 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/galery') }}">
+                            <div class="icon-w">
+                                <i class="icon-picture"></i>
+                            </div>
+                            <span>Gallery</span>
+                        </a>
+                    </li>
                     {{-- Blog --}}
                     <li class="sub-header">
                         <span>Blog</span>

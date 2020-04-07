@@ -50,7 +50,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->name = $request->get('name');
         $product->price = $request->get('price');
-        $product->category_id = $request->get('category_id') == '' ? null : $request->get('category_id');
+        $product->category_product_id = $request->get('category_product_id');
         $product->description = $request->get('description');
         $product->stock = $request->get('stock');
         if ($request->hasFile('thumbnail')) {
@@ -84,7 +84,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $request->get('name');
         $product->price = $request->get('price');
-        $product->category_id = $request->get('category_id') == '' ? null : $request->get('category_id');
+        $product->category_product_id = $request->get('category_product_id');
         $product->description = $request->get('description');
         $product->stock = $request->get('stock');
 

@@ -31,7 +31,7 @@
                         <hr>
                         <form id="form-create-product" action="{{ url("admin/product/new")}}" method="POST">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-9">
                                     {{-- product name --}}
                                     <div class="form-group">
                                         <label for="form-product-name">Name</label>
@@ -53,7 +53,8 @@
                                     {{-- product category --}}
                                     <div class="form-group">
                                         <label for="form-product-category">Category</label>
-                                        <select class="form-control" id="form-product-category" name="category_id">
+                                        <select class="form-control" id="form-product-category"
+                                            name="category_product_id">
                                             <option value="">
                                                 Uncategorized
                                             </option>
@@ -82,7 +83,7 @@
                                     </div>
 
                                     <div class="form-buttons-w">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-primary" type="submit">Create</button>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">

@@ -109,7 +109,11 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/new', 'Admin\BlogController@renderNewPost');
 
+        Route::post('/new', 'Admin\BlogController@createPost');
+
         Route::get('/{id}', 'Admin\BlogController@renderSinglePost');
+
+        Route::post('/{id}/update', 'Admin\BlogController@updatePost');
     });
 
     //* Product
