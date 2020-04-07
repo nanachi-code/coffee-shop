@@ -17,6 +17,7 @@
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Recent Blog</h2>
+                    @if (isset($data))
                     @for ($i = 0; $i < 2; $i++) @php $p=$data['recent_blog']->get($i); @endphp <div
                             class="block-21 mb-4 d-flex">
                             <a class="blog-img mr-4" style="background-image: url({{asset($p->thumbnail)}});"></a>
@@ -31,6 +32,9 @@
                             </div>
                         </div>
                         @endfor
+
+                        @endif
+
 
                 </div>
             </div>

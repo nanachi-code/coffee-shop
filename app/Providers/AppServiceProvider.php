@@ -26,11 +26,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        $data = array(
-            'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(3)->get(),
-            'category' => $category = Category::orderBy('category_name','asc')->get(),
-        );
-        View::share('data',$data);
+        // if (Post::hasTable('post') && Category::hasTable('category'))
+        // {
+        //     $data = array(
+        //         'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(3)->get(),
+        //         'category' => $category = Category::orderBy('name','asc')->get(),
+        //     );
+        //     View::share('data',$data);
+        // }
     }
 }
