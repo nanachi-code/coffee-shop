@@ -9,6 +9,7 @@ $(function () {
     $("#table-admin-products").DataTable();
     $("#table-admin-category").DataTable();
     $("#table-admin-size").DataTable();
+    $("#table-admin-post").DataTable();
 
     $("#form-product").submit(function (e) {
         e.preventDefault();

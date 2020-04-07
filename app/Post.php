@@ -10,7 +10,7 @@ class Post extends Model
 {
     protected $table = 'post';
 
-    protected $fillable = ['user_id', 'content', 'title', 'comment_count', 'thumbnail', 'category_post_id', 'status'];
+    protected $fillable = ['user_id', 'content', 'title', 'comment_count', 'thumbnail', 'category_post_id', 'status', 'updated_at'];
 
     public function category()
     {
@@ -21,6 +21,7 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

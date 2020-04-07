@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    //* Product
     public function renderArchiveProduct()
     {
         $p = [
