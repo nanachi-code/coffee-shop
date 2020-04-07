@@ -22,7 +22,7 @@
                             class="block-21 mb-4 d-flex">
                             <a class="blog-img mr-4" style="background-image: url({{asset($p->thumbnail)}});"></a>
                             <div class="text">
-                                <h3 class="heading"><a href="#">{{$p->title}}</a></h3>
+                                <h3 class="heading"><a href="{{url('/post/'.$p->id)}}">{{$p->title}}</a></h3>
                                 <div class="meta">
                                     <div><a href="#"><span class="icon-calendar"></span>
                                             {{$p->created_at->toDateString()}}</a></div>

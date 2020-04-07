@@ -40,7 +40,7 @@
                             <div><span class="meta-chat">
                                     <span class="icon-chat"></span>{{$post->comment_count}}</span></div>
                         </div>
-                        <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
+                        <h3 class="heading mt-2"><a href="{{url('/post/'.$post->id)}}">{{$post->title}}</a></h3>
                         <p>
                             {!! Str::limit($post->content,100," ...") !!}
                         </p>
