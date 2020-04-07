@@ -47,7 +47,7 @@
                     <ul class="comment-list">
                         @foreach ($comment as $c)
                         @if ($c->parent == 0)
-                        <li class="comment">
+                        <li class="comment" id="{{$c->id}}">
                             <div class="vcard bio">
                                 <img src="{{asset('images/person_4.jpg')}}" alt="Image placeholder">
                             </div>
@@ -55,8 +55,9 @@
                                 <h3>{{$c->User->name}}</h3>
                                 <div class="meta">{{$c->created_at}}</div>
                                 <p>{{$c->content}}</p>
-                                <p><a href="#" class="reply">Reply</a></p>
+                                <p><a content="{{$c->id}}" class="reply">Reply</a></p>
                             </div>
+
                             @foreach ($comment as $child)
                             @if ($child->parent == $c->id)
                             <ul class="children">
@@ -68,20 +69,20 @@
                                         <h3>{{$child->User->name}}</h3>
                                         <div class="meta">{{$child->created_at}}</div>
                                         <p>{{$child->content}}</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
+                                        <p><a content="{{$child->parent}}" class="reply">Reply</a></p>
                                     </div>
                                 </li>
                             </ul>
                             @endif
                             @endforeach
+
                         </li>
                         @endif
                         @endforeach
-
                     </ul>
                     <!-- END comment-list -->
 
-                    <div class="haha"></div>
+
 
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
@@ -90,12 +91,13 @@
                             @csrf
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea name="comment" id="message" cols="30" rows="10"
+                                <textarea name="comment" id="comment" cols="30" rows="10"
                                     class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" id="submit" value="Post Comment"
-                                    class="btn py-3 px-4 btn-primary">
+                                <input type="hidden" name="parent_id" id="parent_id" value="0" />
+                                <input type="submit" name="submit" id="submit" value="Submit"
+                                    class="btn py-3 px-4 btn-primary" />
                             </div>
                         </form>
                         @else <button class="btn py-3 px-4 btn-primary"
@@ -149,25 +151,56 @@
 @endsection
 
 @section('script')
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#comment_form').on('submit',function(event) {
-            event.defaultPrevented();
-            var form_data = $(this).serialize();
+        $('#comment_form').submit((e) => {
+            e.preventDefault();
             $.ajax({
-                url:"{{url('/post-comment-'.$post->id)}}",
-                method: "POST",
-                data: {
-                    _token: $("input[name=_token]").val(),
-                    comment_data: form_data,
-                },
-                dataType: "JSON",
-                success: function (data) {
-                   if(res.status){
-                        $('#haha').html(data);
-                   }
-               }
+                type:"POST",
+                url: $("#comment_form").attr("action"),
+                data: $("#comment_form").serialize(),
+                dataType: "json",
+                success: (res) => {
+                    $("#comment_form")[0].reset();
+                    if (res.add_comment.parent == 0) {
+                        $(`<li class="comment" id="${res.add_comment.id}">
+                            <div class="vcard bio">
+                            <img src="" alt="Image placeholder">
+                        </div>
+                        <div class="comment-body">
+                            <h3>${res.add_comment.user_name}</h3>
+                            <div class="meta">${res.add_comment.created_at}</div>
+                            <p>${res.add_comment.content}</p>
+                            <p><a content="${res.add_comment.parent}" class="reply">Reply</a></p>
+                        </div>
+                        </li>`
+                    ).appendTo(".comment-list");
+                    }
+                    else{
+                        $(`
+                            <ul class="children">
+                                <li class="comment">
+                                    <div class="vcard bio">
+                                    <img src="" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>${res.add_comment.user_name}</h3>
+                                    <div class="meta">${res.add_comment.created_at}</div>
+                                    <p>${res.add_comment.content}</p>
+                                    <p><a content="${res.add_comment.parent}" class="reply">Reply</a></p>
+                                </div>
+                                </li>
+                            </ul>
+                        `).appendTo("#"+res.add_comment.parent);
+                    }
+                }
             });
+        });
+
+        $(document).on('click', '.reply', function(){
+            var comment_parent = $(this).attr("content");
+            $('#parent_id').val(comment_parent);
+            $('#comment').focus();
         });
 
     });

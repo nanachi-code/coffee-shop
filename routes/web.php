@@ -31,6 +31,7 @@ Route::get('/contact', function () {
 Route::get('/blog', 'WebController@blogList');
 Route::get('/post/{id}', 'WebController@singlePost');
 Route::post('/post-comment-{id}', 'WebController@commentStore');
+
 // end blog
 Auth::routes();
 

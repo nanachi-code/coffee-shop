@@ -34,6 +34,7 @@ class WebController extends Controller
 
     public function commentStore(Request $request,$id)
     {
+
         $validator = Validator::make($request->all(),[
             "comment" => "required"
         ]);
@@ -45,12 +46,19 @@ class WebController extends Controller
                 "content"=> $request->get("comment"),
                 "user_id"=> Auth::user()->id,
                 "post_id"=> $id,
-                "parent"=> 0,
+                "parent"=> $request->get("parent_id"),
             ]);
         }catch (\Exception $e){
-            return response()->json(['status'=>false,'message'=>"Login successfully!"]);
+            return $e;
         }
-        return 'response()->json(['status'=>true,'message'=>"Comment Success"])';
+        return response()->json(['status'=>true,'message'=>"Comment Success",
+            "add_comment" => [
+                "content" => $comment->content,
+                "user_name"=> $comment->User->name,
+                "created_at"=> $comment->created_at->toDateString(),
+                "parent"=> $comment->parent,
+            ]
+            ],200);
     }
 // end blog
     public function shop()
