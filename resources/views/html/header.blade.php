@@ -15,7 +15,7 @@
                         <a class="dropdown-item" href="{{url('/shop')}}">Shop</a>
                         @if (isset($data))
                         @foreach ($data['category'] as $c)
-                        <a class="dropdown-item" href="{{url('/category/'.$c->id)}}">{{$c->category_name}}</a>
+                        <a class="dropdown-item" href="{{url('/category/'.$c->id)}}">{{$c->name}}</a>
                         @endforeach
                         @endif
                     </div>
@@ -36,13 +36,13 @@
                                 <a class="dropdown-item" href="{{url('/checkout')}}">{{"Checkout"}}</a>
                                 <div class="dropdown-divider"></div>
                                 @if(!Auth::check())
-                                    <a class="dropdown-item" href="{{ route('login') }}">
-                                        {{ __('Login') }}
-                                    </a>
+                                <a class="dropdown-item" href="{{ route('login') }}">
+                                    {{ __('Login') }}
+                                </a>
                                 @else
-                                    <a class="dropdown-item" href="{{ route('logout') }}">
-                                        {{ __('Logout') }}
-                                    </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                    {{ __('Logout') }}
+                                </a>
                                 @endif
 
                             </div>
