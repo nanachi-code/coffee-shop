@@ -26,7 +26,9 @@ class WebController extends Controller
     {
         $post = Post::find($id);
         $post_cate = PostCategory::all();
-        return view('single-post',['post' => $post, 'post_cate' => $post_cate]);
+        $comment = $post->Comments;
+        $author = $post->User;
+        return view('single-post',compact('post','post_cate','comment','author'));
     }
 
     public function shop()

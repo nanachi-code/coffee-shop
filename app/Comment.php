@@ -16,7 +16,7 @@ class Comment extends Model
         return $this->belongsTo("\App\Post");
     }
 
-    public function Users()
+    public function User()
     {
         return $this->belongsTo("\App\User");
     }

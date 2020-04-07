@@ -62,13 +62,14 @@ Route::get('logout', function (){
 });
 
 
+
 // for testing add and post blog
 Route::get('/input-blog', function () {
     return view('blogpost');
 });
 
 Route::post('/post-store', function (Request $request) {
-
+    dd($request);
     $content = $request->content;
     try {
         $image = null;
@@ -96,6 +97,7 @@ Route::post('/post-store', function (Request $request) {
     }
     return redirect()->to("/blog");
 });
+
 
 // just for test
 //* Admin routes
@@ -126,7 +128,7 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::get('/all', 'AdminController@renderArchiveProduct');
-      
+
         Route::get('/new', 'AdminController@renderNewProduct');
 
         Route::post('/new', 'AdminController@createProduct');
