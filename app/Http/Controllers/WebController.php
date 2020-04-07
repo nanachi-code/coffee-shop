@@ -48,15 +48,20 @@ class WebController extends Controller
                 "post_id"=> $id,
                 "parent"=> $request->get("parent_id"),
             ]);
+            $post = Post::find($id);
+            $post->comment_count = $post->comment_count + 1;
+            $post->save();
         }catch (\Exception $e){
             return $e;
         }
         return response()->json(['status'=>true,'message'=>"Comment Success",
             "add_comment" => [
+                "id" => $comment->id,
                 "content" => $comment->content,
                 "user_name"=> $comment->User->name,
                 "created_at"=> $comment->created_at->toDateString(),
                 "parent"=> $comment->parent,
+                "comment_count" => $post->comment_count,
             ]
             ],200);
     }

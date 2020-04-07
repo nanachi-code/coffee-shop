@@ -43,7 +43,7 @@
 
 
                 <div class="pt-5 mt-5">
-                    <h3 class="mb-5">{{$post->comment_count}} Comments</h3>
+                    <h3 class="mb-5" id="comment-count">{{$post->comment_count}} Comments</h3>
                     <ul class="comment-list">
                         @foreach ($comment as $c)
                         @if ($c->parent == 0)
@@ -162,8 +162,11 @@
                 dataType: "json",
                 success: (res) => {
                     $("#comment_form")[0].reset();
+                    $('#parent_id').val(0);
+                    $("#comment-count").html(`<h3 class="mb-5" id="comment-count">${res.add_comment.comment_count} Comments</h3>`)
                     if (res.add_comment.parent == 0) {
-                        $(`<li class="comment" id="${res.add_comment.id}">
+
+                        $(`<li class="comment" id=${res.add_comment.id}>
                             <div class="vcard bio">
                             <img src="" alt="Image placeholder">
                         </div>
@@ -171,7 +174,7 @@
                             <h3>${res.add_comment.user_name}</h3>
                             <div class="meta">${res.add_comment.created_at}</div>
                             <p>${res.add_comment.content}</p>
-                            <p><a content="${res.add_comment.parent}" class="reply">Reply</a></p>
+                            <p><a content="${res.add_comment.id}" class="reply">Reply</a></p>
                         </div>
                         </li>`
                     ).appendTo(".comment-list");
