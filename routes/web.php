@@ -48,6 +48,8 @@ Route::get('/menu',"WebController@menu");
 Route::get('/user/profile',"WebController@userProfile");
 
 Route::post('user/profile/update/{id}',"WebController@userProfileUpdate");
+Route::post("changePassword","WebController@changePassword");
+
 
 Route::get('/user/order',"WebController@userOrder");
 Route::get('/user/order/{id}',"WebController@userOrderDetail");

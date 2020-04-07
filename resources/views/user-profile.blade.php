@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12 justify-content-end">
-                                    <button class="btn btn-primary py-3 px-4">Change Password</button>
+                                    <button type="button" class="btn btn-primary py-3 px-4" data-toggle="modal" data-target="#changePassword">Change Password</button>
                                     <button class="btn btn-primary py-3 px-4" type="submit">Save</button>
                                 </div>
                             </div>
@@ -85,6 +85,71 @@
             </div>
         </div>
     </section>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="user-name">Old Password</label>
+                                <input type="password" name="old_password" class="form-control" placeholder="Old Password">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="user-name">New Password</label>
+                                <input type="password" name="new_password" class="form-control" placeholder="New Password">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="user-name">Confirm Password</label>
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="submit-password" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 {{-- end-content --}}
+@section('script')
+    <script type="text/javascript">
+        $("#submit-password").bind("click",function () {
+            $.ajax({
+                url: "{{url("changePassword")}}",
+                method: "POST",
+                data: {
+                    _token: $("input[name=_token]").val(),
+                    old_password: $("input[name=old_password]").val(),
+                    new_password: $("input[name=new_password]").val(),
+                    confirm_password: $("input[name=confirm_password]").val(),
+                },
+                success: function (res) {
+                    if(res.status){
+                        alert("Change Password Successfully");
+                    }else{
+                        alert(res.message);
+                    }
+                }
+            });
+        });
+    </script>
+@endsection
+

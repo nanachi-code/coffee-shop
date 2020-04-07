@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\PostCategory;
 use App\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 class WebController extends Controller
 {
 
@@ -71,6 +75,27 @@ class WebController extends Controller
             return redirect()->back();
         }
         return redirect()->to("user/profile");
+    }
+
+    public function changePassword(Request $request){
+        $validator =Validator::make($request->all(),[
+            'old_password'=>['required'],
+            'new_password'=>['required'],
+            'confirm_password'=>['same:new_password'],
+        ]);
+        if($validator ->fails()){
+            return response()->json(["status"=>false,"messenger"=>$validator->errors()->first()]);
+        }
+        if(!Hash::check($request->get('old_password'),Auth::user()->password)){
+            return  response()->json(['status'=>false,"messenger"=>"Old Password False"]);
+        };
+        $new_password = $request->get("new_password");
+        $user= Auth::user();
+        $user->update([
+            "password"=>Hash::make($new_password),
+        ]);
+
+        return response()->json(['status'=>true,"messenger"=>"Change Password Successfully"]);
     }
 
     public function userOrder()
