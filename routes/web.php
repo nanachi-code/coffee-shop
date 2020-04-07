@@ -47,17 +47,21 @@ Route::get('/checkout',"WebController@checkout");
 Route::get('/menu',"WebController@menu");
 
 //user start by Thai code
-Route::get('/user/profile',"WebController@userProfile");
+Route::get('/user/profile',"WebController@userProfile")->middleware("auth");;
 
-Route::post('user/profile/update/{id}',"WebController@userProfileUpdate");
-Route::post("changePassword","WebController@changePassword");
+Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");;
+Route::post("changePassword","WebController@changePassword")->middleware("auth");;
 
 
-Route::get('/user/order',"WebController@userOrder");
-Route::get('/user/order/{id}',"WebController@userOrderDetail");
+Route::get('/user/order',"WebController@userOrder")->middleware("auth");;
+Route::get('/user/order/{id}',"WebController@userOrderDetail")->middleware("auth");;
 //user end by Thai code
 Auth::routes();
 
+Route::get('logout', function (){
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+});
 
 
 

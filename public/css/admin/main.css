@@ -14422,7 +14422,7 @@ strong {
 .all-wrapper.with-pattern {
     box-shadow: none;
     border-radius: 0px;
-    background-image: url("../img/bg-pattern2.png");
+    background-image: url("../../images/bg-pattern2.png");
     background-size: contain;
     background-repeat: repeat;
     background-position: 0 0;
@@ -19398,7 +19398,7 @@ a.el-tablo:hover .label {
 
 .auth-box-w .logo-w {
     text-align: center;
-    padding: 20%;
+    padding: 10%;
 }
 
 .auth-box-w .auth-header {

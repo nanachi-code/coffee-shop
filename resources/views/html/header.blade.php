@@ -33,7 +33,9 @@
                                 <a class="dropdown-item" href="{{url('/cart')}}">{{"Cart"}}</a>
                                 <a class="dropdown-item" href="{{url('/checkout')}}">{{"Checkout"}}</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{url('/logout')}}" class="dropdown-item">{{"SignOut"}}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                    {{ __('Logout') }}
+                                </a>
                             </div>
                         </li>
                     </ul>
