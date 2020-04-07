@@ -27,9 +27,11 @@ Route::get('/about-us', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-
+// main page blog part
 Route::get('/blog', 'WebController@blogList');
 Route::get('/post/{id}', 'WebController@singlePost');
+Route::post('/post-comment-{id}', 'WebController@commentStore');
+// end blog
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -94,6 +96,11 @@ Route::post('/post-store', function (Request $request) {
     return redirect()->to("/blog");
 });
 
+Route::get('/logout', function () {
+    Illuminate\Support\Facades\Auth::logout();
+    session()->flush();
+    return redirect()->to('/');
+});
 
 // just for test
 //* Admin routes

@@ -35,10 +35,10 @@
                     </a>
                     <div class="text py-4 d-block">
                         <div class="meta">
-                            <div><a href="#">{{$post->created_at->toDateString()}}</a></div>
-                            <div><a href="#">{{$post->User->name}}</a></div>
-                            <div><a href="#" class="meta-chat">
-                                    <span class="icon-chat"></span>{{$post->comment_count}}</a></div>
+                            <div><span>{{$post->created_at->toDateString()}}</span></div>
+                            <div><a href="{{url('/post/'.$post->id)}}">{{$post->User->name}}</a></div>
+                            <div><span class="meta-chat">
+                                    <span class="icon-chat"></span>{{$post->comment_count}}</span></div>
                         </div>
                         <h3 class="heading mt-2"><a href="#">{{$post->title}}</a></h3>
                         <p>

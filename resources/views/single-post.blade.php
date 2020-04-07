@@ -81,19 +81,25 @@
                     </ul>
                     <!-- END comment-list -->
 
+                    <div class="haha"></div>
+
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @if (\Auth::check())
-                        <form action="#">
+                        <form action="{{url('/post-comment-'.$post->id)}}" method="POST" id="comment_form">
+                            @csrf
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="comment" id="message" cols="30" rows="10"
+                                    class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                                <input type="submit" name="submit" id="submit" value="Post Comment"
+                                    class="btn py-3 px-4 btn-primary">
                             </div>
                         </form>
-                        @else <button>Login now to post a comment</button>
+                        @else <button class="btn py-3 px-4 btn-primary"
+                            onclick="location.href='{{url('/login')}}';">Login now to post a comment</button>
                         @endif
 
                     </div>
@@ -140,4 +146,30 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function () {
+        $('#comment_form').on('submit',function(event) {
+            event.defaultPrevented();
+            var form_data = $(this).serialize();
+            $.ajax({
+                url:"{{url('/post-comment-'.$post->id)}}",
+                method: "POST",
+                data: {
+                    _token: $("input[name=_token]").val(),
+                    comment_data: form_data,
+                },
+                dataType: "JSON",
+                success: function (data) {
+                   if(res.status){
+                        $('#haha').html(data);
+                   }
+               }
+            });
+        });
+
+    });
+</script>
 @endsection

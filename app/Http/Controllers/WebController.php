@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use App\PostCategory;
 use App\User;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class WebController extends Controller
 {
 
-
+// blog
     public function blogList()
     {
         $list = Post::paginate(3);
@@ -31,6 +32,27 @@ class WebController extends Controller
         return view('single-post',compact('post','post_cate','comment','author'));
     }
 
+    public function commentStore(Request $request,$id)
+    {
+        $validator = Validator::make($request->all(),[
+            "comment" => "required"
+        ]);
+        if($validator->fails()){
+            return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
+        }
+        try {
+            $comment = Comment::create([
+                "content"=> $request->get("comment"),
+                "user_id"=> Auth::user()->id,
+                "post_id"=> $id,
+                "parent"=> 0,
+            ]);
+        }catch (\Exception $e){
+            return response()->json(['status'=>false,'message'=>"Login successfully!"]);
+        }
+        return response()->json(['status'=>true,'message'=>"Comment Success"]);
+    }
+// end blog
     public function shop()
     {
         return view('shop');
@@ -108,5 +130,8 @@ class WebController extends Controller
     {
         return view('user-order-detail');
     }
+
     //User end by Thai Code
+
+
 }
