@@ -24,12 +24,13 @@ class CreatePost extends Migration
             $table->string('title');
             $table->longText('content');
             $table->string('thumbnail')->default(null);
-            $table->tinyInteger('comment_count')->default(0);
+            $table->bigInteger('comment_count')->default(0);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('post_category_id');
+            $table->bigInteger('category_post_id')->unsigned()->nullable();
+            $table->string('status', 20);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('post_category_id')->references('id')->on('post_category');
+            $table->foreign('category_post_id')->references('id')->on('category_post');
         });
     }
 
@@ -42,6 +43,5 @@ class CreatePost extends Migration
     {
         Schema::dropIfExists('post');
         Schema::dropIfExists('post_category');
-
     }
 }

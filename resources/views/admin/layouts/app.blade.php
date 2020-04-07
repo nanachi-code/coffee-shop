@@ -748,7 +748,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/category/all') }}">
+                        <a href="{{ url('/admin/category-product/all') }}">
                             <div class="icon-w">
                                 <i class="icon-grid"></i>
                             </div>

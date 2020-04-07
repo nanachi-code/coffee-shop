@@ -97,7 +97,7 @@ Route::prefix('admin')->group(function () {
         return redirect('/admin/dashboard');
     });
 
-    Route::get('/dashboard', 'AdminController@renderDashboard');
+    Route::get('/dashboard', 'Admin\DashboardController@renderDashboard');
 
     //* Post
     Route::prefix('post')->group(function () {
@@ -105,11 +105,11 @@ Route::prefix('admin')->group(function () {
             return redirect('/admin/post/all');
         });
 
-        Route::get('/all', 'AdminController@renderArchivePost');
+        Route::get('/all', 'Admin\BlogController@renderArchivePost');
 
-        Route::get('/new', 'AdminController@renderNewPost');
+        Route::get('/new', 'Admin\BlogController@renderNewPost');
 
-        Route::get('/{id}', 'AdminController@renderSinglePost');
+        Route::get('/{id}', 'Admin\BlogController@renderSinglePost');
     });
 
     //* Product
@@ -118,33 +118,33 @@ Route::prefix('admin')->group(function () {
             return redirect('/admin/product/all');
         });
 
-        Route::get('/all', 'AdminController@renderArchiveProduct');
+        Route::get('/all', 'Admin\ProductController@renderArchiveProduct');
 
-        Route::get('/new', 'AdminController@renderNewProduct');
+        Route::get('/new', 'Admin\ProductController@renderNewProduct');
 
-        Route::post('/new', 'AdminController@createProduct');
+        Route::post('/new', 'Admin\ProductController@createProduct');
 
-        Route::get('/{id}', 'AdminController@renderSingleProduct');
+        Route::get('/{id}', 'Admin\ProductController@renderSingleProduct');
 
-        Route::get('/{id}/delete', 'AdminController@deleteProduct');
+        Route::get('/{id}/delete', 'Admin\ProductController@deleteProduct');
 
-        Route::post('/{id}/update', 'AdminController@updateProduct');
+        Route::post('/{id}/update', 'Admin\ProductController@updateProduct');
     });
 
-    //* Category
-    Route::prefix('category')->group(function () {
+    //* Category Product
+    Route::prefix('category-product')->group(function () {
         Route::get('/', function () {
-            return redirect('/admin/category/all');
+            return redirect('/admin/category-product/all');
         });
 
-        Route::get('/all', 'AdminController@renderArchiveCategory');
+        Route::get('/all', 'Admin\CategoryProductController@renderArchiveCategory');
 
-        Route::post('/new', 'AdminController@createCategory');
+        Route::post('/new', 'Admin\CategoryProductController@createCategory');
 
-        Route::get('/{id}', 'AdminController@renderSingleCategory');
+        Route::get('/{id}', 'Admin\CategoryProductController@renderSingleCategory');
 
-        Route::get('/{id}/delete', 'AdminController@deleteCategory');
+        Route::get('/{id}/delete', 'Admin\CategoryProductController@deleteCategory');
 
-        Route::post('/{id}/update', 'AdminController@updateCategory');
+        Route::post('/{id}/update', 'Admin\CategoryProductController@updateCategory');
     });
 });

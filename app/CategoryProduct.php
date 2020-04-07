@@ -6,9 +6,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Category extends Model
+class CategoryProduct extends Model
 {
-    protected $table = 'category';
+    protected $table = 'category_product';
 
     protected $fillable = ['name'];
 
@@ -23,7 +23,7 @@ class Category extends Model
 
         static::deleting(function ($category) {
             $category->products->each(function ($product) {
-                $product->category_id = null;
+                $product->category_product_id = null;
                 $product->save();
             });
         });

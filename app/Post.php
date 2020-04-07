@@ -10,21 +10,19 @@ class Post extends Model
 {
     protected $table = 'post';
 
-    protected $fillable = ['user_id', 'content', 'title','comment_count','thumbnail','post_category_id'];
+    protected $fillable = ['user_id', 'content', 'title', 'comment_count', 'thumbnail', 'category_post_id', 'status'];
 
-    public function PostCategory()
+    public function category()
     {
-        return $this->belongsTo("\App\PostCategory");
+        return $this->belongsTo(CategoryPost::class);
     }
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo("\App\User");
+        return $this->belongsTo(User::class);
     }
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class);
     }
-
-
 }
