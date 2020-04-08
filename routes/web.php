@@ -47,20 +47,6 @@ Route::get('/checkout', "WebController@checkout");
 Route::get('/menu', "WebController@menu");
 
 //user start by Thai code
-
-Route::get('/user/profile', "WebController@userProfile");
-
-Route::post('user/profile/update/{id}', "WebController@userProfileUpdate");
-
-Route::get('/user/order', "WebController@userOrder");
-Route::get('/user/order/{id}', "WebController@userOrderDetail");
-//user end by Thai code
-Auth::routes();
-
-// for testing add and post blog
-Route::get('/input-blog', function () {
-    return view('blogpost');
-=======
 Route::get('/user/profile',"WebController@userProfile")->middleware("auth");;
 
 Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");;
@@ -77,7 +63,7 @@ Route::get('logout', function (){
     return redirect('/login');
 
 });
-  
+
 //* Admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
