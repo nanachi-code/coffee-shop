@@ -211,19 +211,7 @@ $(function () {
             processData: false,
             contentType: false,
             success: (res) => {
-                form.find(".alert-dismissible").remove();
-                form.prepend(`
-                    <div class="alert alert-success alert-dismissible fade" role="alert">
-                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        ${res.message}
-                    </div>`);
-
-                setTimeout(() => {
-                    form.find(".alert-dismissible").remove();
-                }, 3000);
-                console.log(res);
+                window.location.href = res.redirect;
             },
             error: (e) => {
                 form.find(".alert-dismissible");

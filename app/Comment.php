@@ -25,4 +25,19 @@ class Comment extends Model
     {
         return $this::where('id', $this->parent_id)->first();
     }
+
+    public function getChildrenAttribute()
+    {
+        return $this::where('parent_id', $this->id)->get();
+    }
+
+    public function hasParent()
+    {
+        return $this::where('id', $this->parent_id)->first() ? true : false;
+    }
+
+    public function hasChildren()
+    {
+        return count($this::where('parent_id', $this->id)->get()) > 0 ? true : false;
+    }
 }

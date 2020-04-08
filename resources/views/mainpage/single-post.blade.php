@@ -11,7 +11,7 @@
                 <div class="col-md-7 col-sm-12 text-center ftco-animate">
                     <h1 class="mb-3 mt-5 bread">Blog Details</h1>
                     <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">Home</a></span> <span
-                            class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
+                            class="mr-2"><a href="{{url('/blog')}}">Blog</a></span> <span>{{ $post->title }}</span></p>
                 </div>
 
             </div>
@@ -25,9 +25,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 ftco-animate fadeInUp ftco-animated">
+                <h2 class="mb-3">{{ $post->title }}</h2>
                 <div class="py-4">
-                    <img src="{{asset($post->thumbnail)}}" alt="" class="img-fluid">
-                    {!!$post->content!!}
+                    <img src="{{ asset("uploads/{$post->thumbnail}") }}" alt="" class="img-fluid">
+                    {!! $post->content !!}
                 </div>
 
                 <div class="about-author d-flex">
@@ -35,60 +36,48 @@
                         <img src="{{asset('images/person_4.jpg')}}" alt="Image placeholder" class="img-fluid mb-4">
                     </div>
                     <div class="desc align-self-md-center">
-                        <h3>{{$author->name}}</h3>
-                        <p>{{$author->address}}</p>
+                        <h3>{{ $post->user->name }}</h3>
+                        <p>{{ $post->user->address }}</p>
                         <p></p>
                     </div>
                 </div>
 
 
                 <div class="pt-5 mt-5">
-                    <h3 class="mb-5" id="comment-count">{{$post->comment_count}} Comments</h3>
+                    <h3 class="mb-5" id="comment-count">{{ count($post->comments) }} Comments</h3>
                     <ul class="comment-list">
-                        @foreach ($comment as $c)
-                        @if ($c->parent == 0)
-                        <li class="comment" id="{{$c->id}}">
+                        @foreach ($post->comments as $comment)
+                        @if (!$comment->hasParent())
+                        <li class="comment" id="{{$comment->id}}">
                             <div class="vcard bio">
-                                <img src="{{asset('images/person_4.jpg')}}" alt="Image placeholder">
+                                <img src="{{ asset('images/person_4.jpg') }}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
-                                <h3>{{$c->User->name}}</h3>
-                                <div class="meta">{{$c->created_at}}</div>
-                                <p>{{$c->content}}</p>
-                                <p><a content="{{$c->id}}" class="reply">Reply</a></p>
+                                <h3>{{ $comment->user->name }}</h3>
+                                <div class="meta">{{ $comment->updated_at }}</div>
+                                <p>{{ $comment->content }}</p>
+                                <p><a content="{{ $comment->id }}" class="reply">Reply</a></p>
                             </div>
 
-                            @foreach ($comment as $child)
-                            @if ($child->parent == $c->id)
-                            <ul class="children">
-                                <li class="comment">
-                                    <div class="vcard bio">
-                                        <img src="{{asset('images/person_4.jpg')}}" alt="Image placeholder">
-                                    </div>
-                                    <div class="comment-body">
-                                        <h3>{{$child->User->name}}</h3>
-                                        <div class="meta">{{$child->created_at}}</div>
-                                        <p>{{$child->content}}</p>
-                                        <p><a content="{{$child->parent}}" class="reply">Reply</a></p>
-                                    </div>
-                                </li>
-                            </ul>
-                            @endif
+                            @if ($comment->hasChildren())
+                            @foreach ($comment->children as $child)
+                            {{ renderChildComment($child) }}
                             @endforeach
-
+                            @endif
                         </li>
                         @endif
                         @endforeach
                     </ul>
                     <!-- END comment-list -->
 
-
-
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @if (\Auth::check())
                         <form action="{{url('/post-comment-'.$post->id)}}" method="POST" id="comment_form">
                             @csrf
+                            Logged in as <span class="text-white">{{ \Auth::user()->name }}</span>. <a
+                                href="{{ url("logout") }}">Logout?</a>
+                            <hr>
                             <div class="form-group">
                                 <label for="message">Message</label>
                                 <textarea name="comment" id="comment" cols="30" rows="10"
@@ -100,8 +89,10 @@
                                     class="btn py-3 px-4 btn-primary" />
                             </div>
                         </form>
-                        @else <button class="btn py-3 px-4 btn-primary"
-                            onclick="location.href='{{url('/login')}}';">Login now to post a comment</button>
+                        @else
+                        <a class="btn py-3 px-4 btn-primary" href="{{ url('/login') }}">
+                            Login now to post a comment
+                        </a>
                         @endif
 
                     </div>
@@ -109,42 +100,51 @@
 
             </div> <!-- .col-md-8 -->
             <div class="col-md-4 sidebar ftco-animate fadeInUp ftco-animated">
-
+                <div class="sidebar-box">
+                    <form action="#" class="search-form">
+                        <div class="form-group">
+                            <div class="icon">
+                                <span class="icon-search"></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+                </div>
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <div class="categories">
                         <h3>Categories</h3>
-                        @foreach($post_cate as $cate)
-                        <li><a href="#">{{$cate->name}} <span>({{$cate->Posts->count()}})</span></a></li>
-                        @endforeach
+                        @if ($post->category)
+                        <li><a href="#">{{ $post->category->name }}</a></li>
+                        @else
+                        No categories.
+                        @endif
+
                     </div>
                 </div>
 
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Recent Blog</h3>
-                    @foreach ($data['recent_blog'] as $p)
+                    @if (count(\App\Post::where('id', '!=', $post->id)->get()) > 0)
+                    @foreach (\App\Post::where('id', '!=', $post->id)->orderBy('updated_at')->take(3)->get() as $p)
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" style="background-image: url({{asset('images/image_1.jpg')}});"></a>
                         <div class="text">
                             <h3 class="heading"><a href="#">{{$p->title}}</a></h3>
                             <div class="meta">
                                 <div><a href="#"><span
-                                            class="icon-calendar"></span>{{$p->created_at->toDateString()}}</a></div>
+                                            class="icon-calendar"></span>{{$p->created_at->toDateString()}}</a>
+                                </div>
                                 <div><a href="#"><span class="icon-person"></span>{{$p->User->name}}</a></div>
                                 <div><a href="#"><span class="icon-chat"></span>{{$p->comment_count}}</a></div>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>
-
-                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-                    <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
-                        voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur
-                        similique, inventore eos fugit cupiditate numquam!</p>
+                    @else
+                    No posts found.
+                    @endif
                 </div>
             </div>
-
         </div>
     </div>
 </section>
