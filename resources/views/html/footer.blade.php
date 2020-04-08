@@ -17,24 +17,31 @@
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Recent Blog</h2>
-                    @isset($data)
-                    @empty($data)
-                    @for ($i = 0; $i < 2; $i++) @php $p=$data['recent_blog']->get($i); @endphp <div
-                            class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url({{asset($p->thumbnail)}});"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="{{url('/post/'.$p->id)}}">{{$p->title}}</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span>
-                                            {{$p->created_at->toDateString()}}</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> {{$p->User->name}}</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> {{$p->comment_count}}</a></div>
-                                </div>
+                    @php
+                    $i = 0;
+                    @endphp
+                    @if (!empty($data))
+                    @foreach($data['recent_blog'] as $p)
+                    @php
+                    if ($i == 2) break;
+                    @endphp
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url({{asset($p->thumbnail)}});"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="{{url('/post/'.$p->id)}}">{{$p->title}}</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span>
+                                        {{$p->created_at->toDateString()}}</a></div>
+                                <div><a href="#"><span class="icon-person"></span> {{$p->User->name}}</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> {{$p->comment_count}}</a></div>
                             </div>
                         </div>
-                        @endfor
-                        @endempty
-                        @endisset
+                    </div>
+                    @php
+                    $i = $i +1;
+                    @endphp
+                    @endforeach
+                    @endif
 
                 </div>
             </div>

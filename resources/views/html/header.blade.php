@@ -13,7 +13,7 @@
                         aria-haspopup="true" aria-expanded="false">Product</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="{{url('/shop')}}">Shop</a>
-                        @if (isset($data))
+                        @if (!empty($data))
                         @foreach ($data['category'] as $c)
                         <a class="dropdown-item" href="{{url('/category/'.$c->id)}}">{{$c->name}}</a>
                         @endforeach
