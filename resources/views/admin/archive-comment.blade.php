@@ -30,7 +30,7 @@
                     </div>
                     <div class="element-box">
                         <div class="table-responsive">
-                            <table id="table-admin-comments" class="table table-striped table-lightfont">
+                            <table id="table-admin-comment" class="table table-striped table-lightfont">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
