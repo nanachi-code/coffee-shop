@@ -112,10 +112,10 @@ $(function () {
                             <td>${res.category.id}</td>
                             <td>${res.category.name}</td>
                             <td class="row-actions">
-                                <a href="${res.category.url}")}}">
+                                <a href="${res.category.categoryUrl}")}}">
                                     <i class="os-icon os-icon-ui-49"></i>
                                 </a>
-                                <a class="danger" href="#">
+                                <a class="danger" href="${res.category.deleteUrl}">
                                     <i class="os-icon os-icon-ui-15"></i>
                                 </a>
                             </td>

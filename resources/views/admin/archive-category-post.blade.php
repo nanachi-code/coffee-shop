@@ -7,10 +7,10 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/product') }}">Product</a>
+        <a href="{{ url('admin/post') }}">Post</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/category-product') }}">Product category</a>
+        <a href="{{ url('admin/category-post') }}">Post category</a>
     </li>
 </ul>
 {{-- END - Breadcrumbs --}}
@@ -24,7 +24,7 @@
                     <div class="element-header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h3>Product category</h3>
+                                <h3>Post category</h3>
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,7 @@
                             <div class="col-sm-6">
                                 <h5>Create new category</h5>
                                 <hr>
-                                <form action="{{ url("/admin/category-product/new") }}" method="POST"
-                                    id="form-category">
+                                <form action="{{ url("/admin/category-post/new") }}" method="POST" id="form-category">
                                     {{-- category name --}}
                                     <div class="form-group">
                                         <label for="form-category-name">Name</label>
@@ -65,10 +64,10 @@
                                                 <td>{{ $category->id }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td class="row-actions">
-                                                    <a href="{{ url("/admin/category-product/{$category->id}")}}">
+                                                    <a href="{{ url("/admin/category-post/{$category->id}")}}">
                                                         <i class="os-icon os-icon-ui-49"></i>
                                                     </a>
-                                                    <a href="{{ url("admin/category-product/{$category->id}/delete")}}"
+                                                    <a href="{{ url("admin/category-post/{$category->id}/delete")}}"
                                                         class="danger dt-delete">
                                                         <i class="os-icon os-icon-ui-15"></i>
                                                     </a>

@@ -151,4 +151,21 @@ Route::prefix('admin')->group(function () {
 
         Route::post('/{id}/update', 'Admin\CategoryProductController@updateCategory');
     });
+
+    //* Category Post
+    Route::prefix('category-post')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/category-post/all');
+        });
+
+        Route::get('/all', 'Admin\CategoryPostController@renderArchiveCategory');
+
+        Route::post('/new', 'Admin\CategoryPostController@createCategory');
+
+        Route::get('/{id}', 'Admin\CategoryPostController@renderSingleCategory');
+
+        Route::get('/{id}/delete', 'Admin\CategoryPostController@deleteCategory');
+
+        Route::post('/{id}/update', 'Admin\CategoryPostController@updateCategory');
+    });
 });

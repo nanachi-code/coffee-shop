@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\CategoryProduct;
+use App\CategoryPost;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoryProductController extends Controller
+class CategoryPostController extends Controller
 {
     public function renderArchiveCategory()
     {
         $p = [
-            'categories' => CategoryProduct::all()
+            'categories' => CategoryPost::all()
         ];
 
-        return view('admin/archive-category-product')->with($p);
+        return view('admin/archive-category-post')->with($p);
     }
 
     public function renderSingleCategory($id)
     {
         $p = [
-            'category' => CategoryProduct::where('id', $id)->first()
+            'category' => CategoryPost::where('id', $id)->first()
         ];
 
-        return view('admin/single-category-product')->with($p);
+        return view('admin/single-category-post')->with($p);
     }
 
     public function createCategory(Request $request)
     {
-        $category = new CategoryProduct;
+        $category = new CategoryPost;
         $category->name = $request->get('name');
         try {
             $category->save();
@@ -41,27 +41,27 @@ class CategoryProductController extends Controller
             "category" => [
                 "name" => $category->name,
                 "id" => $category->id,
-                "categoryUrl" => url("/admin/category-product/{$category->id}"),
-                "deleteUrl" => url("/admin/category-product/{$category->id}/delete")
+                "url" => url("/admin/category-post/{$category->id}"),
+                "deleteUrl" => url("/admin/category-post/{$category->id}/delete")
             ]
         ], 200);
     }
 
     public function deleteCategory($id)
     {
-        $category = CategoryProduct::find($id);
+        $category = CategoryPost::find($id);
         try {
             $category->delete();
         } catch (\Throwable $th) {
             throw $th;
         }
-        return redirect('admin/category-product');
+        return redirect('admin/category-post');
     }
 
     public function updateCategory(Request $request, $id)
     {
         try {
-            CategoryProduct::find($id)
+            CategoryPost::find($id)
                 ->update($request->all());
         } catch (\Exception $e) {
             throw $e;

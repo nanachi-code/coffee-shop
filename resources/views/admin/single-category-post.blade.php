@@ -7,10 +7,10 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/product') }}">Product</a>
+        <a href="{{ url('admin/post') }}">Post</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/category-product') }}">Product category</a>
+        <a href="{{ url('admin/category-post') }}">Post category</a>
     </li>
     <li class="breadcrumb-item">
         Edit category
@@ -25,14 +25,14 @@
                     <div class="element-header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h3>Category</h3>
+                                <h3>Post category</h3>
                             </div>
                         </div>
                     </div>
                     <div class="element-box">
                         <h5>Edit category</h5>
                         <hr>
-                        <form id="form-category" action="{{ url("admin/category-product/{$category->id}/update")}}"
+                        <form id="form-category" action="{{ url("admin/categor-post/{$category->id}/update")}}"
                             method="POST">
                             {{-- category name --}}
                             <div class="form-group">
@@ -45,7 +45,7 @@
 
                             <div class="form-buttons-w">
                                 <button class="btn btn-primary" type="submit">Save</button>
-                                <a href="{{ url("admin/category-product/{$category->id}/delete")}}"
+                                <a href="{{ url("admin/category-post/{$category->id}/delete")}}"
                                     class="btn btn-danger single-delete">
                                     Delete
                                 </a>

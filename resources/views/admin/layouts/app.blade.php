@@ -735,6 +735,14 @@
                             <span>Comment</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/category-post/all') }}">
+                            <div class="icon-w">
+                                <i class="icon-grid"></i>
+                            </div>
+                            <span>Post category</span>
+                        </a>
+                    </li>
                     {{-- Product --}}
                     <li class="sub-header">
                         <span>Product</span>
@@ -760,7 +768,7 @@
                             <div class="icon-w">
                                 <i class="icon-grid"></i>
                             </div>
-                            <span>Category</span>
+                            <span>Product category</span>
                         </a>
                     </li>
                     {{-- User --}}
