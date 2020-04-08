@@ -8,3 +8,5 @@
 <link href="{{ asset("css/admin/perfect-scrollbar.min.css") }}" rel="stylesheet" />
 <link href="{{ asset("css/admin/slick.css") }}" rel="stylesheet" />
 <link href="{{ asset("css/admin/main.css") }}" rel="stylesheet" />
+<link href="{{ asset("css/admin/custom.css") }}" rel="stylesheet" />
+<link href="{{ asset("icon_fonts_assets/simple-line-icons/css/simple-line-icons.css") }}" rel="stylesheet" />

@@ -10,10 +10,10 @@ class Product extends Model
 {
     protected $table = 'product';
 
-    protected $fillable = ['category_id', 'description', 'name', 'stock', 'price'];
+    protected $fillable = ['category_product_id', 'description', 'name', 'stock', 'price', 'thumbnail'];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(CategoryProduct::class);
     }
 }

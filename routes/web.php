@@ -41,12 +41,26 @@ Route::get('/single-product', function () {
     return view('single-product');
 });
 
-Route::get('/shop',"WebController@shop");
-Route::get('/cart',"WebController@cart");
-Route::get('/checkout',"WebController@checkout");
-Route::get('/menu',"WebController@menu");
+Route::get('/shop', "WebController@shop");
+Route::get('/cart', "WebController@cart");
+Route::get('/checkout', "WebController@checkout");
+Route::get('/menu', "WebController@menu");
 
 //user start by Thai code
+
+Route::get('/user/profile', "WebController@userProfile");
+
+Route::post('user/profile/update/{id}', "WebController@userProfileUpdate");
+
+Route::get('/user/order', "WebController@userOrder");
+Route::get('/user/order/{id}', "WebController@userOrderDetail");
+//user end by Thai code
+Auth::routes();
+
+// for testing add and post blog
+Route::get('/input-blog', function () {
+    return view('blogpost');
+=======
 Route::get('/user/profile',"WebController@userProfile")->middleware("auth");;
 
 Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");;
@@ -61,16 +75,16 @@ Auth::routes();
 Route::get('logout', function (){
     \Illuminate\Support\Facades\Auth::logout();
     return redirect('/login');
+
 });
-
-
+  
 //* Admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
 
-    Route::get('/dashboard', 'AdminController@renderDashboard');
+    Route::get('/dashboard', 'Admin\DashboardController@renderDashboard');
 
     //* Post
     Route::prefix('post')->group(function () {
@@ -78,11 +92,45 @@ Route::prefix('admin')->group(function () {
             return redirect('/admin/post/all');
         });
 
-        Route::get('/all', 'AdminController@renderArchivePost');
+        Route::get('/all', 'Admin\PostController@renderArchivePost');
 
-        Route::get('/new', 'AdminController@renderNewPost');
+        Route::get('/new', 'Admin\PostController@renderNewPost');
 
-        Route::get('/{id}', 'AdminController@renderSinglePost');
+        Route::post('/new', 'Admin\PostController@createPost');
+
+        Route::get('/{id}', 'Admin\PostController@renderSinglePost');
+
+        Route::post('/{id}/update', 'Admin\PostController@updatePost');
+
+        Route::get('/{id}/delete', 'Admin\PostController@deletePost');
+
+        Route::get('/{id}/restore', 'Admin\PostController@restorePost');
+    });
+
+    //* Category Post
+    Route::prefix('category-post')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/category-post/all');
+        });
+
+        Route::get('/all', 'Admin\CategoryPostController@renderArchiveCategory');
+
+        Route::post('/new', 'Admin\CategoryPostController@createCategory');
+
+        Route::get('/{id}', 'Admin\CategoryPostController@renderSingleCategory');
+
+        Route::get('/{id}/delete', 'Admin\CategoryPostController@deleteCategory');
+
+        Route::post('/{id}/update', 'Admin\CategoryPostController@updateCategory');
+    });
+
+    //* Comment
+    Route::prefix('comment')->group(function () {
+        Route::get('/', 'Admin\CommentController@renderArchiveComment');
+
+        Route::get('/{id}/delete', 'Admin\CommentController@deleteComment');
+
+        Route::post('/{id}/delete', 'Admin\CommentController@deletePostComment');
     });
 
     //* Product
@@ -91,29 +139,33 @@ Route::prefix('admin')->group(function () {
             return redirect('/admin/product/all');
         });
 
-        Route::get('/all', 'AdminController@renderArchiveProduct');
+        Route::get('/all', 'Admin\ProductController@renderArchiveProduct');
 
-        Route::get('/new', 'AdminController@renderNewProduct');
+        Route::get('/new', 'Admin\ProductController@renderNewProduct');
 
-        Route::post('/new', 'AdminController@createProduct');
+        Route::post('/new', 'Admin\ProductController@createProduct');
 
-        Route::get('/{id}', 'AdminController@renderSingleProduct');
+        Route::get('/{id}', 'Admin\ProductController@renderSingleProduct');
 
-        Route::get('/{id}/delete', 'AdminController@deleteProduct');
+        Route::get('/{id}/delete', 'Admin\ProductController@deleteProduct');
 
-        Route::post('/{id}/update', 'AdminController@updateProduct');
+        Route::post('/{id}/update', 'Admin\ProductController@updateProduct');
     });
 
-    //* Category
-    Route::prefix('category')->group(function () {
-        Route::get('/', 'AdminController@renderArchiveCategory');
+    //* Category Product
+    Route::prefix('category-product')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/category-product/all');
+        });
 
-        Route::post('/new', 'AdminController@createCategory');
+        Route::get('/all', 'Admin\CategoryProductController@renderArchiveCategory');
 
-        Route::get('/{id}', 'AdminController@renderSingleCategory');
+        Route::post('/new', 'Admin\CategoryProductController@createCategory');
 
-        Route::get('/{id}/delete', 'AdminController@deleteCategory');
+        Route::get('/{id}', 'Admin\CategoryProductController@renderSingleCategory');
 
-        Route::post('/{id}/update', 'AdminController@updateCategory');
+        Route::get('/{id}/delete', 'Admin\CategoryProductController@deleteCategory');
+
+        Route::post('/{id}/update', 'Admin\CategoryProductController@updateCategory');
     });
 });

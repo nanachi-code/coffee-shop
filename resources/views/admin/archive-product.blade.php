@@ -24,7 +24,7 @@
                                 <h3>Products</h3>
                             </div>
                             <div class="float-right">
-                                <button class="btn-outline-primary btn" type="button">New</button>
+                                <a class="btn-outline-primary btn" href="{{ url('admin/product/new') }}">New</a>
                             </div>
                         </div>
                     </div>
