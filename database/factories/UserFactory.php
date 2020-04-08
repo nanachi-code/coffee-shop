@@ -32,7 +32,7 @@ $factory->define(\App\User::class,function (Faker $faker)
 
 $factory->define(\App\Category::class,function (Faker $faker){
     return [
-        'category_name' => $faker->unique()->name
+        'name' => $faker->unique()->name
     ];
 });
 
@@ -63,6 +63,7 @@ $factory->define(\App\Comment::class,function (Faker $faker){
 });
 $factory->define(\App\Order::class,function (Faker $faker){
     return [
+        'user_id' => $faker->numberBetween(1,5),
         'customer_address' => $faker->unique()->address,
         'customer_city' => $faker->unique()->city,
         'customer_country' => $faker->unique()->country,
@@ -76,13 +77,10 @@ $factory->define(\App\Order::class,function (Faker $faker){
     ];
 });
 
-
-
-
 $factory->define(\App\Product::class,function (Faker $faker){
     return [
-        'price_id' => $faker->numberBetween(1,3),
-        'desc' => $faker->unique()->paragraph(),
+        'category_id' => $faker->numberBetween(1,3),
+        'description' => $faker->unique()->paragraph(),
         'name' => $faker->unique()->name(),
         'stock' => $faker->numberBetween(20,99),
     ];

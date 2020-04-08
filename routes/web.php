@@ -16,20 +16,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WebController@index');
 
-Route::get('/about-us', function () {
-    return view('about');
-});
+Route::get('/about-us', 'WebController@aboutUs');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'WebController@contactUs');
 
+// main page blog part
 Route::get('/blog', 'WebController@blogList');
 Route::get('/post/{id}', 'WebController@singlePost');
+Route::post('/post-comment-{id}', 'WebController@commentStore');
+
+// end blog
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -45,6 +43,7 @@ Route::get('/checkout', "WebController@checkout");
 Route::get('/menu', "WebController@menu");
 
 //user start by Thai code
+
 Route::get('/user/profile', "WebController@userProfile");
 
 Route::post('user/profile/update/{id}', "WebController@userProfileUpdate");
@@ -57,40 +56,24 @@ Auth::routes();
 // for testing add and post blog
 Route::get('/input-blog', function () {
     return view('blogpost');
+=======
+Route::get('/user/profile',"WebController@userProfile")->middleware("auth");;
+
+Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");;
+Route::post("changePassword","WebController@changePassword")->middleware("auth");;
+
+
+Route::get('/user/order',"WebController@userOrder")->middleware("auth");;
+Route::get('/user/order/{id}',"WebController@userOrderDetail")->middleware("auth");;
+//user end by Thai code
+Auth::routes();
+
+Route::get('logout', function (){
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+
 });
-
-Route::post('/post-store', function (Request $request) {
-
-    $content = $request->content;
-    try {
-        $image = null;
-        $ext_allow = ["png", 'jpg', 'jpeg', 'gif'];
-        if ($request->hasFile("image")) {
-            $file = $request->file("image");
-            $file_name = time() . '-' . $file->getClientOriginalName();
-            $ext = $file->getClientOriginalExtension();
-            if (in_array($ext, $ext_allow)) {
-                $file->move("images", $file_name);
-                $image = "images/" . $file_name;
-            }
-        }
-        \App\Post::create([
-            "title" => $request->get("title"),
-            'thumbnail' => $image,
-            'content' => $content,
-            'user_id' => $request->user_id,
-            'post_category_id' => $request->post_category_id
-        ]);
-    } catch (Exception $e) {
-        //dd($e);
-        dd($e);
-        return redirect()->back();
-    }
-    return redirect()->to("/blog");
-});
-
-// just for test
-
+  
 //* Admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {

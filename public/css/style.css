@@ -9397,4 +9397,7 @@ li .active{
 table>.border-bottom{
   color: #fff !important;
 }
+.modal-content h5,.modal-content label,.modal-content .form-control{
+  color: #000 !important;
+}
 /*style by thaicode*/
