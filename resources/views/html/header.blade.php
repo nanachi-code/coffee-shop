@@ -35,9 +35,16 @@
                                 <a class="dropdown-item" href="{{url('/cart')}}">{{"Cart"}}</a>
                                 <a class="dropdown-item" href="{{url('/checkout')}}">{{"Checkout"}}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}">
-                                    {{ __('Logout') }}
-                                </a>
+                                @if(!Auth::check())
+                                    <a class="dropdown-item" href="{{ route('login') }}">
+                                        {{ __('Login') }}
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                        {{ __('Logout') }}
+                                    </a>
+                                @endif
+
                             </div>
                         </li>
                     </ul>
