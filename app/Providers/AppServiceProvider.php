@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Category;
+use App\CategoryProduct;
 use App\Post;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -28,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('post') && Schema::hasTable('category'))
+        if (Schema::hasTable('post') && Schema::hasTable('category_product'))
         {
             $data = array(
                 'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(3)->get(),
-                'category' => $category = Category::orderBy('name','asc')->get(),
+                'category' => $category = CategoryProduct::orderBy('name','asc')->get(),
             );
             View::share('data',$data);
         }

@@ -73,7 +73,7 @@
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @if (\Auth::check())
-                        <form action="{{url('/post-comment-'.$post->id)}}" method="POST" id="comment_form">
+                        <form action="{{url('/blog/post-comment-'.$post->id)}}" method="POST" id="comment_form">
                             @csrf
                             Logged in as <span class="text-white">{{ \Auth::user()->name }}</span>. <a
                                 href="{{ url("logout") }}">Logout?</a>
@@ -114,7 +114,7 @@
                     <div class="categories">
                         <h3>Categories</h3>
                         @if ($post->category)
-                        <li><a href="#">{{ $post->category->name }}</a></li>
+                        <li><a href="{{ url("/blog/{$post->category->id}") }}">{{ $post->category->name }}</a></li>
                         @else
                         No categories.
                         @endif
@@ -140,9 +140,14 @@
                         </div>
                     </div>
                     @endforeach
-                    @else
-                    No posts found.
-                    @endif
+                    <<<<<<< HEAD @else No posts found. @endif=======</div> <div
+                        class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                        <h3>Warning!</h3>
+                        <p>
+                            Please respect other user. All comments with outrage words or spam will be remove.
+                            Be a polite user and have fun!
+                        </p>
+                        >>>>>>> eadc9504a4ddcc9b31cf8b65d9c50354ca2801c0
                 </div>
             </div>
         </div>

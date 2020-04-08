@@ -33,9 +33,15 @@ class WebController extends Controller
     // blog
     public function blogList()
     {
-        $list = Post::paginate(3);
+        $list = Post::paginate(6);
 
         return view('mainpage.post-list', compact('list'));
+    }
+
+    public function blogCateList($id)
+    {
+        $list = Post::orderBy('id', 'desc')->where('post_category_id', $id)->paginate(6);
+        return view('mainpage.blogcate', compact('list'));
     }
 
     public function singlePost($id)
@@ -84,7 +90,13 @@ class WebController extends Controller
     // end blog
     public function shop()
     {
-        return view('mainpage.shop');
+        $category = CategoryProduct::all();
+        $product = [];
+        foreach ($category as $c) {
+            $product[] = \App\Product::all()->where("category_product_id", $c->id);
+        }
+        $product = collect($product);
+        return view('mainpage.shop', compact('category', 'product'));
     }
 
     public function cart()
