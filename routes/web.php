@@ -23,9 +23,13 @@ Route::get('/about-us', 'WebController@aboutUs');
 Route::get('/contact', 'WebController@contactUs');
 
 // main page blog part
-Route::get('/blog', 'WebController@blogList');
-Route::get('/post/{id}', 'WebController@singlePost');
-Route::post('/post-comment-{id}', 'WebController@commentStore');
+Route::prefix('/blog')->group(function ()
+{
+    Route::get('/', 'WebController@blogList');
+    Route::get('/{id}', 'WebController@blogCateList');
+    Route::get('/post/{id}', 'WebController@singlePost');
+    Route::post('/post-comment-{id}', 'WebController@commentStore');
+});
 
 // end blog
 Auth::routes();

@@ -87,7 +87,7 @@
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @if (\Auth::check())
-                        <form action="{{url('/post-comment-'.$post->id)}}" method="POST" id="comment_form">
+                        <form action="{{url('/blog/post-comment-'.$post->id)}}" method="POST" id="comment_form">
                             @csrf
                             <div class="form-group">
                                 <label for="message">Message</label>
@@ -114,7 +114,8 @@
                     <div class="categories">
                         <h3>Categories</h3>
                         @foreach($post_cate as $cate)
-                        <li><a href="#">{{$cate->name}} <span>({{$cate->Posts->count()}})</span></a></li>
+                        <li><a href="{{url('/blog/'.$cate->id)}}">{{$cate->name}}
+                                <span>({{$cate->Posts->count()}})</span></a></li>
                         @endforeach
                     </div>
                 </div>
@@ -138,10 +139,11 @@
                 </div>
 
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
-                    <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
-                        voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur
-                        similique, inventore eos fugit cupiditate numquam!</p>
+                    <h3>Warning!</h3>
+                    <p>
+                        Please respect other user. All comments with outrage words or spam will be remove.
+                        Be a polite user and have fun!
+                    </p>
                 </div>
             </div>
 
