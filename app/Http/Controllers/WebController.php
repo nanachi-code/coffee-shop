@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CategoryPost;
+use App\CategoryProduct;
 use App\Comment;
 use App\Post;
+use App\Product;
 use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,7 @@ class WebController extends Controller
         $category = CategoryProduct::all();
         $product = [];
         foreach ($category as $c) {
-            $product[] = \App\Product::all()->where("category_product_id", $c->id);
+            $product[] = Product::all()->where("category_product_id", $c->id);
         }
         $product = collect($product);
         return view('mainpage.shop', compact('category', 'product'));

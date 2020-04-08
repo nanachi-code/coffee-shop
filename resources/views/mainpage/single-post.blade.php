@@ -140,14 +140,17 @@
                         </div>
                     </div>
                     @endforeach
-                    <<<<<<< HEAD @else No posts found. @endif=======</div> <div
-                        class="sidebar-box ftco-animate fadeInUp ftco-animated">
-                        <h3>Warning!</h3>
-                        <p>
-                            Please respect other user. All comments with outrage words or spam will be remove.
-                            Be a polite user and have fun!
-                        </p>
-                        >>>>>>> eadc9504a4ddcc9b31cf8b65d9c50354ca2801c0
+                    @else
+                    No posts found.
+                    @endif
+                </div>
+
+                <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                    <h3>Warning!</h3>
+                    <p>
+                        Please respect other user. All comments with outrage words or spam will be remove.
+                        Be a polite user and have fun!
+                    </p>
                 </div>
             </div>
         </div>
