@@ -30,13 +30,13 @@ $factory->define(\App\User::class,function (Faker $faker)
     ];
 });
 
-$factory->define(\App\Category::class,function (Faker $faker){
+$factory->define(\App\CategoryProduct::class,function (Faker $faker){
     return [
         'name' => $faker->unique()->name
     ];
 });
 
-$factory->define(\App\PostCategory::class,function (Faker $faker){
+$factory->define(\App\CategoryPost::class,function (Faker $faker){
     return [
         'name' => $faker->unique()->name
     ];
@@ -45,7 +45,7 @@ $factory->define(\App\PostCategory::class,function (Faker $faker){
 $factory->define(\App\Post::class,function (Faker $faker){
     return [
         'user_id' => $faker->numberBetween(1,3),
-        'post_category_id' => $faker->numberBetween(1,6),
+        'category_post_id' => $faker->numberBetween(1,6),
         'comment_count' => $faker->numberBetween(1,10),
         'content' => $faker->paragraph,
         'title' => $faker->sentence,
@@ -57,7 +57,7 @@ $factory->define(\App\Comment::class,function (Faker $faker){
     return [
         'post_id' => $faker->numberBetween(1,3),
         'user_id' => $faker->numberBetween(1,3),
-        'parent' => $faker->numberBetween(1,3),
+        'parent_id' => $faker->numberBetween(1,3),
         'content' => $faker->paragraph,
     ];
 });
@@ -79,7 +79,7 @@ $factory->define(\App\Order::class,function (Faker $faker){
 
 $factory->define(\App\Product::class,function (Faker $faker){
     return [
-        'category_id' => $faker->numberBetween(1,3),
+        'category_product_id' => $faker->numberBetween(1,4),
         'description' => $faker->unique()->paragraph(),
         'name' => $faker->unique()->name(),
         'stock' => $faker->numberBetween(20,99),

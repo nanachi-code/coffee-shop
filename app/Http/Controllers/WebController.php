@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\CategoryProduct;
 use App\Comment;
 use App\Post;
-use App\PostCategory;
+use App\CategoryPost;
 use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +47,7 @@ class WebController extends Controller
     public function singlePost($id)
     {
         $post = Post::find($id);
-        $post_cate = PostCategory::all();
+        $post_cate = CategoryPost::all();
         $comment = $post->Comments;
         $author = $post->User;
         return view('mainpage.single-post',compact('post','post_cate','comment','author'));
@@ -91,11 +91,12 @@ class WebController extends Controller
 // end blog
     public function shop()
     {
-        $category = Category::all();
+        $category = CategoryProduct::all();
         $product = [];
         foreach($category as $c){
-            $product[] = \App\Product::paginate(8)->where("category_id",$c->id);
+            $product[] = \App\Product::all()->where("category_product_id",$c->id);
         }
+        $product = collect($product);
         return view('mainpage.shop',compact('category','product'));
     }
 
