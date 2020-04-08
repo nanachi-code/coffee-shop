@@ -16,17 +16,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WebController@index');
 
-Route::get('/about-us', function () {
-    return view('about');
-});
+Route::get('/about-us', 'WebController@aboutUs');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'WebController@contactUs');
+
 // main page blog part
 Route::get('/blog', 'WebController@blogList');
 Route::get('/post/{id}', 'WebController@singlePost');

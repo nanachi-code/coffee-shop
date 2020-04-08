@@ -15,12 +15,26 @@ use Illuminate\Support\Facades\Validator;
 class WebController extends Controller
 {
 
+    public function index() {
+        return view('mainpage.welcome');
+    }
+
+    public function aboutUs()
+    {
+        return view('mainpage.about');
+    }
+
+    public function contactUs()
+    {
+        return view('mainpage.contact');
+    }
+
 // blog
     public function blogList()
     {
         $list = Post::paginate(3);
 
-        return view('post-list',compact('list'));
+        return view('mainpage.post-list',compact('list'));
     }
 
     public function singlePost($id)
@@ -29,7 +43,7 @@ class WebController extends Controller
         $post_cate = PostCategory::all();
         $comment = $post->Comments;
         $author = $post->User;
-        return view('single-post',compact('post','post_cate','comment','author'));
+        return view('mainpage.single-post',compact('post','post_cate','comment','author'));
     }
 
     public function commentStore(Request $request,$id)
@@ -68,28 +82,28 @@ class WebController extends Controller
 // end blog
     public function shop()
     {
-        return view('shop');
+        return view('mainpage.shop');
     }
 
     public function cart()
     {
-        return view('cart');
+        return view('mainpage.cart');
     }
 
     public function checkout()
     {
-        return view('checkout');
+        return view('mainpage.checkout');
     }
 
     public function menu()
     {
-        return view('menu');
+        return view('mainpage.menu');
     }
     //User start by Thai Code
     public function userProfile()
     {
         $user = Auth::user();
-        return view('user-profile',['user'=>$user]);
+        return view('mainpage.user-profile',['user'=>$user]);
     }
     public function userProfileUpdate($id,Request $request){
         $user = User::find($id);
@@ -137,11 +151,11 @@ class WebController extends Controller
 
     public function userOrder()
     {
-        return view('user-order');
+        return view('mainpage.user-order');
     }
     public function userOrderDetail()
     {
-        return view('user-order-detail');
+        return view('mainpage.user-order-detail');
     }
 
     //User end by Thai Code
