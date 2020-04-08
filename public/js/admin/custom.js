@@ -10,6 +10,7 @@ $(function () {
     $("#table-admin-category").DataTable();
     $("#table-admin-size").DataTable();
     $("#table-admin-post").DataTable();
+    $("#table-admin-comment").DataTable();
 
     $("#form-product").submit(function (e) {
         e.preventDefault();
@@ -347,5 +348,28 @@ $(function () {
             $(this).text("li");
         }
         $("#content-editor").trigger("change");
+    });
+
+    $(".delete-post-comment").click(function (e) {
+        e.preventDefault();
+        let wrapper = $(this).closest(".comment-wrapper"),
+            c = confirm(
+                "Are you sure you want to delete this? This action cannot be undone."
+            );
+        if (c) {
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("href"),
+                data: JSON.stringify({ id: $(this).attr("comment-id") }),
+                dataType: "json",
+                success: function (res) {
+                    wrapper.remove();
+                    if (!$(".comment-wrapper").length) {
+                        $(".comment-box").html("No comments found.");
+                    }
+                    console.log(res);
+                },
+            });
+        }
     });
 });

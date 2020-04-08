@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class BlogController extends Controller
+class PostController extends Controller
 {
     public function renderArchivePost()
     {
@@ -95,5 +95,29 @@ class BlogController extends Controller
         return response()->json([
             "message" => "Post info updated successfully."
         ], 200);
+    }
+
+    public function deletePost($id)
+    {
+        $product = Post::find($id);
+        try {
+            $product->status = "trashed";
+            $product->save();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return redirect('admin/post');
+    }
+
+    public function restorePost($id)
+    {
+        $product = Post::find($id);
+        try {
+            $product->status = "publish";
+            $product->save();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return redirect('admin/post');
     }
 }

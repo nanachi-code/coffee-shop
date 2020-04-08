@@ -79,6 +79,22 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
+                                    {{-- product category --}}
+                                    <div class="form-group">
+                                        <label for="form-product-category">Category</label>
+                                        <select class="form-control" id="form-product-category"
+                                            name="category_product_id">
+                                            <option value="">
+                                                Uncategorized
+                                            </option>
+                                            @foreach ($allCategories as $category)
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     {{-- product thumbnail --}}
                                     <div class="form-group">
                                         <label for="form-product-thumbnail">Thumbnail</label>
@@ -94,22 +110,6 @@
                                             <input type="file" class="form-control-file" data-title="Upload"
                                                 name="thumbnail">
                                         </div>
-                                    </div>
-
-                                    {{-- product category --}}
-                                    <div class="form-group">
-                                        <label for="form-product-category">Category</label>
-                                        <select class="form-control" id="form-product-category"
-                                            name="category_product_id">
-                                            <option value="">
-                                                Uncategorized
-                                            </option>
-                                            @foreach ($allCategories as $category)
-                                            <option value="{{ $category->id }}">
-                                                {{ $category->name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                             </div>

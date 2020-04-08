@@ -7,7 +7,10 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/post/all') }}">All Posts</a>
+        <a href="{{ url('admin/comment/all') }}">All Posts</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('admin/comment') }}">Comments</a>
     </li>
 </ul>
 {{-- END - Breadcrumbs --}}
@@ -21,45 +24,39 @@
                     <div class="element-header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h3>Post</h3>
-                            </div>
-                            <div class="float-right">
-                                <a class="btn-outline-primary btn" href="{{ url('admin/post/new') }}">New</a>
+                                <h3>Comment</h3>
                             </div>
                         </div>
                     </div>
                     <div class="element-box">
                         <div class="table-responsive">
-                            <table id="table-admin-post" class="table table-striped table-lightfont">
+                            <table id="table-admin-comments" class="table table-striped table-lightfont">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Category</th>
-                                        <th>User</th>
-                                        <th>Status</th>
+                                        <th>Username</th>
+                                        <th>Comment</th>
+                                        <th>Post</th>
                                         <th>Last updated</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($posts as $post)
+                                    @foreach ($comments as $comment)
                                     <tr>
-                                        <td>{{ $post->id }}</td>
-                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $comment->id }}</td>
+                                        <td>{{ $comment->user->name }}</td>
+                                        <td>{{ $comment->content }}</td>
                                         <td>
-                                            @if (!$post->category)
-                                            Uncategorized
-                                            @else
-                                            {{ $post->category->name }}
-                                            @endif
+                                            <a href="{{ url("/admin/post/{$comment->post->id}") }}">
+                                                {{ $comment->post->title }}
+                                            </a>
                                         </td>
-                                        <td>{{ $post->user->name }}</td>
-                                        <td>{{ $post->status }}</td>
-                                        <td>{{ $post->updated_at }}</td>
+                                        <td>{{ $comment->updated_at }}</td>
                                         <td class="row-actions">
-                                            <a href="{{ url("/admin/post/{$post->id}")}}">
-                                                <i class="os-icon os-icon-ui-49"></i>
+                                            <a href="{{ url("admin/comment/{$comment->id}/delete")}}"
+                                                class="danger dt-delete">
+                                                <i class="os-icon os-icon-ui-15"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -68,10 +65,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Category</th>
-                                        <th>Status</th>
-                                        <th>User</th>
+                                        <th>Username</th>
+                                        <th>Comment</th>
+                                        <th>Post</th>
                                         <th>Last updated</th>
                                         <th class="text-center">Action</th>
                                     </tr>

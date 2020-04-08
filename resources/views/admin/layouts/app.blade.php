@@ -728,7 +728,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/comment/all') }}">
+                        <a href="{{ url('/admin/comment') }}">
                             <div class="icon-w">
                                 <i class="icon-speech"></i>
                             </div>
