@@ -67,7 +67,7 @@ class WebController extends Controller
                 "content" => $request->get("comment"),
                 "user_id" => Auth::user()->id,
                 "post_id" => $id,
-                "parent" => $request->get("parent_id"),
+                "parent_id" => $request->get("parent_id"),
             ]);
             $post = Post::find($id);
             $post->comment_count = $post->comment_count + 1;
@@ -82,7 +82,7 @@ class WebController extends Controller
                 "content" => $comment->content,
                 "user_name" => $comment->User->name,
                 "created_at" => $comment->created_at->toDateString(),
-                "parent" => $comment->parent,
+                "parent_id" => $comment->parent_id,
                 "comment_count" => $post->comment_count,
             ]
         ], 200);

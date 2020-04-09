@@ -176,8 +176,10 @@
                 success: (res) => {
                     $("#comment_form")[0].reset();
                     $('#parent_id').val(0);
-                    $("#comment-count").html(`<h3 class="mb-5" id="comment-count">${res.add_comment.comment_count} Comments</h3>`)
-                    if (res.add_comment.parent == 0) {
+                    $("#comment-count").html(`
+                    <h3 class="mb-5" id="comment-count">${res.add_comment.comment_count} Comments</h3>`);
+                    console.log(res.add_comment);
+                    if (res.add_comment.parent_id == 0) {
 
                         $(`<li class="comment" id=${res.add_comment.id}>
                             <div class="vcard bio">
@@ -203,11 +205,11 @@
                                     <h3>${res.add_comment.user_name}</h3>
                                     <div class="meta">${res.add_comment.created_at}</div>
                                     <p>${res.add_comment.content}</p>
-                                    <p><a content="${res.add_comment.parent}" class="reply">Reply</a></p>
+                                    <p><a content="${res.add_comment.parent_id}" class="reply">Reply</a></p>
                                 </div>
                                 </li>
                             </ul>
-                        `).appendTo("#"+res.add_comment.parent);
+                        `).appendTo("#"+res.add_comment.parent_id);
                     }
                 }
             });

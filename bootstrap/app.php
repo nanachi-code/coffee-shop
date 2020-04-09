@@ -64,7 +64,7 @@ function renderChildComment($comment)
     echo '<h3>' . $comment->user->name . '</h3>';
     echo '<div class="meta">' . $comment->updated_at . '</div>';
     echo '<p>' . $comment->content . '</p>';
-    echo '<p><a href="" class="reply">Reply</a></p>';
+    echo '<p><a content=" '.$comment->parent_id.'" class="reply">Reply</a></p>';
     echo '</div>';
     if ($comment->hasChildren()) {
         foreach ($comment->children as $child) {
