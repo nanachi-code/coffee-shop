@@ -26,22 +26,26 @@ Route::get('/contact', 'WebController@contactUs');
 Route::prefix('/blog')->group(function ()
 {
     Route::get('/', 'WebController@blogList');
+
     Route::get('/{id}', 'WebController@blogCateList');
+
     Route::get('/post/{id}', 'WebController@singlePost');
+
     Route::post('/post-comment-{id}', 'WebController@commentStore');
+
 });
 
 // end blog
 Auth::routes();
+Route::prefix('/category')->group(function ()
+{
+    Route::get('/product/{id}','WebController@categoryProduct');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/all', "WebController@categoryAll");
 
-
-Route::get('/single-product', function () {
-    return view('single-product');
+    Route::get('/{id}','WebController@categoryOne');
 });
 
-Route::get('/shop', "WebController@shop");
 Route::get('/cart', "WebController@cart");
 Route::get('/checkout', "WebController@checkout");
 Route::get('/menu', "WebController@menu");

@@ -6,6 +6,7 @@ use App\CategoryProduct;
 use App\Comment;
 use App\Post;
 use App\CategoryPost;
+use App\Product;
 use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
@@ -89,15 +90,32 @@ class WebController extends Controller
 
 
 // end blog
-    public function shop()
+    public function categoryAll()
     {
         $category = CategoryProduct::all();
-        $product = [];
-        foreach($category as $c){
-            $product[] = \App\Product::all()->where("category_product_id",$c->id);
-        }
-        $product = collect($product);
+        $product = Product::paginate(9);
         return view('mainpage.shop',compact('category','product'));
+    }
+
+    public function categoryOne($id)
+    {
+        $category = CategoryProduct::find($id);
+        $product = Product::where("category_product_id",$id)->paginate(9);
+        return view('mainpage.shop',compact('category','product'));
+    }
+
+    public function categoryProduct($id)
+    {
+        $product = Product::find($id);
+        $where = [
+            ['category_product_id',$product->category_product_id],
+            ['id','!=',$product->id]
+        ];
+        $related_product = Product::orderBy('id','desc')
+        ->where($where)
+        ->take(4)
+        ->get();
+        return view('mainpage.single-product',compact('product','related_product'));
     }
 
     public function cart()
