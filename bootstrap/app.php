@@ -11,6 +11,7 @@
 |
 */
 
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
@@ -51,5 +52,26 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
-
+// Helper
+function renderChildComment($comment)
+{
+    echo '<ul class="children">';
+    echo '<li class="comment">';
+    echo '<div class="vcard bio">';
+    echo '<img src="' . asset('images/person_4.jpg') . '" alt="Image placeholder">';
+    echo '</div>';
+    echo '<div class="comment-body">';
+    echo '<h3>' . $comment->user->name . '</h3>';
+    echo '<div class="meta">' . $comment->updated_at . '</div>';
+    echo '<p>' . $comment->content . '</p>';
+    echo '<p><a href="" class="reply">Reply</a></p>';
+    echo '</div>';
+    if ($comment->hasChildren()) {
+        foreach ($comment->children as $child) {
+            renderChildComment($child);
+        }
+    }
+    echo '</li>';
+    echo '</ul>';
+}
 return $app;

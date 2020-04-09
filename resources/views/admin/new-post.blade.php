@@ -7,7 +7,7 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/post/all') }}">All Products</a>
+        <a href="{{ url('admin/post/all') }}">All posts</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{{ url("admin/post/new") }}">New post</a>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +23,7 @@ Route::get('/about-us', 'WebController@aboutUs');
 Route::get('/contact', 'WebController@contactUs');
 
 // main page blog part
-Route::prefix('/blog')->group(function ()
-{
+Route::prefix('/blog')->group(function () {
     Route::get('/', 'WebController@blogList');
 
     Route::get('/{id}', 'WebController@blogCateList');
@@ -51,21 +50,25 @@ Route::get('/checkout', "WebController@checkout");
 Route::get('/menu', "WebController@menu");
 
 //user start by Thai code
-Route::get('/user/profile',"WebController@userProfile")->middleware("auth");
+Route::get('/user/profile', "WebController@userProfile")->middleware("auth");
 
-Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");
-Route::post("changePassword","WebController@changePassword")->middleware("auth");
-
-
-Route::get('/user/order',"WebController@userOrder")->middleware("auth");
-Route::get('/user/order/{id}',"WebController@userOrderDetail")->middleware("auth");
+Route::get('/user/order', "WebController@userOrder");
+Route::get('/user/order/{id}', "WebController@userOrderDetail");
 //user end by Thai code
 Auth::routes();
 
-Route::get('logout', function (){
-    \Illuminate\Support\Facades\Auth::logout();
-    return redirect('/login');
+Route::post('user/profile/update/{id}', "WebController@userProfileUpdate")->middleware("auth");;
+Route::post("changePassword", "WebController@changePassword")->middleware("auth");;
 
+
+Route::get('/user/order', "WebController@userOrder")->middleware("auth");;
+Route::get('/user/order/{id}', "WebController@userOrderDetail")->middleware("auth");;
+//user end by Thai code
+Auth::routes();
+
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/login');
 });
 
 //* Admin routes

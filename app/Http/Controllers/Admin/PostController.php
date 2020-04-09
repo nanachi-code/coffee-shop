@@ -49,6 +49,7 @@ class PostController extends Controller
         $post->title = $request->get('title');
         $post->content = $request->get('content');
         $post->status = "publish";
+        $post->user_id = 1;
         $post->category_post_id = $request->get('category_post_id');
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
