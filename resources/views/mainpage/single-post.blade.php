@@ -117,8 +117,9 @@
                         No categories.
                         @else
                         @foreach ($category_post as $c)
-                        <li><a
-                                href="{{ url("/blog/{$c->id}") }}">{{ $c->name }}</a><span>({{$c->posts->count()}})</span>
+                        <li>
+                            <a
+                                href="{{ url("/blog/{$c->id}") }}">{{ $c->name }}<span>({{$c->posts->count()}})</span></a>
                         </li>
                         @endforeach
                         @endempty
@@ -128,11 +129,12 @@
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <h3>Recent Blog</h3>
                     @if (count(\App\Post::where('id', '!=', $post->id)->get()) > 0)
-                    @foreach (\App\Post::where('id', '!=', $post->id)->orderBy('updated_at')->take(3)->get() as $p)
+                    @foreach (\App\Post::where('id', '!=', $post->id)->orderBy('updated_at','desc')->take(3)->get() as
+                    $p)
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" style="background-image: url({{asset('images/image_1.jpg')}});"></a>
                         <div class="text">
-                            <h3 class="heading"><a href="#">{{$p->title}}</a></h3>
+                            <h3 class="heading"><a href="{{url('blog/post/'.$p->id)}}">{{$p->title}}</a></h3>
                             <div class="meta">
                                 <div><a href="#"><span
                                             class="icon-calendar"></span>{{$p->created_at->toDateString()}}</a>
