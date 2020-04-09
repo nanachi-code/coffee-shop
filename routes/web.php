@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\WebController;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,6 @@ Route::post('/post-comment-{id}', 'WebController@commentStore');
 // end blog
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/single-product', function () {
     return view('single-product');
 });
@@ -56,26 +54,28 @@ Auth::routes();
 // for testing add and post blog
 Route::get('/input-blog', function () {
     return view('blogpost');
-=======
-Route::get('/user/profile',"WebController@userProfile")->middleware("auth");;
+});
+Route::get('/user/profile', "WebController@userProfile")->middleware("auth");;
 
-Route::post('user/profile/update/{id}',"WebController@userProfileUpdate")->middleware("auth");;
-Route::post("changePassword","WebController@changePassword")->middleware("auth");;
+Route::post('user/profile/update/{id}', "WebController@userProfileUpdate")->middleware("auth");;
+Route::post("changePassword", "WebController@changePassword")->middleware("auth");;
 
 
-Route::get('/user/order',"WebController@userOrder")->middleware("auth");;
-Route::get('/user/order/{id}',"WebController@userOrderDetail")->middleware("auth");;
+Route::get('/user/order', "WebController@userOrder")->middleware("auth");;
+Route::get('/user/order/{id}', "WebController@userOrderDetail")->middleware("auth");;
 //user end by Thai code
 Auth::routes();
 
-Route::get('logout', function (){
-    \Illuminate\Support\Facades\Auth::logout();
+Route::get('logout', function () {
+    Auth::logout();
     return redirect('/login');
-
 });
-  
+
 //* Admin routes
-Route::prefix('admin')->group(function () {
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', CheckAdmin::class]
+], function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
@@ -163,5 +163,26 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}/delete', 'Admin\CategoryProductController@deleteCategory');
 
         Route::post('/{id}/update', 'Admin\CategoryProductController@updateCategory');
+    });
+
+    //* User
+    Route::prefix('user')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/user/all');
+        });
+
+        Route::get('/all', 'Admin\UserController@renderArchiveUser');
+
+        Route::get('/new', 'Admin\UserController@renderNewUser');
+
+        Route::post('/new', 'Admin\UserController@createUser');
+
+        Route::get('/{id}', 'Admin\UserController@renderSingleUser');
+
+        Route::post('/{id}/update', 'Admin\UserController@updateUser');
+
+        Route::get('/{id}/disable', 'Admin\UserController@disableUser');
+
+        Route::get('/{id}/restore', 'Admin\UserController@restoreUser');
     });
 });

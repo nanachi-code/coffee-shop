@@ -27,7 +27,7 @@ class CreatePost extends Migration
             $table->bigInteger('comment_count')->default(0);
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_post_id')->unsigned()->nullable();
-            $table->string('status', 20);
+            $table->string('status', 20)->default('publish');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_post_id')->references('id')->on('category_post');

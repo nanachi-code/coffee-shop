@@ -84,11 +84,12 @@
                                         <label for="form-product-category">Category</label>
                                         <select class="form-control" id="form-product-category"
                                             name="category_product_id">
-                                            <option value="">
+                                            <option value="" @if (!$product->category_product_id) selected @endif>
                                                 Uncategorized
                                             </option>
                                             @foreach ($allCategories as $category)
-                                            <option value="{{ $category->id }}">
+                                            <option value="{{ $category->id }}" @if ($product->category_product_id ==
+                                                $category->id) selected @endif>
                                                 {{ $category->name }}
                                             </option>
                                             @endforeach

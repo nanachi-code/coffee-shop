@@ -91,10 +91,10 @@
                                             Restore
                                         </a>
                                         @endif
-
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
+                                    {{-- post status --}}
                                     <div class="form-group">
                                         <label for="">Status</label>
                                         <div>
@@ -107,7 +107,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- product category --}}
+                                    {{-- post category --}}
                                     <div class="form-group">
                                         <label for="form-product-category">Category</label>
                                         <select class="form-control" id="form-post-category" name="category_post_id">

@@ -30,15 +30,16 @@
             @foreach ($list as $post)
             <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
                 <div class="blog-entry align-self-stretch">
-                    <a href="{{url('/post/'.$post->id)}}" class="block-20"
+                    <a href="{{url("/post/{$post->id}")}}" class="block-20"
                         style="background-image: url({{asset($post->thumbnail)}});">
                     </a>
                     <div class="text py-4 d-block">
                         <div class="meta">
                             <div><span>{{$post->created_at->toDateString()}}</span></div>
-                            <div><a href="{{url('/post/'.$post->id)}}">{{$post->User->name}}</a></div>
-                            <div><span class="meta-chat">
-                                    <span class="icon-chat"></span>{{$post->comment_count}}</span></div>
+                            <div>{{$post->User->name}}</div>
+                            <div>
+                                <span class="meta-chat"><span class="icon-chat"></span>{{$post->comment_count}}</span>
+                            </div>
                         </div>
                         <h3 class="heading mt-2"><a href="{{url('/post/'.$post->id)}}">{{$post->title}}</a></h3>
                         <p>
