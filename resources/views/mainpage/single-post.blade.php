@@ -11,7 +11,7 @@
                 <div class="col-md-7 col-sm-12 text-center ftco-animate">
                     <h1 class="mb-3 mt-5 bread">Blog Details</h1>
                     <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">Home</a></span> <span
-                            class="mr-2"><a href="{{url('/blog')}}">Blog</a></span> <span>{{ $post->title }}</span></p>
+                            class="mr-2"><a href="{{url('/blog')}}">Blog</a></span></p>
                 </div>
 
             </div>
@@ -113,12 +113,15 @@
                 <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
                     <div class="categories">
                         <h3>Categories</h3>
-                        @if ($post->category)
-                        <li><a href="{{ url("/blog/{$post->category->id}") }}">{{ $post->category->name }}</a></li>
-                        @else
+                        @empty($category_post)
                         No categories.
-                        @endif
-
+                        @else
+                        @foreach ($category_post as $c)
+                        <li><a
+                                href="{{ url("/blog/{$c->id}") }}">{{ $c->name }}</a><span>({{$c->posts->count()}})</span>
+                        </li>
+                        @endforeach
+                        @endempty
                     </div>
                 </div>
 

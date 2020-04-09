@@ -42,17 +42,15 @@ class WebController extends Controller
 
     public function blogCateList($id)
     {
-        $list = Post::orderBy('id', 'desc')->where('post_category_id', $id)->paginate(6);
-        return view('mainpage.blogcate', compact('list'));
+        $list = Post::orderBy('id', 'desc')->where('category_post_id', $id)->paginate(6);
+        return view('mainpage.post-list', compact('list'));
     }
 
     public function singlePost($id)
     {
-        $p = [
-            'post' => Post::where('id', $id)->first()
-        ];
-
-        return view('mainpage.single-post')->with($p);
+        $post = Post::find($id);
+        $category_post = CategoryPost::all();
+        return view('mainpage.single-post',compact('post','category_post'));
     }
 
     public function commentStore(Request $request, $id)
