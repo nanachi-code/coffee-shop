@@ -37,13 +37,13 @@ class WebController extends Controller
     {
         $list = Post::paginate(6);
 
-        return view('mainpage.post-list', compact('list'));
+        return view('mainpage.archive-post', compact('list'));
     }
 
     public function blogCateList($id)
     {
         $list = Post::orderBy('id', 'desc')->where('category_post_id', $id)->paginate(6);
-        return view('mainpage.post-list', compact('list'));
+        return view('mainpage.archive-post', compact('list'));
     }
 
     public function singlePost($id)
