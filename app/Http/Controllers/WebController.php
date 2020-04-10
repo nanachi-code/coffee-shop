@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryPost;
 use App\Comment;
 use App\Post;
-use App\PostCategory;
 use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Validator;
 class WebController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         return view('mainpage.welcome');
     }
 
@@ -29,57 +30,58 @@ class WebController extends Controller
         return view('mainpage.contact');
     }
 
-// blog
+    // blog
     public function blogList()
     {
         $list = Post::paginate(3);
 
-        return view('mainpage.post-list',compact('list'));
+        return view('mainpage.archive-post', compact('list'));
     }
 
     public function singlePost($id)
     {
         $post = Post::find($id);
-        $post_cate = PostCategory::all();
+        $post_cate = CategoryPost::all();
         $comment = $post->Comments;
         $author = $post->User;
-        return view('mainpage.single-post',compact('post','post_cate','comment','author'));
+        return view('mainpage.single-post', compact('post', 'post_cate', 'comment', 'author'));
     }
 
-    public function commentStore(Request $request,$id)
+    public function commentStore(Request $request, $id)
     {
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             "comment" => "required"
         ]);
-        if($validator->fails()){
-            return response()->json(["status"=>false,"message"=>$validator->errors()->first()]);
+        if ($validator->fails()) {
+            return response()->json(["status" => false, "message" => $validator->errors()->first()]);
         }
         try {
             $comment = Comment::create([
-                "content"=> $request->get("comment"),
-                "user_id"=> Auth::user()->id,
-                "post_id"=> $id,
-                "parent"=> $request->get("parent_id"),
+                "content" => $request->get("comment"),
+                "user_id" => Auth::user()->id,
+                "post_id" => $id,
+                "parent" => $request->get("parent_id"),
             ]);
             $post = Post::find($id);
             $post->comment_count = $post->comment_count + 1;
             $post->save();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e;
         }
-        return response()->json(['status'=>true,'message'=>"Comment Success",
+        return response()->json([
+            'status' => true, 'message' => "Comment Success",
             "add_comment" => [
                 "id" => $comment->id,
                 "content" => $comment->content,
-                "user_name"=> $comment->User->name,
-                "created_at"=> $comment->created_at->toDateString(),
-                "parent"=> $comment->parent,
+                "user_name" => $comment->User->name,
+                "created_at" => $comment->created_at->toDateString(),
+                "parent" => $comment->parent,
                 "comment_count" => $post->comment_count,
             ]
-            ],200);
+        ], 200);
     }
-// end blog
+    // end blog
     public function shop()
     {
         return view('mainpage.shop');
@@ -103,50 +105,52 @@ class WebController extends Controller
     public function userProfile()
     {
         $user = Auth::user();
-        return view('mainpage.user-profile',['user'=>$user]);
+        return view('mainpage.user-profile', ['user' => $user]);
     }
-    public function userProfileUpdate($id,Request $request){
+    public function userProfileUpdate($id, Request $request)
+    {
         $user = User::find($id);
         $request->validate([ // truyen vao rules de validate
-            "email"=> "required|string|max:191|unique:users,email,".$id,// validation laravel
-            "name"=> "required|string",
-            "dateOfBirth"=> "required|date",
-            "phone"=> "required|string|max:191|unique:users,phone,".$id,
-            "address"=> "required|string",
+            "email" => "required|string|max:191|unique:users,email," . $id, // validation laravel
+            "name" => "required|string",
+            "dateOfBirth" => "required|date",
+            "phone" => "required|string|max:191|unique:users,phone," . $id,
+            "address" => "required|string",
         ]);
         try {
             $user->update([
-                "name"=> $request->get("name"),
-                "email"=> $request->get("email"),
-                "dateOfBirth"=> $request->get("dateOfBirth"),
-                "phone"=> $request->get("phone"),
-                "address"=> $request->get("address"),
+                "name" => $request->get("name"),
+                "email" => $request->get("email"),
+                "dateOfBirth" => $request->get("dateOfBirth"),
+                "phone" => $request->get("phone"),
+                "address" => $request->get("address"),
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->back();
         }
         return redirect()->to("user/profile");
     }
 
-    public function changePassword(Request $request){
-        $validator =Validator::make($request->all(),[
-            'old_password'=>['required'],
-            'new_password'=>['required'],
-            'confirm_password'=>['same:new_password'],
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required'],
+            'new_password' => ['required'],
+            'confirm_password' => ['same:new_password'],
         ]);
-        if($validator ->fails()){
-            return response()->json(["status"=>false,"messenger"=>$validator->errors()->first()]);
+        if ($validator->fails()) {
+            return response()->json(["status" => false, "messenger" => $validator->errors()->first()]);
         }
-        if(!Hash::check($request->get('old_password'),Auth::user()->password)){
-            return  response()->json(['status'=>false,"messenger"=>"Old Password False"]);
+        if (!Hash::check($request->get('old_password'), Auth::user()->password)) {
+            return  response()->json(['status' => false, "messenger" => "Old Password False"]);
         };
         $new_password = $request->get("new_password");
-        $user= Auth::user();
+        $user = Auth::user();
         $user->update([
-            "password"=>Hash::make($new_password),
+            "password" => Hash::make($new_password),
         ]);
 
-        return response()->json(['status'=>true,"messenger"=>"Change Password Successfully"]);
+        return response()->json(['status' => true, "messenger" => "Change Password Successfully"]);
     }
 
     public function userOrder()

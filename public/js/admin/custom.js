@@ -290,7 +290,37 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: $("#form-product").attr("action"),
+            url: form.attr("action"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: (res) => {
+                window.location.href = res.redirect;
+            },
+            error: (e) => {
+                form.find(".alert-dismissible");
+                form.prepend(`
+                    <div class="alert alert-danger alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${e.responseJSON.message}
+                    </div>`);
+                setTimeout(() => {
+                    form.find(".alert-dismissible").remove();
+                }, 3000);
+                console.log(e.responseJSON);
+            },
+        });
+    });
+
+    $("#form-create-post").submit(function (e) {
+        e.preventDefault();
+        let form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
             data: new FormData(this),
             processData: false,
             contentType: false,

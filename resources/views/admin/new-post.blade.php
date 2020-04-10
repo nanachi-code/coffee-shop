@@ -7,7 +7,7 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/post/all') }}">All Products</a>
+        <a href="{{ url('admin/post/all') }}">All Posts</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{{ url("admin/post/new") }}">New post</a>
@@ -29,7 +29,7 @@
                     <div class="element-box">
                         <h5>New post</h5>
                         <hr>
-                        <form id="form-post" action="{{ url("admin/post/new")}}" method="POST"
+                        <form id="form-create-post" action="{{ url("admin/post/new")}}" method="POST"
                             enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-9">

@@ -26,6 +26,7 @@ class ProductController extends Controller
             'product' => Product::where('id', $id)->first(),
             'allCategories' => CategoryProduct::all()
         ];
+
         return view('admin/single-product')->with($p);
     }
 
