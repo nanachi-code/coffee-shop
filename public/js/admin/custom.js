@@ -6,7 +6,7 @@ $(function () {
         },
     });
 
-    $("#table-admin-products").DataTable();
+    $("#table-admin-product").DataTable();
     $("#table-admin-category").DataTable();
     $("#table-admin-size").DataTable();
     $("#table-admin-post").DataTable();
@@ -230,9 +230,117 @@ $(function () {
         });
     });
 
+    $("#form-user").submit(function (e) {
+        e.preventDefault();
+        let form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: (res) => {
+                form.find(".alert-dismissible").remove();
+                form.prepend(`
+                    <div class="alert alert-success alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${res.message}
+                    </div>`);
+
+                setTimeout(() => {
+                    form.find(".alert-dismissible").remove();
+                }, 3000);
+                console.log(res);
+            },
+            error: (e) => {
+                form.find(".alert-dismissible");
+                form.prepend(`
+                    <div class="alert alert-danger alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${e.responseJSON.message}
+                    </div>`);
+                setTimeout(() => {
+                    form.find(".alert-dismissible").remove();
+                }, 3000);
+                console.log(e.responseJSON);
+            },
+        });
+    });
+
+    $("#form-create-user").submit(function (e) {
+        e.preventDefault();
+        let form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: (res) => {
+                window.location.href = res.redirect;
+            },
+            error: (e) => {
+                form.find(".alert-dismissible");
+                form.prepend(`
+                    <div class="alert alert-danger alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${e.responseJSON.message}
+                    </div>`);
+                setTimeout(() => {
+                    form.find(".alert-dismissible").remove();
+                }, 3000);
+                console.log(e.responseJSON);
+            },
+        });
+    });
+
+    $("#form-create-post").submit(function (e) {
+        e.preventDefault();
+        let form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: (res) => {
+                window.location.href = res.redirect;
+            },
+            error: (e) => {
+                form.find(".alert-dismissible");
+                form.prepend(`
+                    <div class="alert alert-danger alert-dismissible fade" role="alert">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        ${e.responseJSON.message}
+                    </div>`);
+                setTimeout(() => {
+                    form.find(".alert-dismissible").remove();
+                }, 3000);
+                console.log(e.responseJSON);
+            },
+        });
+    });
+
     $(".dt-delete, .single-delete").on("click", function () {
         return confirm(
             "Are you sure you want to delete this? This action cannot be undone."
+        );
+    });
+
+    $(".single-disable").on("click", function () {
+        return confirm(
+            "Are you sure you want to disable this? This action cannot be undone."
         );
     });
 
@@ -259,10 +367,10 @@ $(function () {
 
         let content = $(this).val();
         $("#preview-post").html(content);
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
-    $("textarea").on("change", function () {
+    $("textarea").on("input", function () {
         $(this)
             .height(105)
             .height(
@@ -274,14 +382,14 @@ $(function () {
         e.preventDefault();
 
         $("#content-editor").val(`${$("#content-editor").val()}<i></i>`);
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $("#add-content-b").click(function (e) {
         e.preventDefault();
 
         $("#content-editor").val(`${$("#content-editor").val()}<b></b>`);
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $("#add-content-link").click(function (e) {
@@ -290,7 +398,7 @@ $(function () {
         $("#content-editor").val(
             `${$("#content-editor").val()}<a href=""></a>`
         );
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $("#add-content-ul").click(function (e) {
@@ -305,7 +413,7 @@ $(function () {
             $(this).removeClass("opened");
             $(this).text("ul");
         }
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $("#add-content-ol").click(function (e) {
@@ -320,7 +428,7 @@ $(function () {
             $(this).removeClass("opened");
             $(this).text("ol");
         }
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $("#add-content-li").click(function (e) {
@@ -335,7 +443,7 @@ $(function () {
             $(this).removeClass("opened");
             $(this).text("li");
         }
-        $("#content-editor").trigger("change");
+        $("#content-editor").trigger("input");
     });
 
     $(".delete-post-comment").click(function (e) {

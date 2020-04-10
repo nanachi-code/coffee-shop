@@ -50,7 +50,7 @@ class WebController extends Controller
     {
         $post = Post::find($id);
         $category_post = CategoryPost::all();
-        return view('mainpage.single-post',compact('post','category_post'));
+        return view('mainpage.single-post', compact('post', 'category_post'));
     }
 
     public function commentStore(Request $request, $id)
@@ -88,34 +88,33 @@ class WebController extends Controller
         ], 200);
     }
 
-
-// end blog
+    // end blog
     public function categoryAll()
     {
         $category = CategoryProduct::all();
         $product = Product::paginate(9);
-        return view('mainpage.shop',compact('category','product'));
+        return view('mainpage.shop', compact('category', 'product'));
     }
 
     public function categoryOne($id)
     {
         $category = CategoryProduct::find($id);
-        $product = Product::where("category_product_id",$id)->paginate(9);
-        return view('mainpage.shop',compact('category','product'));
+        $product = Product::where("category_product_id", $id)->paginate(9);
+        return view('mainpage.shop', compact('category', 'product'));
     }
 
     public function categoryProduct($id)
     {
         $product = Product::find($id);
         $where = [
-            ['category_product_id',$product->category_product_id],
-            ['id','!=',$product->id]
+            ['category_product_id', $product->category_product_id],
+            ['id', '!=', $product->id]
         ];
-        $related_product = Product::orderBy('id','desc')
-        ->where($where)
-        ->take(4)
-        ->get();
-        return view('mainpage.single-product',compact('product','related_product'));
+        $related_product = Product::orderBy('id', 'desc')
+            ->where($where)
+            ->take(4)
+            ->get();
+        return view('mainpage.single-product', compact('product', 'related_product'));
     }
 
     public function cart()

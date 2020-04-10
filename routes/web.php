@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebController;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,18 +32,16 @@ Route::prefix('/blog')->group(function () {
     Route::get('/post/{id}', 'WebController@singlePost');
 
     Route::post('/post-comment-{id}', 'WebController@commentStore');
-
 });
 
 // end blog
 Auth::routes();
-Route::prefix('/category')->group(function ()
-{
-    Route::get('/product/{id}','WebController@categoryProduct');
+Route::prefix('/category')->group(function () {
+    Route::get('/product/{id}', 'WebController@categoryProduct');
 
     Route::get('/all', "WebController@categoryAll");
 
-    Route::get('/{id}','WebController@categoryOne');
+    Route::get('/{id}', 'WebController@categoryOne');
 });
 
 Route::get('/cart', "WebController@cart");
@@ -56,6 +55,8 @@ Route::get('/user/order', "WebController@userOrder");
 Route::get('/user/order/{id}', "WebController@userOrderDetail");
 //user end by Thai code
 Auth::routes();
+
+Route::get('/user/profile', "WebController@userProfile")->middleware("auth");;
 
 Route::post('user/profile/update/{id}', "WebController@userProfileUpdate")->middleware("auth");;
 Route::post("changePassword", "WebController@changePassword")->middleware("auth");;
@@ -72,7 +73,10 @@ Route::get('logout', function () {
 });
 
 //* Admin routes
-Route::prefix('admin')->group(function () {
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', CheckAdmin::class]
+], function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
@@ -160,5 +164,26 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}/delete', 'Admin\CategoryProductController@deleteCategory');
 
         Route::post('/{id}/update', 'Admin\CategoryProductController@updateCategory');
+    });
+
+    //* User
+    Route::prefix('user')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/user/all');
+        });
+
+        Route::get('/all', 'Admin\UserController@renderArchiveUser');
+
+        Route::get('/new', 'Admin\UserController@renderNewUser');
+
+        Route::post('/new', 'Admin\UserController@createUser');
+
+        Route::get('/{id}', 'Admin\UserController@renderSingleUser');
+
+        Route::post('/{id}/update', 'Admin\UserController@updateUser');
+
+        Route::get('/{id}/disable', 'Admin\UserController@disableUser');
+
+        Route::get('/{id}/restore', 'Admin\UserController@restoreUser');
     });
 });

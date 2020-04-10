@@ -6,6 +6,7 @@ use App\CategoryPost;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,6 +52,7 @@ class PostController extends Controller
         $post->status = "publish";
         $post->user_id = 1;
         $post->category_post_id = $request->get('category_post_id');
+        $post->user_id = Auth::user()->id;
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
             Storage::disk('public')->put($thumbnail->getClientOriginalName(),  File::get($thumbnail));

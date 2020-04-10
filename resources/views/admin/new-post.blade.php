@@ -29,7 +29,7 @@
                     <div class="element-box">
                         <h5>New post</h5>
                         <hr>
-                        <form id="form-post" action="{{ url("admin/post/new")}}" method="POST"
+                        <form id="form-create-post" action="{{ url("admin/post/new")}}" method="POST"
                             enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-9">

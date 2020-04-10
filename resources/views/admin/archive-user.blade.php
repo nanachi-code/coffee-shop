@@ -7,7 +7,7 @@
         <a href="{{ url('admin') }}">Home</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('admin/product/all') }}">All Products</a>
+        <a href="{{ url('admin/user/all') }}">All users</a>
     </li>
 </ul>
 {{-- END - Breadcrumbs --}}
@@ -21,47 +21,43 @@
                     <div class="element-header">
                         <div class="clearfix">
                             <div class="float-left">
-                                <h3>Products</h3>
+                                <h3>User</h3>
                             </div>
                             <div class="float-right">
-                                <a class="btn-outline-primary btn" href="{{ url('admin/product/new') }}">New</a>
+                                <a class="btn-outline-primary btn" href="{{ url('admin/user/new') }}">New</a>
                             </div>
                         </div>
                     </div>
                     <div class="element-box">
                         <div class="table-responsive">
-                            <table id="table-admin-product" class="table table-striped table-lightfont">
+                            <table id="table-admin-user" class="table table-striped table-lightfont">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Description</th>
-                                        <th>Stock</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role }}</td>
                                         <td>
-                                            @if (!$product->category)
-                                            Uncategorized
-                                            @else
-                                            {{ $product->category->name }}
+                                            @if ($user->status == "active")
+                                            Active
+                                            @elseif($user->status == "disable")
+                                            Disabled
                                             @endif
                                         </td>
-                                        <td>{{ $product->description }}</td>
-                                        <td>{{ $product->stock }}</td>
                                         <td class="row-actions">
-                                            <a href="{{ url("/admin/product/{$product->id}")}}">
+                                            <a href="{{ url("/admin/user/{$user->id}")}}">
                                                 <i class="os-icon os-icon-ui-49"></i>
-                                            </a>
-                                            <a href="{{ url("admin/product/{$product->id}/delete")}}"
-                                                class="danger dt-delete">
-                                                <i class="os-icon os-icon-ui-15"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -71,9 +67,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Description</th>
-                                        <th>Stock</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
