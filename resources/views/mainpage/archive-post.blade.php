@@ -30,7 +30,7 @@
             @foreach ($list as $post)
             <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
                 <div class="blog-entry align-self-stretch">
-                    <a href="{{url("/post/{$post->id}")}}" class="block-20"
+                    <a href="{{url("blog/post/{$post->id}")}}" class="block-20"
                         style="background-image: url('{{asset("uploads/{$post->thumbnail}")}}');">
                     </a>
                     <div class="text py-4 d-block">
