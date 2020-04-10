@@ -11,7 +11,9 @@ use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class WebController extends Controller
@@ -139,24 +141,26 @@ class WebController extends Controller
     }
     public function userProfileUpdate($id, Request $request)
     {
-        $user = User::find($id);
-        $request->validate([ // truyen vao rules de validate
-            "email" => "required|string|max:191|unique:users,email," . $id, // validation laravel
-            "name" => "required|string",
-            "dateOfBirth" => "required|date",
-            "phone" => "required|string|max:191|unique:users,phone," . $id,
-            "address" => "required|string",
+        $request->validate([
+            'name' => ['required', 'string', 'max:255']
         ]);
+
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->phone = $request->get('phone');
+        $user->dateOfBirth = $request->get('dateOfBirth');
+        $user->address = $request->get('address');
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            Storage::disk('public')->put($avatar->getClientOriginalName(),  File::get($avatar));
+            $user->avatar = $avatar->getClientOriginalName();
+        }
+
         try {
-            $user->update([
-                "name" => $request->get("name"),
-                "email" => $request->get("email"),
-                "dateOfBirth" => $request->get("dateOfBirth"),
-                "phone" => $request->get("phone"),
-                "address" => $request->get("address"),
-            ]);
+            $user->save();
         } catch (\Exception $e) {
-            return redirect()->back();
+            throw $e;
         }
         return redirect()->to("user/profile");
     }
