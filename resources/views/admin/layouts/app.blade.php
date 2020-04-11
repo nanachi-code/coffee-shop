@@ -449,7 +449,11 @@
                                 {{ \Auth::user()->name }}
                             </div>
                             <div class="logged-user-role">
-                                {{ \Auth::user()->role }}
+                                @if (\Auth::user()->role == "admin")
+                                Admin
+                                @elseif (\Auth::user()->role == "super_admin")
+                                Super Admin
+                                @endif
                             </div>
                         </div>
                         <div class="logged-user-toggler-arrow">

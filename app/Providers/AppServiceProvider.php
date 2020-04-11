@@ -28,13 +28,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('post') && Schema::hasTable('category_product'))
-        {
+        if (Schema::hasTable('post') && Schema::hasTable('category_product')) {
             $data = array(
-                'recent_blog' => $recent_blog = Post::orderBy('id', 'DESC')->take(3)->get(),
-                'category' => $category = CategoryProduct::orderBy('name','asc')->get(),
+                'recentBlog' => Post::orderBy('id', 'DESC')->take(3)->get(),
+                'category' => CategoryProduct::orderBy('name', 'asc')->get(),
             );
-            View::share('data',$data);
+            View::share('data', $data);
+        }
+
+        if (config('app.env') === 'production') {
+            \URL::forceScheme('https');
         }
     }
 }

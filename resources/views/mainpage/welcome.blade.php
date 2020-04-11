@@ -12,8 +12,7 @@
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-                    <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                        necessary regelialia.</p>
+                    <p class="mb-4 mb-md-5">Your good experience is our only purpose. That make a tree front of headlight.</p>
                     <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/shop')}}"
                             class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                 </div>
@@ -30,8 +29,7 @@
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-                    <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                        necessary regelialia.</p>
+                    <p class="mb-4 mb-md-5">Our coffee masters have distilled their years of tasting knowledge down to three simple questions to help you find a cup of coffee you’re sure to love.</p>
                     <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/menu')}}"
                             class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                 </div>
@@ -48,8 +46,7 @@
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-                    <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                        necessary regelialia.</p>
+                    <p class="mb-4 mb-md-5">Our fresh ingredients are always ready to serve you a fantastic meal.</p>
                     <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/menu')}}"
                             class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                 </div>
@@ -69,7 +66,7 @@
                         <div class="icon"><span class="icon-phone"></span></div>
                         <div class="text">
                             <h3>000 (123) 456 7890</h3>
-                            <p>A small river named Duden flows by their place and supplies.</p>
+                            <p>Our line only works in office hour</p>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex ftco-animate">
@@ -106,12 +103,13 @@
                 <h2 class="mb-4">Our Story</h2>
             </div>
             <div>
-                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would
-                    have been rewritten a thousand times and everything that was left from its origin would be the word
-                    "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing
-                    the copy said could convince her and so it didn’t take long until a few insidious Copy Writers
-                    ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they
-                    abused her for their.</p>
+                <p> Our first restaurent was opened in 1999 in small town of Texas, we started here for 3 years then thought
+                    that we can serve much more than this to everyone. In next 5 years from then, our origin brand "Raccoon Food"
+                    had located in many states of US, but it's doesn't last long. In 2008 our customer left
+                    us cause there were many big food brand such as "Mc Donald", "Torna Coffee", "CNN Resaurent",...
+                    Our sales down then 50 percents in just a year, and it's enough to realize that we need to change
+                    and find a new place to start. Today, we have more than twenty shops in Canada and serve people
+                    good food everyday. We'd love to serve you the best meal.</p>
             </div>
         </div>
     </div>
@@ -127,8 +125,8 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Easy to Order</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <p>Our partners and developers have bring you so much convinience choses. You can make an order anytime, anywhere
+                            as long as you'd love to.</p>
                     </div>
                 </div>
             </div>
@@ -139,8 +137,8 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Fastest Delivery</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <p>On the way to the future, we promise to give you the best shipping services. Any moment you'd take will be only
+                            full of happy and relaxtion.</p>
                     </div>
                 </div>
             </div>
@@ -150,8 +148,8 @@
                         <span class="flaticon-coffee-bean"></span></div>
                     <div class="media-body">
                         <h3 class="heading">Quality Coffee</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                        <p>Our coffee masters have distilled their years of tasting knowledge down to three simple
+                            questions to help you find a cup of coffee you’re sure to love.</p>
                     </div>
                 </div>
             </div>
@@ -166,9 +164,7 @@
                 <div class="heading-section text-md-right ftco-animate">
                     <span class="subheading">Discover</span>
                     <h2 class="mb-4">Our Menu</h2>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                        Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the
-                        coast of the Semantics, a large language ocean.</p>
+                    <p class="mb-4">We promise to give you the best tatse that you never try before.</p>
                     <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
                 </div>
             </div>
@@ -255,8 +251,7 @@
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <span class="subheading">Discover</span>
                 <h2 class="mb-4">Best Coffee Sellers</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
+                <p>Nothing can help you chill better than a cup of coffee and a soft meal. Let's try it now!</p>
             </div>
         </div>
         <div class="row">
@@ -264,9 +259,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
+                        <h3><a href="#">Coffee Espressos</a></h3>
+                        <p>The purest coffee which can be a truly singular drinking experience when you find a good brew.</p>
+                        <p class="price"><span>$5.40</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
                 </div>
@@ -276,8 +271,8 @@
                     <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
                     <div class="text text-center pt-4">
                         <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
+                        <p>Possibly the most popular type of coffee in the world, a cappuccino consists of three layers like a cake.</p>
+                        <p class="price"><span>$6.00</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
                 </div>
@@ -286,9 +281,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
+                        <h3><a href="#">Coffee Americano</a></h3>
+                        <p>It said that American soldiers in WWII made this type of coffee to make their beverages last longer.</p>
+                        <p class="price"><span>$5.40</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
                 </div>
@@ -297,9 +292,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
+                        <h3><a href="#">Coffee Latte</a></h3>
+                        <p>A fairly popular option for coffee drinkers which consists steamed milk and a single shot of coffee.</p>
+                        <p class="price"><span>$4.90</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
                 </div>
@@ -353,8 +348,7 @@
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Discover</span>
                 <h2 class="mb-4">Our Products</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
+                <p>It's finger lickin good! </p>
             </div>
         </div>
         <div class="row d-md-flex">
@@ -385,10 +379,9 @@
                                             <a href="#" class="menu-img img mb-4"
                                                 style="background-image: url(images/dish-1.jpg);"></a>
                                             <div class="text">
-                                                <h3><a href="#">Grilled Beef</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
-                                                <p class="price"><span>$2.90</span></p>
+                                                <h3><a href="#">Beef Steak</a></h3>
+                                                <p>Highest quality beef from a meal you won't forgot.</p>
+                                                <p class="price"><span>$8.99</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                             </div>
@@ -399,10 +392,9 @@
                                             <a href="#" class="menu-img img mb-4"
                                                 style="background-image: url(images/dish-2.jpg);"></a>
                                             <div class="text">
-                                                <h3><a href="#">Grilled Beef</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
-                                                <p class="price"><span>$2.90</span></p>
+                                                <h3><a href="#">Grilled Lamb</a></h3>
+                                                <p>Lamb for the weekend!</p>
+                                                <p class="price"><span>$6.99</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                             </div>
@@ -414,9 +406,8 @@
                                                 style="background-image: url(images/dish-3.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Grilled Beef</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
-                                                <p class="price"><span>$2.90</span></p>
+                                                <p>Happy dinner time with fresh beef.</p>
+                                                <p class="price"><span>$6.39</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                             </div>
@@ -433,8 +424,7 @@
                                                 style="background-image: url(images/drink-1.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Lemonade Juice</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
+                                                <p>Enjoy the nature!</p>
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
@@ -447,9 +437,8 @@
                                                 style="background-image: url(images/drink-2.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Pineapple Juice</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
-                                                <p class="price"><span>$2.90</span></p>
+                                                <p>Enjoy the nature!</p>
+                                                <p class="price"><span>$2.80</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                             </div>
@@ -461,9 +450,8 @@
                                                 style="background-image: url(images/drink-3.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Soda Drinks</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
-                                                <p class="price"><span>$2.90</span></p>
+                                                <p>Enjoy the nature!</p>
+                                                <p class="price"><span>$1.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                             </div>
@@ -480,8 +468,7 @@
                                                 style="background-image: url(images/dessert-1.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Hot Cake Honey</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
+                                                <p>A little lovely cake!</p>
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
@@ -493,9 +480,8 @@
                                             <a href="#" class="menu-img img mb-4"
                                                 style="background-image: url(images/dessert-2.jpg);"></a>
                                             <div class="text">
-                                                <h3><a href="#">Hot Cake Honey</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
+                                                <h3><a href="#">Chocolate Cake</a></h3>
+                                                <p>A little lovely cake!</p>
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
@@ -507,9 +493,8 @@
                                             <a href="#" class="menu-img img mb-4"
                                                 style="background-image: url(images/dessert-3.jpg);"></a>
                                             <div class="text">
-                                                <h3><a href="#">Hot Cake Honey</a></h3>
-                                                <p>Far far away, behind the word mountains, far from the countries
-                                                    Vokalia and Consonantia.</p>
+                                                <h3><a href="#">Strawbery Cake</a></h3>
+                                                <p>A little lovely cake!</p>
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
