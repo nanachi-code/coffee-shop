@@ -40,53 +40,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($cart as $c)
                             <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
+                                <td class="product-remove"><a href="{{url("/clearCart/{$c ->id}")}}"><span class="icon-close"></span></a></td>
 
                                 <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/menu-2.jpg);"></div>
+                                    <div class="img" style="background-image:url({{asset("$c->thumbnail")}});"></div>
                                 </td>
 
                                 <td class="product-name">
-                                    <h3>Creamy Latte Coffee</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
+                                    <h3>{{$c->name}}</h3>
+                                    <p> {!! Str::limit($c->description,30," . . .") !!}</p>
                                 </td>
 
-                                <td class="price">$4.90</td>
+                                <td class="price">${{$c->price}}</td>
 
                                 <td class="quantity">
                                     <div class="input-group mb-3">
                                         <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
+                                            value="{{$c->cart_qty}}" min="1" max="100">
                                     </div>
                                 </td>
 
-                                <td class="total">$4.90</td>
+                                <td class="total">${{($c->cart_qty)*($c->price)}}</td>
                             </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/dish-2.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Grilled Ribs Beef</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -96,25 +74,13 @@
             <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
-                    <p class="d-flex">
-                        <span>Subtotal</span>
-                        <span>$20.60</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Delivery</span>
-                        <span>$0.00</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Discount</span>
-                        <span>$3.00</span>
-                    </p>
                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span>$17.60</span>
+                        <span>${{$cart_total}}</span>
                     </p>
                 </div>
-                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                <p class="text-center"><a href="{{url("/checkout")}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
                 </p>
             </div>
         </div>

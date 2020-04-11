@@ -49,7 +49,7 @@
                         </span>
                     </div>
                 </div>
-                <p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+                <p><a href="{{url("shopping/{$product->id}")}}" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
             </div>
         </div>
     </div>
