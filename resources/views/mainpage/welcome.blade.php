@@ -384,6 +384,8 @@
                                                 <p class="price"><span>$8.99</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                          
+                                                                                                 </p>
                                             </div>
                                         </div>
                                     </div>
@@ -397,6 +399,8 @@
                                                 <p class="price"><span>$6.99</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                           
+                                                                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -410,6 +414,8 @@
                                                 <p class="price"><span>$6.39</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                           
+                                                                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -428,6 +434,8 @@
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                         
+                                                                                                  </p>
                                             </div>
                                         </div>
                                     </div>
@@ -441,6 +449,8 @@
                                                 <p class="price"><span>$2.80</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                            
+                                                                                               </p>
                                             </div>
                                         </div>
                                     </div>
@@ -454,6 +464,8 @@
                                                 <p class="price"><span>$1.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                               
+                                                                                            </p>
                                             </div>
                                         </div>
                                     </div>
@@ -472,6 +484,8 @@
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                      
+                                                                                                     </p>
                                             </div>
                                         </div>
                                     </div>
@@ -485,6 +499,8 @@
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                       
+                                                                                                    </p>
                                             </div>
                                         </div>
                                     </div>
@@ -498,6 +514,8 @@
                                                 <p class="price"><span>$2.90</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
+                                                <p>                                                       
+                                                                                    </p>
                                             </div>
                                         </div>
                                     </div>
@@ -575,8 +593,8 @@
             <div class="col-lg align-self-sm-end">
                 <div class="testimony overlay">
                     <blockquote>
-                        <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic life One day however.&rdquo;</p>
+                        <p>&ldquo;We love every-single drink here, also the servives is good. I have invited many friends
+                            here.&rdquo;</p>
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
