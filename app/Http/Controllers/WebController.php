@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CategoryProduct;
 use App\Comment;
+use App\Order;
 use App\Post;
 use App\CategoryPost;
 use App\Product;
@@ -11,7 +12,11 @@ use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class WebController extends Controller
@@ -117,14 +122,114 @@ class WebController extends Controller
         return view('mainpage.single-product', compact('product', 'related_product'));
     }
 
-    public function cart()
+    public function shopping($id, Request $request)
     {
-        return view('mainpage.cart');
+        $product = Product::find($id);
+        //session(['key'=>'value']);// truyen mot gia tri vao session theo key
+        /*
+         * cart => array product (product->cart_qty= so luong mua)
+         */
+        $cart = $request->session()->get("cart");
+        if ($cart == null) {
+            $cart = [];
+        }
+
+        foreach ($cart as $p) {
+            if ($p->id == $product->id) {
+                $p->cart_qty = $p->cart_qty + 1;
+                session(["cart"=>$cart]);
+                return redirect()->to("cart");
+            }
+        }
+        $product->cart_qty =1;
+        $cart[]= $product;
+        session(["cart"=>$cart]);
+        return redirect()->to("cart");
     }
 
-    public function checkout()
+    public function cart(Request $request)
     {
-        return view('mainpage.checkout');
+        $cart=$request->session()->get("cart");
+        if ($cart == null) {
+            $cart = [];
+        }
+        $cart_total =0;
+        foreach ($cart as $p){
+            $cart_total +=($p->price*$p->cart_qty);
+        }
+        return view("mainpage.cart",["cart"=>$cart,"cart_total"=>$cart_total]);
+    }
+    public function clearOneCart($id,Request $request)
+    {
+        $cart=$request->session()->get("cart");
+        foreach($cart as $key => $value){
+            //dd($cart[$i]->id);
+            if($value->id == $id){
+                // dd($cart[$i]);
+                unset($cart[$key]);
+                //$request->session()->forget($id);
+            }
+        }
+        $request->session()->put("cart",$cart);
+
+        return redirect()->to("/cart");
+    }
+
+    public function checkout(Request $request)
+    {
+        if(!$request->session()->has("cart")){
+            return redirect()->to("/");
+        }
+
+
+        $cart=$request->session()->get("cart");
+        $cart_total =0;
+        foreach ($cart as $p){
+            $cart_total +=($p->price*$p->cart_qty);
+        }
+        return view('mainpage.checkout',["cart"=>$cart,"cart_total"=>$cart_total]);
+    }
+    public function placeOrder(Request $request){
+        $request->validate([
+            'customer_name'=>'required | string',
+            'customer_address'=>'required',
+            'customer_city'=>'required',
+            'customer_country'=>'required',
+            'customer_email'=>'required',
+            'customer_phone'=>'required',
+            'customer_postcode'=>'required',
+            'method'=>'required',
+        ]);
+        $cart =$request->session()->get("cart");
+        $grand_total=0;
+        foreach ($cart as $p){
+            $grand_total+=($p->price * $p->cart_qty);
+        }
+        $order =Order::create([
+            'user_id'=>Auth::id(),
+            'customer_name'=>$request->get("customer_name"),
+            'customer_address'=>$request->get("customer_address"),
+            'customer_city'=>$request->get("customer_city"),
+            'customer_country'=>$request->get("customer_country"),
+            'customer_email'=>$request->get("customer_email"),
+            'customer_phone'=>$request->get("customer_phone"),
+            'customer_postcode'=>$request->get("customer_postcode"),
+            'grand_total'=>$grand_total,
+            'method'=>$request->get("method"),
+            'status'=>Order::STATUS_PENDING
+        ]);
+        foreach ($cart as $p){
+            DB::table("order_product")->insert([
+                'order_id'=>$order->id,
+                'product_id'=>$order->id,
+                'quantity'=>$p->cart_qty,
+
+            ]);
+        }
+        session()->forget('cart');
+        //Mail::to("lythaiho.95.cscd@gmail.com")->send(new OrderCreated())
+
+        return redirect()->to("shopping-success");
     }
 
     public function menu()
@@ -139,24 +244,26 @@ class WebController extends Controller
     }
     public function userProfileUpdate($id, Request $request)
     {
-        $user = User::find($id);
-        $request->validate([ // truyen vao rules de validate
-            "email" => "required|string|max:191|unique:users,email," . $id, // validation laravel
-            "name" => "required|string",
-            "dateOfBirth" => "required|date",
-            "phone" => "required|string|max:191|unique:users,phone," . $id,
-            "address" => "required|string",
+        $request->validate([
+            'name' => ['required', 'string', 'max:255']
         ]);
+
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->phone = $request->get('phone');
+        $user->dateOfBirth = $request->get('dateOfBirth');
+        $user->address = $request->get('address');
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            Storage::disk('public')->put($avatar->getClientOriginalName(),  File::get($avatar));
+            $user->avatar = $avatar->getClientOriginalName();
+        }
+
         try {
-            $user->update([
-                "name" => $request->get("name"),
-                "email" => $request->get("email"),
-                "dateOfBirth" => $request->get("dateOfBirth"),
-                "phone" => $request->get("phone"),
-                "address" => $request->get("address"),
-            ]);
+            $user->save();
         } catch (\Exception $e) {
-            return redirect()->back();
+            throw $e;
         }
         return redirect()->to("user/profile");
     }

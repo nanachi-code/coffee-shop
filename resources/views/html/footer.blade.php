@@ -20,7 +20,7 @@
                     $i = 0;
                     @endphp
                     @if (!empty($data))
-                    @foreach($data['recent_blog'] as $p)
+                    @foreach($data['recentBlog'] as $p)
                     @php
                     if ($i == 2) break;
                     @endphp

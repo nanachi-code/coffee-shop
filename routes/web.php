@@ -43,17 +43,20 @@ Route::prefix('/category')->group(function () {
 
     Route::get('/{id}', 'WebController@categoryOne');
 });
+//cart start
+Route::get("/shopping/{id}","WebController@shopping")->middleware("auth");
 
-Route::get('/cart', "WebController@cart");
-Route::get('/checkout', "WebController@checkout");
+Route::get('/cart', "WebController@cart")->middleware("auth");
+
+Route::get("/clearCart/{id}","WebController@clearOneCart");
+
+Route::get('/checkout', "WebController@checkout")->middleware("auth");
+Route::post("checkout",'WebController@placeOrder')->middleware("auth");
+
 Route::get('/menu', "WebController@menu");
+//cart end
 
 //user start by Thai code
-Route::get('/user/profile', "WebController@userProfile")->middleware("auth");
-
-Route::get('/user/order', "WebController@userOrder");
-Route::get('/user/order/{id}', "WebController@userOrderDetail");
-//user end by Thai code
 Auth::routes();
 
 Route::get('/user/profile', "WebController@userProfile")->middleware("auth");;

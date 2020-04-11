@@ -43,7 +43,7 @@
                                         </p>
 
                                         <p class="price"><span>${{$i->price}}</span></p>
-                                        <p><a href="cart.html" class="btn btn-primary btn-outline-primary">Add
+                                        <p><a  href="{{url("shopping/{$i->id}")}}" class="btn btn-primary btn-outline-primary">Add
                                                 to Cart</a></p>
                                     </div>
                                 </div>

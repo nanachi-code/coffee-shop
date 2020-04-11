@@ -51,9 +51,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -63,9 +60,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Complete</td>
                                 <td>5000000</td>
@@ -81,9 +75,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -93,9 +84,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Pending</td>
                                 <td>5000000</td>
@@ -111,9 +99,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -123,9 +108,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Process</td>
                                 <td>5000000</td>
@@ -141,9 +123,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -153,9 +132,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Shiping</td>
                                 <td>5000000</td>
@@ -171,9 +147,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -183,9 +156,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Complete</td>
                                 <td>5000000</td>
@@ -201,9 +171,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
                                 <th scope="col">Method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total</th>
@@ -213,9 +180,6 @@
                             <tbody>
                             <tr>
                                 <td>Lý Thái Hồ</td>
-                                <td>lythaiho.95.cscd@gmail.com</td>
-                                <td>Đống Đa, Hà Nội</td>
-                                <td>0398698695</td>
                                 <td>Banking</td>
                                 <td>Cancal</td>
                                 <td>5000000</td>
