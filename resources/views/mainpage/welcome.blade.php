@@ -380,7 +380,7 @@
                                                 style="background-image: url(images/dish-1.jpg);"></a>
                                             <div class="text">
                                                 <h3><a href="#">Beef Steak</a></h3>
-                                                <p>Highest quality beef from a meal you won't forgot.</p>
+                                                <p>Highest quality beef!</p>
                                                 <p class="price"><span>$8.99</span></p>
                                                 <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
