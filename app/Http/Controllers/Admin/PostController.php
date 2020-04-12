@@ -24,7 +24,7 @@ class PostController extends Controller
     public function renderSinglePost($id)
     {
         $p = [
-            'post' => Post::where('id', $id)->first(),
+            'post' => Post::find($id),
             'allCategories' => CategoryPost::all()
         ];
 
@@ -96,6 +96,7 @@ class PostController extends Controller
         }
 
         return response()->json([
+            "redirect" => url("admin/post/{$post->id}"),
             "message" => "Post info updated successfully."
         ], 200);
     }

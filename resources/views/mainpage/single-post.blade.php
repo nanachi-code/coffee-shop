@@ -33,7 +33,8 @@
 
                 <div class="about-author d-flex">
                     <div class="row bio align-self-md-center mr-5 col-3">
-                        <img src="{{asset('images/person_4.jpg')}}" alt="Image placeholder" class="img-fluid mb-4">
+                        <img src="{{ asset("uploads/{$post->user->avatar}") }}" alt="Image placeholder"
+                            class="img-fluid mb-4">
                     </div>
                     <div class="desc align-self-md-center">
                         <h3>{{ $post->user->name }}</h3>
@@ -50,7 +51,7 @@
                         @if (!$comment->hasParent())
                         <li class="comment" id="{{$comment->id}}">
                             <div class="vcard bio">
-                                <img src="{{ asset('images/person_4.jpg') }}" alt="Image placeholder">
+                                <img src="{{ asset("uploads/{$comment->user->avatar}") }}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>{{ $comment->user->name }}</h3>
@@ -132,7 +133,8 @@
                     @foreach (\App\Post::where('id', '!=', $post->id)->orderBy('updated_at','desc')->take(3)->get() as
                     $p)
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url({{asset('images/image_1.jpg')}});"></a>
+                        <a class="blog-img mr-4"
+                            style="background-image: url({{ asset("uploads/{$p->thumbnail}") }});"></a>
                         <div class="text">
                             <h3 class="heading"><a href="{{url('blog/post/'.$p->id)}}">{{$p->title}}</a></h3>
                             <div class="meta">

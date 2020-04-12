@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (Schema::hasTable('post') && Schema::hasTable('category_product')) {
             $data = array(
-                'recentBlog' => Post::orderBy('id', 'DESC')->take(3)->get(),
+                'recentBlog' => Post::orderBy('updated_at', 'DESC')->take(3)->get(),
                 'category' => CategoryProduct::orderBy('name', 'asc')->get(),
             );
             View::share('data', $data);

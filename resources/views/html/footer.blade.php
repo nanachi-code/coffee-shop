@@ -19,13 +19,14 @@
                     @php
                     $i = 0;
                     @endphp
-                    @if (!empty($data))
+                    @if (!empty($data['recentBlog']))
                     @foreach($data['recentBlog'] as $p)
                     @php
                     if ($i == 2) break;
                     @endphp
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url({{asset($p->thumbnail)}});"></a>
+                        <a class="blog-img mr-4"
+                            style="background-image: url({{ asset("uploads/{$p->thumbnail}") }});"></a>
                         <div class="text">
                             <h3 class="heading"><a href="{{url('/blog/post/'.$p->id)}}">{{$p->title}}</a></h3>
                             <div class="meta">

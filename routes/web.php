@@ -25,13 +25,13 @@ Route::get('/contact', 'WebController@contactUs');
 
 // main page blog part
 Route::prefix('/blog')->group(function () {
-    Route::get('/', 'WebController@blogList');
+    Route::get('/', 'Main\PostController@blogList');
 
-    Route::get('/{id}', 'WebController@blogCateList');
+    Route::get('/{id}', 'Main\PostController@blogCateList');
 
-    Route::get('/post/{id}', 'WebController@singlePost');
+    Route::get('/post/{id}', 'Main\PostController@singlePost');
 
-    Route::post('/post-comment-{id}', 'WebController@commentStore');
+    Route::post('/post-comment-{id}', 'Main\PostController@commentStore');
 });
 
 // end blog

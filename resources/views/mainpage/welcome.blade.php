@@ -12,9 +12,11 @@
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-                    <p class="mb-4 mb-md-5">Your good experience is our only purpose. That make a tree front of headlight.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/shop')}}"
-                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                    <p class="mb-4 mb-md-5">Your good experience is our only purpose. That make a tree front of
+                        headlight.</p>
+                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/shop')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                            Menu</a></p>
                 </div>
 
             </div>
@@ -29,9 +31,11 @@
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-                    <p class="mb-4 mb-md-5">Our coffee masters have distilled their years of tasting knowledge down to three simple questions to help you find a cup of coffee you’re sure to love.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/menu')}}"
-                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                    <p class="mb-4 mb-md-5">Our coffee masters have distilled their years of tasting knowledge down to
+                        three simple questions to help you find a cup of coffee you’re sure to love.</p>
+                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                            Menu</a></p>
                 </div>
 
             </div>
@@ -47,8 +51,9 @@
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
                     <p class="mb-4 mb-md-5">Our fresh ingredients are always ready to serve you a fantastic meal.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="{{url('/menu')}}"
-                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                            Menu</a></p>
                 </div>
 
             </div>
@@ -103,8 +108,10 @@
                 <h2 class="mb-4">Our Story</h2>
             </div>
             <div>
-                <p> Our first restaurent was opened in 1999 in small town of Texas, we started here for 3 years then thought
-                    that we can serve much more than this to everyone. In next 5 years from then, our origin brand "Raccoon Food"
+                <p> Our first restaurent was opened in 1999 in small town of Texas, we started here for 3 years then
+                    thought
+                    that we can serve much more than this to everyone. In next 5 years from then, our origin brand
+                    "Raccoon Food"
                     had located in many states of US, but it's doesn't last long. In 2008 our customer left
                     us cause there were many big food brand such as "Mc Donald", "Torna Coffee", "CNN Resaurent",...
                     Our sales down then 50 percents in just a year, and it's enough to realize that we need to change
@@ -125,7 +132,8 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Easy to Order</h3>
-                        <p>Our partners and developers have bring you so much convinience choses. You can make an order anytime, anywhere
+                        <p>Our partners and developers have bring you so much convinience choses. You can make an order
+                            anytime, anywhere
                             as long as you'd love to.</p>
                     </div>
                 </div>
@@ -137,7 +145,8 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Fastest Delivery</h3>
-                        <p>On the way to the future, we promise to give you the best shipping services. Any moment you'd take will be only
+                        <p>On the way to the future, we promise to give you the best shipping services. Any moment you'd
+                            take will be only
                             full of happy and relaxtion.</p>
                     </div>
                 </div>
@@ -260,7 +269,8 @@
                     <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
                     <div class="text text-center pt-4">
                         <h3><a href="#">Coffee Espressos</a></h3>
-                        <p>The purest coffee which can be a truly singular drinking experience when you find a good brew.</p>
+                        <p>The purest coffee which can be a truly singular drinking experience when you find a good
+                            brew.</p>
                         <p class="price"><span>$5.40</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
@@ -271,7 +281,8 @@
                     <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
                     <div class="text text-center pt-4">
                         <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>Possibly the most popular type of coffee in the world, a cappuccino consists of three layers like a cake.</p>
+                        <p>Possibly the most popular type of coffee in the world, a cappuccino consists of three layers
+                            like a cake.</p>
                         <p class="price"><span>$6.00</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
@@ -282,7 +293,8 @@
                     <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
                     <div class="text text-center pt-4">
                         <h3><a href="#">Coffee Americano</a></h3>
-                        <p>It said that American soldiers in WWII made this type of coffee to make their beverages last longer.</p>
+                        <p>It said that American soldiers in WWII made this type of coffee to make their beverages last
+                            longer.</p>
                         <p class="price"><span>$5.40</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
@@ -293,7 +305,8 @@
                     <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
                     <div class="text text-center pt-4">
                         <h3><a href="#">Coffee Latte</a></h3>
-                        <p>A fairly popular option for coffee drinkers which consists steamed milk and a single shot of coffee.</p>
+                        <p>A fairly popular option for coffee drinkers which consists steamed milk and a single shot of
+                            coffee.</p>
                         <p class="price"><span>$4.90</span></p>
                         <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                     </div>
@@ -593,7 +606,8 @@
             <div class="col-lg align-self-sm-end">
                 <div class="testimony overlay">
                     <blockquote>
-                        <p>&ldquo;We love every-single drink here, also the servives is good. I have invited many friends
+                        <p>&ldquo;We love every-single drink here, also the servives is good. I have invited many
+                            friends
                             here.&rdquo;</p>
                     </blockquote>
                     <div class="author d-flex mt-4">
@@ -634,54 +648,28 @@
             </div>
         </div>
         <div class="row d-flex">
+            @if (!empty($data['recentBlog']))
+            @foreach($data['recentBlog'] as $p)
             <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+                    <a href="{{url('/blog/post/'.$p->id)}}" class="block-20"
+                        style="background-image: url({{ asset("uploads/{$p->thumbnail}") }});">
                     </a>
                     <div class="text py-4 d-block">
                         <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                            <div><a href="#">{{$p->created_at->toDateString()}}</a></div>
+                            <div><a href="#">{{$p->User->name}}</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> {{$p->comment_count}}</a>
+                            </div>
                         </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                        <h3 class="heading mt-2"><a href="{{url('/blog/post/'.$p->id)}}">{{$p->title}}</a></h3>
+                        <p>{!! Str::limit($p->content,100," ...") !!}
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text py-4 d-block">
-                        <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text py-4 d-block">
-                        <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </section>
