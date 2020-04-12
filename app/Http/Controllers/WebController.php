@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CategoryProduct;
 use App\Comment;
+use App\Mail\SendMail;
 use App\Order;
 use App\Post;
 use App\CategoryPost;
@@ -170,7 +171,7 @@ class WebController extends Controller
             ]);
         }
         session()->forget('cart');
-        //Mail::to("lythaiho.95.cscd@gmail.com")->send(new OrderCreated())
+//        Mail::to(Auth::user())->send(new SendEmail($order));
 
         return redirect()->to("shopping-success");
     }
@@ -243,6 +244,14 @@ class WebController extends Controller
     }
 
     //User end by Thai Code
+
+
+    function send()
+    {
+        Mail::to('sonthth1903012@fpt.edu.vn')->send(new SendMail());
+        return back()->with('success', 'Thanks for contacting us!');
+    }
+
 
 
 }

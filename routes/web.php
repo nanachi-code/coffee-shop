@@ -190,3 +190,7 @@ Route::group([
         Route::get('/{id}/restore', 'Admin\UserController@restoreUser');
     });
 });
+
+
+Route::post('/sendemail/send', 'WebController@send');
+
