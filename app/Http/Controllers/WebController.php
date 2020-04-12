@@ -25,7 +25,12 @@ class WebController extends Controller
 
     public function index()
     {
-        return view('mainpage.welcome');
+        $category = CategoryProduct::all();
+        $products = [];
+        foreach ($category as $c ) {
+            $products[] = Product::orderBy('updated_at','desc')->where('category_product_id',$c->id)->take(3)->get();
+        }
+        return view('mainpage.welcome',compact('category','products'));
     }
 
     public function aboutUs()

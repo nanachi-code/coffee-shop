@@ -51,7 +51,12 @@
                 </div>
                 <li class="nav-item cart"><a href="{{url('/cart')}}" class="nav-link">
                         <span class="icon icon-shopping_cart"></span>
-                        <span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a>
+                        @php
+                        if(empty(session('cart'))) $item_count = 0;
+                        else $item_count = count(session('cart'));
+                        @endphp
+                        <span
+                            class="bag d-flex justify-content-center align-items-center"><small>{{$item_count}}</small></span></a>
                 </li>
             </ul>
         </div>
