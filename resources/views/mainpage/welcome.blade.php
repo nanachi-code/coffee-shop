@@ -14,8 +14,9 @@
                     <h1 class="mb-4">The Best Coffee Testing Experience</h1>
                     <p class="mb-4 mb-md-5">Your good experience is our only purpose. That make a tree front of
                         headlight.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
-                            href="{{url('/shop')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                    <p><a href="{{url('/category/all')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/category/all')}}"
+                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
                             Menu</a></p>
                 </div>
 
@@ -33,8 +34,9 @@
                     <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
                     <p class="mb-4 mb-md-5">Our coffee masters have distilled their years of tasting knowledge down to
                         three simple questions to help you find a cup of coffee you’re sure to love.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
-                            href="{{url('/menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                    <p><a href="{{url('/category/all')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/category/all')}}"
+                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
                             Menu</a></p>
                 </div>
 
@@ -51,8 +53,9 @@
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
                     <p class="mb-4 mb-md-5">Our fresh ingredients are always ready to serve you a fantastic meal.</p>
-                    <p><a href="{{url('/shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
-                            href="{{url('/menu')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
+                    <p><a href="{{url('/category/all')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a
+                            href="{{url('/category/all')}}"
+                            class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View
                             Menu</a></p>
                 </div>
 
@@ -166,44 +169,6 @@
     </div>
 </section>
 
-<section class="ftco-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 pr-md-5">
-                <div class="heading-section text-md-right ftco-animate">
-                    <span class="subheading">Discover</span>
-                    <h2 class="mb-4">Our Menu</h2>
-                    <p class="mb-4">We promise to give you the best tatse that you never try before.</p>
-                    <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);"
     data-stellar-background-ratio="0.5">
@@ -259,59 +224,31 @@
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <span class="subheading">Discover</span>
-                <h2 class="mb-4">Best Coffee Sellers</h2>
+                <h2 class="mb-4">Our newest products</h2>
                 <p>Nothing can help you chill better than a cup of coffee and a soft meal. Let's try it now!</p>
             </div>
         </div>
         <div class="row">
+            @foreach (\App\Product::orderBy('updated_at','desc')->take(4)->get() as $i)
             <div class="col-md-3">
                 <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+                    <a href="{{url('/category/product/'.$i->id)}}" class="img"
+                        style="background-image: url({{$i->thumbnail}});"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Espressos</a></h3>
-                        <p>The purest coffee which can be a truly singular drinking experience when you find a good
-                            brew.</p>
-                        <p class="price"><span>$5.40</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                        <h3><a href="{{url('/category/product/'.$i->id)}}">{{$i->name}}</a></h3>
+
+                        <p>
+                            {!! Str::limit($i->description,100," . . .") !!}
+                            <a href="{{url('/category/product/'.$i->id)}}">[More]</a>
+                        </p>
+
+                        <p class="price"><span>${{$i->price}}</span></p>
+                        <p><a href="{{url("shopping/{$i->id}")}}" class="btn btn-primary btn-outline-primary">Add
+                                to Cart</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>Possibly the most popular type of coffee in the world, a cappuccino consists of three layers
-                            like a cake.</p>
-                        <p class="price"><span>$6.00</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Americano</a></h3>
-                        <p>It said that American soldiers in WWII made this type of coffee to make their beverages last
-                            longer.</p>
-                        <p class="price"><span>$5.40</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Latte</a></h3>
-                        <p>A fairly popular option for coffee drinkers which consists steamed milk and a single shot of
-                            coffee.</p>
-                        <p class="price"><span>$4.90</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -370,170 +307,47 @@
                     <div class="col-md-12 nav-link-wrap mb-5">
                         <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist"
                             aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
-                                role="tab" aria-controls="v-pills-1" aria-selected="true">Main Dish</a>
+                            @foreach ($category as $c)
 
-                            <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab"
-                                aria-controls="v-pills-2" aria-selected="false">Drinks</a>
+                            <a class="nav-link @if($loop->first) active @endif" id="v-pills-{{$c->id}}-tab"
+                                data-toggle="pill" href="#v-pills-{{$c->id}}" role="tab"
+                                aria-controls="v-pills-{{$c->id}}"
+                                aria-selected="@if($loop->first) true @endif">{{$c->name}}</a>
 
-                            <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab"
-                                aria-controls="v-pills-3" aria-selected="false">Desserts</a>
+                            @endforeach
+
                         </div>
                     </div>
                     <div class="col-md-12 d-flex align-items-center">
 
                         <div class="tab-content ftco-animate" id="v-pills-tabContent">
+                            @foreach ($products as $items)
+                            <div class="tab-pane fade @if($loop->first) show active @endif"
+                                id="v-pills-{{$items->first()->category_product_id}}" role="tabpanel"
+                                aria-labelledby="v-pills-{{$items->first()->category_product_id}}-tab">
 
-                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
-                                aria-labelledby="v-pills-1-tab">
                                 <div class="row">
+                                    @foreach($items as $i)
                                     <div class="col-md-4 text-center">
                                         <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dish-1.jpg);"></a>
+                                            <a href="{{url('/category/product/'.$i->id)}}" class="menu-img img mb-4"
+                                                style="background-image: url({{$i->thumbnail}});"></a>
                                             <div class="text">
-                                                <h3><a href="#">Beef Steak</a></h3>
-                                                <p>Highest quality beef!</p>
-                                                <p class="price"><span>$8.99</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
+                                                <h3><a href="{{url('/category/product/'.$i->id)}}">{{$i->name}}</a></h3>
+                                                <p>{!! Str::limit($i->description,100," . . .") !!}</p>
+                                                <p class="price"><span>${{$i->price}}</span></p>
+                                                <p><a href="{{url("shopping/{$i->id}")}}"
+                                                        class="btn btn-primary btn-outline-primary">Add to
                                                         cart</a></p>
                                                 <p>                                          
                                                                                                  </p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dish-2.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Grilled Lamb</a></h3>
-                                                <p>Lamb for the weekend!</p>
-                                                <p class="price"><span>$6.99</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                           
-                                                                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dish-3.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Grilled Beef</a></h3>
-                                                <p>Happy dinner time with fresh beef.</p>
-                                                <p class="price"><span>$6.39</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                           
-                                                                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-
-                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
-                                <div class="row">
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/drink-1.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Lemonade Juice</a></h3>
-                                                <p>Enjoy the nature!</p>
-                                                <p class="price"><span>$2.90</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                         
-                                                                                                  </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/drink-2.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Pineapple Juice</a></h3>
-                                                <p>Enjoy the nature!</p>
-                                                <p class="price"><span>$2.80</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                            
-                                                                                               </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/drink-3.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Soda Drinks</a></h3>
-                                                <p>Enjoy the nature!</p>
-                                                <p class="price"><span>$1.90</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                               
-                                                                                            </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-                                <div class="row">
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dessert-1.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Hot Cake Honey</a></h3>
-                                                <p>A little lovely cake!</p>
-                                                <p class="price"><span>$2.90</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                      
-                                                                                                     </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dessert-2.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Chocolate Cake</a></h3>
-                                                <p>A little lovely cake!</p>
-                                                <p class="price"><span>$2.90</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                       
-                                                                                                    </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="menu-wrap">
-                                            <a href="#" class="menu-img img mb-4"
-                                                style="background-image: url(images/dessert-3.jpg);"></a>
-                                            <div class="text">
-                                                <h3><a href="#">Strawbery Cake</a></h3>
-                                                <p>A little lovely cake!</p>
-                                                <p class="price"><span>$2.90</span></p>
-                                                <p><a href="#" class="btn btn-primary btn-outline-primary">Add to
-                                                        cart</a></p>
-                                                <p>                                                       
-                                                                                    </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
