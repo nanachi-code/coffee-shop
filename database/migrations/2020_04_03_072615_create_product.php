@@ -21,6 +21,7 @@ class CreateProduct extends Migration
             $table->string('thumbnail')->nullable();
             $table->bigInteger('stock');
             $table->bigInteger('price');
+            $table->string('status', 20)->default('publish');
             $table->bigInteger("category_product_id")->unsigned()->nullable();
             $table->foreign('category_product_id')->references('id')->on('category_product');
         });

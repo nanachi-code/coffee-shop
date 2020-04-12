@@ -12,6 +12,8 @@ $(function () {
     $("#table-admin-post").DataTable();
     $("#table-admin-comment").DataTable();
     $("#table-admin-user").DataTable();
+    $("#table-admin-order").DataTable();
+    $("#table-admin-product-order").DataTable();
 
     $("#form-product").submit(function (e) {
         e.preventDefault();
@@ -468,5 +470,25 @@ $(function () {
                 },
             });
         }
+    });
+
+    $("#btn-add-product").click(function () {
+        $("#table-admin-add-product-order").DataTable();
+    });
+
+    $("a.add-product").click(function (e) {
+        e.preventDefault();
+
+        let row = $(this).parents("tr");
+        let _p = {
+            id: row.find(".product-id").html().trim(),
+            name: row.find(".product-name").html().trim(),
+            category:
+                row.find(".product-category").html().trim() == "Uncategorized"
+                    ? null
+                    : row.find(".product-category").html().trim(),
+            description: row.find(".product-description").html().trim(),
+        };
+        console.log(_p);
     });
 });

@@ -15,7 +15,6 @@ class CreateOrder extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger("user_id");
             $table->string('customer_address');
             $table->string('customer_city');
             $table->string('customer_country');

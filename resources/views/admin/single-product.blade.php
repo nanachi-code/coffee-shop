@@ -72,13 +72,33 @@
 
                                     <div class="form-buttons-w">
                                         <button class="btn btn-primary" type="submit">Save</button>
+                                        @if ($product->status == "publish")
                                         <a href="{{ url("admin/product/{$product->id}/delete")}}"
                                             class="btn btn-danger single-delete">
                                             Delete
                                         </a>
+                                        @else
+                                        <a href="{{ url("admin/product/{$product->id}/restore")}}"
+                                            class="btn btn-primary">
+                                            Restore
+                                        </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
+                                    {{-- product status --}}
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+                                        <div>
+                                            @if ($product->status == "trashed")
+                                            <span style="font-weight: 800">Trashed</span> at <span
+                                                style="font-weight: 800">{{ $product->updated_at }}</span>
+                                            @else
+                                            <span style="font-weight: 800">Published</span> at <span
+                                                style="font-weight: 800">{{ $product->updated_at }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
                                     {{-- product category --}}
                                     <div class="form-group">
                                         <label for="form-product-category">Category</label>

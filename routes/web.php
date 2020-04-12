@@ -44,14 +44,14 @@ Route::prefix('/category')->group(function () {
     Route::get('/{id}', 'WebController@categoryOne');
 });
 //cart start
-Route::get("/shopping/{id}","WebController@shopping")->middleware("auth");
+Route::get("/shopping/{id}", "WebController@shopping")->middleware("auth");
 
 Route::get('/cart', "WebController@cart")->middleware("auth");
 
-Route::get("/clearCart/{id}","WebController@clearOneCart");
+Route::get("/clearCart/{id}", "WebController@clearOneCart");
 
 Route::get('/checkout', "WebController@checkout")->middleware("auth");
-Route::post("checkout",'WebController@placeOrder')->middleware("auth");
+Route::post("checkout", 'WebController@placeOrder')->middleware("auth");
 
 Route::get('/menu', "WebController@menu");
 //cart end
@@ -150,6 +150,8 @@ Route::group([
         Route::get('/{id}/delete', 'Admin\ProductController@deleteProduct');
 
         Route::post('/{id}/update', 'Admin\ProductController@updateProduct');
+
+        Route::post('/{id}/restore', 'Admin\ProductController@restoreProduct');
     });
 
     //* Category Product
@@ -189,8 +191,24 @@ Route::group([
 
         Route::get('/{id}/restore', 'Admin\UserController@restoreUser');
     });
+
+    //* Order
+    Route::prefix('order')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/order/all');
+        });
+
+        Route::get('/all', 'Admin\OrderController@renderArchiveOrder');
+
+        Route::get('/new', 'Admin\OrderController@renderNewOrder');
+
+        Route::post('/new', 'Admin\OrderController@createOrder');
+
+        Route::get('/{id}', 'Admin\OrderController@renderSingleOrder');
+
+        Route::post('/{id}/update', 'Admin\OrderController@updateOrder');
+    });
 });
 
 
-        Route::post('/sendemail/send', 'WebController@send');
-
+Route::post('/sendemail/send', 'WebController@send');

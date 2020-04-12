@@ -110,7 +110,20 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         try {
-            $product->delete();
+            $product->status = "trashed";
+            $product->save();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return redirect('admin/product');
+    }
+
+    public function restoreProduct($id)
+    {
+        $product = Product::find($id);
+        try {
+            $product->status = "publish";
+            $product->save();
         } catch (\Throwable $th) {
             throw $th;
         }

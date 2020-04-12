@@ -84,18 +84,6 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    {{-- product thumbnail --}}
-                                    <div class="form-group">
-                                        <label for="form-post-thumbnail">Thumbnail</label>
-                                        <img src="{{ asset('images/default/no-image.jpg') }}"
-                                            class="input-preview img-responsive">
-
-                                        <div class="form-buttons-w">
-                                            <input type="file" class="form-control-file" data-title="Upload"
-                                                name="thumbnail">
-                                        </div>
-                                    </div>
-
                                     {{-- product category --}}
                                     <div class="form-group">
                                         <label for="form-product-category">Category</label>
@@ -109,6 +97,18 @@
                                             </option>
                                             @endforeach
                                         </select>
+                                    </div>
+
+                                    {{-- product thumbnail --}}
+                                    <div class="form-group">
+                                        <label for="form-post-thumbnail">Thumbnail</label>
+                                        <img src="{{ asset('images/default/no-image.jpg') }}"
+                                            class="input-preview img-responsive">
+
+                                        <div class="form-buttons-w">
+                                            <input type="file" class="form-control-file" data-title="Upload"
+                                                name="thumbnail">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
