@@ -155,7 +155,7 @@ class WebController extends Controller
             $grand_total+=($p->price * $p->cart_qty);
         }
         $order =Order::create([
-            'user_id'=>Auth::id(),
+            'user_id'=>Auth::user()->id,
             'customer_name'=>$request->get("customer_name"),
             'customer_address'=>$request->get("customer_address"),
             'customer_city'=>$request->get("customer_city"),
@@ -163,10 +163,12 @@ class WebController extends Controller
             'customer_email'=>$request->get("customer_email"),
             'customer_phone'=>$request->get("customer_phone"),
             'customer_postcode'=>$request->get("customer_postcode"),
-            'grand_total'=>$grand_total,
+            'total'=>$grand_total,
             'method'=>$request->get("method"),
             'status'=>Order::STATUS_PENDING
         ]);
+
+
         foreach ($cart as $p){
             DB::table("order_product")->insert([
                 'order_id'=>$order->id,

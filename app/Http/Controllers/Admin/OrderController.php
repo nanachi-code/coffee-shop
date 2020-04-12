@@ -21,9 +21,10 @@ class OrderController extends Controller
     public function renderSingleOrder($id)
     {
         $p = [
-            'order' => Order::find($id)
-        ];
+            'order' => Order::find($id),
 
+        ];
+        dd($order);
         return view('admin/single-order')->with($p);
     }
 
