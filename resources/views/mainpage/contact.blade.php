@@ -47,7 +47,7 @@
                   </div>
                   <div class="col-md-1"></div>
         <div class="col-md-6 ftco-animate">
-          <form method="post" action="{{url('sendemail/send')}}" class="contact-form">
+          <form class="contact-form">
               <div class="row">
                   <div class="col-md-6">
                   <div class="form-group">
@@ -67,7 +67,7 @@
               <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
             </div>
             <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5" >
+              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5" action="{{url('sendemail/send')}}">
             </div>
           </form>
         </div>
