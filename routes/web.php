@@ -192,5 +192,5 @@ Route::group([
 });
 
 
-Route::post('/sendemail/send', 'WebController@send');
+        Route::post('/sendemail/send', 'WebController@send');
 

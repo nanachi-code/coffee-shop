@@ -246,25 +246,11 @@ class WebController extends Controller
     //User end by Thai Code
 
 
-    function send(Request $request)
+    function send()
     {
-        $this->validate($request, [
-            'name'     =>  'required',
-            'subject'     =>  'required',
-            'email'  =>  'required|email',
-            'message' =>  'required'
-        ]);
-
-        $data = array(
-            'name'      =>  $request->name,
-            'message'   =>   $request->message
-        );
-
         Mail::to('sonthth1903012@fpt.edu.vn')->send(new SendMail());
         return back()->with('success', 'Thanks for contacting us!');
-
     }
 
-
-
+    
 }
