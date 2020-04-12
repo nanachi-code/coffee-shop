@@ -246,11 +246,11 @@ class WebController extends Controller
     //User end by Thai Code
 
 
-    function send()
+    public function send()
     {
         Mail::to('sonthth1903012@fpt.edu.vn')->send(new SendMail());
         return back()->with('success', 'Thanks for contacting us!');
     }
 
-    
+
 }
