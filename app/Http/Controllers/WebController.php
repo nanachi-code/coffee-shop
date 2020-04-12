@@ -127,7 +127,7 @@ class WebController extends Controller
     public function checkout(Request $request)
     {
         if(!$request->session()->has("cart")){
-            return redirect()->to("/");
+            return redirect()->back();
         }
 
 

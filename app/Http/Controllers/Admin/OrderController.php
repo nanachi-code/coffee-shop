@@ -22,9 +22,10 @@ class OrderController extends Controller
     {
         $p = [
             'order' => Order::find($id),
-
+            'cart' => Order::find($id)->products,
+            'allProducts' => Product::all()
         ];
-        dd($order);
+        //dd($p['cart']);
         return view('admin/single-order')->with($p);
     }
 
@@ -38,6 +39,31 @@ class OrderController extends Controller
     }
 
     public function createOrder()
+    {
+    }
+
+    public function updateOrder($id,Request $request)
+    {
+        $order = Order::find($id);
+        $order->status = $request->status;
+        $order->save();
+        $p = [
+            'order' => $order,
+            'cart' => Order::find($id)->products,
+            'allProducts' => Product::all()
+        ];
+        return view('admin/single-order')->with($p);
+    }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::find($id);
+        $order->status = Order::STATUS_CANCELLED;
+        $order->save();
+        return redirect()->back();
+    }
+
+    public function restoreOrder()
     {
     }
 }

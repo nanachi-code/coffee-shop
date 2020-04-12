@@ -31,6 +31,7 @@
                         <hr>
                         <form id="form-order" action="{{ url("admin/order/{$order->id}/update")}}" method="POST"
                             enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-9">
                                     {{-- order customer name --}}
@@ -39,7 +40,7 @@
                                         <input class="form-control" data-error="Customer name is required"
                                             placeholder="Enter customer name" required="required" type="text"
                                             value="{{ $order->customer_name }}" name="customer_name"
-                                            id="form-order-customer-name" />
+                                            id="form-order-customer-name" disabled />
                                         <div class="help-block form-text with-errors form-control-feedback"></div>
                                     </div>
 
@@ -49,7 +50,7 @@
                                         <input class="form-control" data-error="Customer email is required"
                                             placeholder="Enter customer email" required="required" type="email"
                                             value="{{ $order->customer_email }}" name="customer_email"
-                                            id="form-order-customer-email" />
+                                            id="form-order-customer-email" disabled />
                                         <div class="help-block form-text with-errors form-control-feedback"></div>
                                     </div>
 
@@ -59,7 +60,7 @@
                                         <input class="form-control" data-error="Customer phone is required"
                                             placeholder="Enter customer phone" required="required" type="text"
                                             value="{{ $order->customer_phone }}" name="customer_phone"
-                                            id="form-order-customer-phone" />
+                                            id="form-order-customer-phone" disabled />
                                         <div class="help-block form-text with-errors form-control-feedback"></div>
                                     </div>
 
@@ -70,14 +71,15 @@
                                             <input class="form-control" data-error="Customer city is required"
                                                 placeholder="Enter customer city" required="required" type="text"
                                                 value="{{ $order->customer_city }}" name="customer_city"
-                                                id="form-order-customer-city" />
+                                                id="form-order-customer-city" disabled />
                                             <div class="help-block form-text with-errors form-control-feedback"></div>
                                         </div>
 
                                         {{-- order customer method --}}
                                         <div class="form-group col-md-6">
                                             <label for="form-order-customer-method">Payment Method</label>
-                                            <select name="customer_method" id="form-order-method" class="form-control">
+                                            <select name="customer_method" id="form-order-method" class="form-control"
+                                                disabled>
                                                 <option value="Cash on delivery" @if ($order->method == "Cash on
                                                     delivery") selected @endif>Cash
                                                     on delivery</option>
@@ -97,7 +99,7 @@
                                             <input class="form-control" data-error="Customer postcode is required"
                                                 placeholder="Enter customer postcode" required="required" type="text"
                                                 value="{{ $order->customer_postcode }}" name="customer_postcode"
-                                                id="form-order-customer-postcode" />
+                                                id="form-order-customer-postcode" disabled />
                                             <div class="help-block form-text with-errors form-control-feedback"></div>
                                         </div>
 
@@ -105,7 +107,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="">Customer Country</label>
                                             <select name="customer_country" id="form-order-customer-country"
-                                                class="form-control">
+                                                class="form-control" disabled>
                                                 <option value="Vietnam" @if ($order->customer_country == "Vietnam")
                                                     selected @endif>Vietnam</option>
                                             </select>
@@ -115,7 +117,7 @@
 
                                     <div class="form-buttons-w">
                                         <button class="btn btn-primary" type="submit">Save</button>
-                                        @if ($order->status == "publish")
+                                        @if ($order->status == "0")
                                         <a href="{{ url("admin/order/{$order->id}/delete")}}"
                                             class="btn btn-danger single-delete">
                                             Delete
@@ -132,11 +134,16 @@
                                     <div class="form-group">
                                         <label for="">Status</label>
                                         <select name="status" id="form-order-status" class="form-control">
-                                            <option value="Pending">Pending</option>
-                                            <option value="Processing">Processing</option>
-                                            <option value="Shipping">Shipping</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Cancelled">Cancelled</option>
+                                            <option @if($order->status == \App\Order::STATUS_PENDING) selected @endif
+                                                value="0">Pending</option>
+                                            <option @if($order->status == \App\Order::STATUS_PROCESSING) selected @endif
+                                                value="1">Processing</option>
+                                            <option @if($order->status == \App\Order::STATUS_SHIPPING) selected @endif
+                                                value="2">Shipping</option>
+                                            <option @if($order->status == \App\Order::STATUS_COMPLETED) selected @endif
+                                                value="3">Completed</option>
+                                            <option @if($order->status == \App\Order::STATUS_CANCELLED) selected @endif
+                                                value="4">Cancelled</option>
                                         </select>
                                         <div>
                                             @switch($order->status)
@@ -183,11 +190,39 @@
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
-                                            <th>Stock</th>
+                                            <th>Quantity</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($cart as $product)
+                                        <tr>
+                                            <td class="product-id">
+                                                {{ $product->id }}
+                                            </td>
+                                            <td class="product-name">
+                                                {{ $product->name }}
+                                            </td>
+                                            <td class="product-category">
+                                                @if (!$product->category)
+                                                Uncategorized
+                                                @else
+                                                {{ $product->category->name }}
+                                                @endif
+                                            </td>
+                                            <td class="product-description">
+                                                {{ $product->description }}
+                                            </td>
+                                            <td class="product-stock">
+                                                {{ $product->pivot->quantity }}
+                                            </td>
+                                            <td class="row-actions">
+                                                <a href="#" class="danger add-product">
+                                                    <i class="os-icon os-icon-ui-15"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>

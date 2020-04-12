@@ -615,12 +615,12 @@
                             </div>
                             <span>All orders</span>
                         </a>
-                        <a href="{{ url('/admin/order/new') }}">
-                            <div class="icon-w">
-                                <i class="icon-basket"></i>
-                            </div>
-                            <span>New order</span>
-                        </a>
+                        {{-- <a href="{{ url('/admin/order/new') }}">
+                        <div class="icon-w">
+                            <i class="icon-basket"></i>
+                        </div>
+                        <span>New order</span>
+                        </a> --}}
                     </li>
                 </ul>
             </div>

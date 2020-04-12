@@ -48,6 +48,7 @@
                                         <td>{{ $order->customer_name }}</td>
                                         <td>{{ $order->method }}</td>
                                         <td>{{ $order->status }}</td>
+                                        <td>{{ $order->total }}</td>
                                         <td class="row-actions">
                                             <a href="{{ url("/admin/order/{$order->id}")}}">
                                                 <i class="os-icon os-icon-ui-49"></i>

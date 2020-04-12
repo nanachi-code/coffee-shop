@@ -202,11 +202,15 @@ Route::group([
 
         Route::get('/new', 'Admin\OrderController@renderNewOrder');
 
-        Route::post('/new', 'Admin\OrderController@createOrder');
+        //Route::post('/new', 'Admin\OrderController@createOrder');
 
         Route::get('/{id}', 'Admin\OrderController@renderSingleOrder');
 
         Route::post('/{id}/update', 'Admin\OrderController@updateOrder');
+
+        Route::get('/{id}/delete', 'Admin\OrderController@deleteOrder');
+
+        Route::get('/{id}/restore', 'Admin\OrderController@restoreOrder');
     });
 });
 
