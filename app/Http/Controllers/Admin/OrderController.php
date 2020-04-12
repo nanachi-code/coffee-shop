@@ -63,7 +63,11 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-    public function restoreOrder()
+    public function restoreOrder($id)
     {
+        $order = Order::find($id);
+        $order->status = Order::STATUS_PENDING;
+        $order->save();
+        return redirect()->back();
     }
 }
