@@ -11,6 +11,7 @@ $(function () {
     $("#table-admin-size").DataTable();
     $("#table-admin-post").DataTable();
     $("#table-admin-comment").DataTable();
+    $("#table-admin-user").DataTable();
 
     $("#form-product").submit(function (e) {
         e.preventDefault();

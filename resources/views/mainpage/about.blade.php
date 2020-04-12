@@ -29,7 +29,13 @@
             <h2 class="mb-4">Our Story</h2>
           </div>
           <div>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+                    <p>Our first restaurent was opened in 1999 in small town of Texas, we started here for 3 years then thought
+                        that we can serve much more than this to everyone. In next 5 years from then, our origin brand "Raccoon Food"
+                        had located in many states of US, but it's doesn't last long. In 2008 our customer left
+                        us cause there were many big food brand such as "Mc Donald", "Torna Coffee", "CNN Resaurent",...
+                        Our sales down then 50 percents in just a year, and it's enough to realize that we need to change
+                        and find a new place to start. Today, we have more than twenty shops in Canada and serve people
+                        good food everyday. We'd love to serve you the best meal.</p>
                 </div>
             </div>
       </div>
