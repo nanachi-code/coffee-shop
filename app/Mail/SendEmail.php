@@ -17,7 +17,7 @@ class SendEmail extends Mailable
      * @return void
      */
 
-    public $order;
+//    public $order;
 
     public function __construct()
     {
