@@ -260,7 +260,7 @@ class WebController extends Controller
             'message'   =>   $request->message
         );
 
-        Mail::to('web-tutorial@programmer.net')->send(new SendMail($data));
+        Mail::to('sonthth1903012@fpt.edu.vn')->send(new SendMail());
         return back()->with('success', 'Thanks for contacting us!');
 
     }
