@@ -89,6 +89,16 @@ $factory->define(\App\Product::class,function (Faker $faker){
 });
 
 
+$factory->define(\App\UserTable::class,function (Faker $faker){
+    return [
+        'name' => $faker->name,
+        'email'   =>  $faker->unique()->email,
+        'telephone'=>  $faker->phoneNumber,
+        'feedback' => $faker->title
+    ];
+});
+
+
 
 
 
